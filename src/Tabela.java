@@ -9,7 +9,6 @@ public class Tabela {
     private int[][] diasOcupados;
 
     public Tabela() {
-        System.out.println("teste");
     }
 
     public int[][] getTabela() {
