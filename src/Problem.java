@@ -111,6 +111,48 @@ public class Problem {
         }
     }
 
+    // abs(totalSchedules / periodsPerDay) + 1 == dia atual
+    // abs(totalSchedules / day) + 1 == turno atual
+
+    /**
+     * Check if constraint exist in the array of constraints
+     *
+     * @param line
+     * @param column
+     * @return
+     */
+    private boolean constraintExist(int line, int column) {
+        Constraint constraint = unavailableSchedule(line, column);
+
+        for (Constraint c : this.constraints) {
+            if (constraint.equals(c)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if a class is available in the schedule
+     *
+     * @param line
+     * @param column
+     * @return Constraint
+     */
+    private Constraint unavailableSchedule(int line, int column) {
+        int day = Math.abs(this.getTotalSchedules() / this.getnPeriodsPerDay()) + 1;
+        int turn = Math.abs(this.getTotalSchedules() / this.getnDays()) + 1;
+
+        Course auxCourse = getCourseFromInt(line);
+        Constraint auxConstraint = new Constraint();
+        auxConstraint.setCourseName(auxCourse.getCourseName());
+        auxConstraint.setDay(day);
+        auxConstraint.setPeriod(turn);
+
+        return auxConstraint;
+    }
+
     /**
      * Fill the classSchedules matrix
      * <p>
@@ -120,9 +162,7 @@ public class Problem {
     private void fillClassSchedulesMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalSchedules(); c++) {
-                if (getCourseFromInt(l).equals(getCourseFromInt(c))) {
-                    this.classClass[l][c] = 2;
-                } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
+                if (constraintExist(l, c)) {
                     this.classClass[l][c] = 1;
                 } else {
                     this.classClass[l][c] = 0;
