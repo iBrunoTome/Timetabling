@@ -1,12 +1,12 @@
 /**
  * Created by iBrunoTome on 6/19/16.
  */
-public class Restricao {
+public class Constraint {
     private String nomeDisciplina;
     private int dia;
     private int periodo;
 
-    public Restricao() {
+    public Constraint() {
 
     }
 

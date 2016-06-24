@@ -8,17 +8,17 @@ import java.io.IOException;
 public class Problema {
     private FileReader fileIn;
     private BufferedReader reader;
-    private String nomeInstancia;
+    private String instanceName;
     private String line;
     private Curricula[] curriculas;
     private Course[] courses;
-    private Sala[] salas;
-    private Restricao[] restricoes;
+    private Room[] rooms;
+    private Constraint[] constraints;
     private int[][] AA;
     private int[][] AI;
-    private int nSalas;
-    private int nDias;
-    private int nPeriodosPorDia;
+    private int nRooms;
+    private int nDays;
+    private int nPeriodsPerDay;
 
     public Problema() {
 
@@ -35,53 +35,56 @@ public class Problema {
     private void instantiateProblem() throws IOException {
         while (line != null) {
             if (line.startsWith("Name: ")) {
-                this.setNomeInstancia(line.substring(7));
+                this.setInstanceName(line.substring(7));
             } else if (line.startsWith("Courses: ")) {
                 this.courses = new Course[Integer.parseInt(this.line.substring(9))];
             } else if (line.startsWith("Rooms: ")) {
-                this.setnSalas(Integer.parseInt(line.substring(7)));
+                this.setnRooms(Integer.parseInt(line.substring(7)));
             } else if (line.startsWith("Days: ")) {
-                this.setnDias(Integer.parseInt(line.substring(6)));
+                this.setnDays(Integer.parseInt(line.substring(6)));
             } else if (line.startsWith("Periods_per_day: ")) {
-                this.setnPeriodosPorDia(Integer.parseInt(line.substring(17)));
+                this.setnPeriodsPerDay(Integer.parseInt(line.substring(17)));
             } else if (line.startsWith("Curricula: ")) {
                 this.curriculas = new Curricula[Integer.parseInt(line.substring(11))];
+            } else if (line.startsWith("Constraints: ")) {
+                this.constraints = new Constraint[Integer.parseInt(line.substring(13))];
             }
+
             System.out.println(line);
             line = this.reader.readLine();
         }
     }
 
-    public String getNomeInstancia() {
-        return this.nomeInstancia;
+    public String getInstanceName() {
+        return this.instanceName;
     }
 
-    public void setNomeInstancia(String nomeInstancia) {
-        this.nomeInstancia = nomeInstancia;
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
     }
 
-    public int getnSalas() {
-        return this.nSalas;
+    public int getnRooms() {
+        return this.nRooms;
     }
 
-    public void setnSalas(int nSalas) {
-        this.nSalas = nSalas;
+    public void setnRooms(int nRooms) {
+        this.nRooms = nRooms;
     }
 
-    public int getnDias() {
-        return this.nDias;
+    public int getnDays() {
+        return this.nDays;
     }
 
-    public void setnDias(int nDias) {
-        this.nDias = nDias;
+    public void setnDays(int nDays) {
+        this.nDays = nDays;
     }
 
-    public int getnPeriodosPorDia() {
-        return this.nPeriodosPorDia;
+    public int getnPeriodsPerDay() {
+        return this.nPeriodsPerDay;
     }
 
-    public void setnPeriodosPorDia(int nPeriodosPorDia) {
-        this.nPeriodosPorDia = nPeriodosPorDia;
+    public void setnPeriodsPerDay(int nPeriodsPerDay) {
+        this.nPeriodsPerDay = nPeriodsPerDay;
     }
 
     public Curricula[] getCurriculas() {
@@ -100,20 +103,20 @@ public class Problema {
         this.courses = courses;
     }
 
-    public Sala[] getSalas() {
-        return this.salas;
+    public Room[] getRooms() {
+        return this.rooms;
     }
 
-    public void setSalas(Sala[] salas) {
-        this.salas = salas;
+    public void setRooms(Room[] rooms) {
+        this.rooms = rooms;
     }
 
-    public Restricao[] getRestricoes() {
-        return this.restricoes;
+    public Constraint[] getConstraints() {
+        return this.constraints;
     }
 
-    public void setRestricoes(Restricao[] restricoes) {
-        this.restricoes = restricoes;
+    public void setConstraints(Constraint[] constraints) {
+        this.constraints = constraints;
     }
 
     public int[][] getAA() {

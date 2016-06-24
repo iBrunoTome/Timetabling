@@ -1,11 +1,11 @@
 /**
  * Created by iBrunoTome on 6/19/16.
  */
-public class Sala {
+public class Room {
 	private String nomeSala;
 	private int capacidade;
 
-	public Sala() {
+	public Room() {
 	}
 
 	public String getNomeSala() {
