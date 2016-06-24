@@ -40,7 +40,7 @@ public class Problem {
      */
     private void fillCourses() throws IOException {
         String aux[];
-        while (!Character.isWhitespace(this.line.charAt(0))) {
+        while (this.line.isEmpty()) {
             aux = this.line.split(" ");
             Course course = new Course();
             course.setCourseName(aux[0]);
@@ -52,13 +52,56 @@ public class Problem {
         }
     }
 
+    /**
+     * Preenche o vetor de salas
+     *
+     * @throws IOException
+     */
     private void fillRooms() throws IOException {
         String aux[];
-        while (!Character.isWhitespace(this.line.charAt(0))) {
+        while (this.line.isEmpty()) {
             aux = this.line.split("\t");
             Room room = new Room();
             room.setRoomName(aux[0]);
             room.setCapacity(Integer.parseInt(aux[1]));
+            this.line = reader.readLine();
+        }
+    }
+
+    /**
+     * Preenche o vetor de curriculas
+     *
+     * @throws IOException
+     */
+    private void fillCurriculas() throws IOException {
+        String aux[];
+        while (this.line.isEmpty()) {
+            aux = this.line.split(" ");
+            Curricula curricula = new Curricula();
+            curricula.setCurriculaName(aux[0]);
+            curricula.setnCourses(Integer.parseInt(aux[1]));
+            String auxCourses[] = new String[curricula.getnCourses()];
+            for (int i = 0; i < curricula.getnCourses(); i++) {
+                auxCourses[i] = aux[i + 2];
+            }
+            curricula.setCourses(auxCourses);
+            this.line = reader.readLine();
+        }
+    }
+
+    /**
+     * Preenche o vetor de restrições
+     *
+     * @throws IOException
+     */
+    private void fillConstraints() throws IOException {
+        String aux[];
+        while (this.line.isEmpty()) {
+            aux = this.line.split(" ");
+            Constraint constraint = new Constraint();
+            constraint.setCourseName(aux[0]);
+            constraint.setDay(Integer.parseInt(aux[1]));
+            constraint.setPeriod(Integer.parseInt(aux[2]));
             this.line = reader.readLine();
         }
     }
@@ -84,12 +127,20 @@ public class Problem {
                 this.curriculas = new Curricula[Integer.parseInt(line.substring(11))];
             } else if (line.startsWith("Constraints: ")) {
                 this.constraints = new Constraint[Integer.parseInt(line.substring(13))];
-            } else if (this.line.startsWith("COURSES: ")) {
+            } else if (this.line.startsWith("COURSES:")) {
                 this.line = this.reader.readLine();
                 fillCourses();
-            } else if (this.line.startsWith("ROOMS: ")) {
+            } else if (this.line.startsWith("ROOMS:")) {
                 this.line = this.reader.readLine();
                 fillRooms();
+            } else if (this.line.startsWith("CURRICULA:")) {
+                this.line = this.reader.readLine();
+                fillCurriculas();
+            } else if (this.line.startsWith("UNAVAILABILITY_CONSTRAINTS:")) {
+                this.line = this.reader.readLine();
+                fillConstraints();
+            } else if (this.line.startsWith("END.")) {
+                break;
             }
 
             System.out.println(line);

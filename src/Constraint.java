@@ -4,7 +4,7 @@
 public class Constraint {
     private String courseName;
     private int day;
-    private int periodo;
+    private int period;
 
     public Constraint() {
 
@@ -26,11 +26,11 @@ public class Constraint {
         this.day = day;
     }
 
-    public int getPeriodo() {
-        return this.periodo;
+    public int getPeriod() {
+        return this.period;
     }
 
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
+    public void setPeriod(int period) {
+        this.period = period;
     }
 }
