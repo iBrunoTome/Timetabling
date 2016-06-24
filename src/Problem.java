@@ -62,6 +62,7 @@ public class Problem {
      */
     private void fillCourses() throws IOException {
         String aux[];
+        int idx = 0;
         while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Course course = new Course();
@@ -70,6 +71,8 @@ public class Problem {
             course.setnClass(Integer.parseInt(aux[2]));
             course.setMinClassDays(Integer.parseInt(aux[3]));
             course.setnStudents(Integer.parseInt(aux[4]));
+            this.courses[idx] = course;
+            idx++;
             this.line = reader.readLine();
         }
     }
@@ -81,11 +84,14 @@ public class Problem {
      */
     private void fillRooms() throws IOException {
         String aux[];
+        int idx = 0;
         while (!this.line.isEmpty()) {
             aux = this.line.split("\t");
             Room room = new Room();
             room.setRoomName(aux[0]);
             room.setCapacity(Integer.parseInt(aux[1]));
+            this.rooms[idx] = room;
+            idx++;
             this.line = reader.readLine();
         }
     }
@@ -98,6 +104,7 @@ public class Problem {
     private void fillCurriculas() throws IOException {
         String auxLeft[];
         String auxRight[];
+        int idx = 0;
         while (!this.line.isEmpty()) {
             auxLeft = this.line.split("  ");
             auxRight = auxLeft[1].split(" ");
@@ -109,6 +116,8 @@ public class Problem {
                 auxCourses[i] = auxRight[i + 1];
             }
             curricula.setCourses(auxCourses);
+            this.curriculas[idx] = curricula;
+            idx++;
             this.line = reader.readLine();
         }
     }
@@ -120,12 +129,15 @@ public class Problem {
      */
     private void fillConstraints() throws IOException {
         String aux[];
+        int idx = 0;
         while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Constraint constraint = new Constraint();
             constraint.setCourseName(aux[0]);
             constraint.setDay(Integer.parseInt(aux[1]));
             constraint.setPeriod(Integer.parseInt(aux[2]));
+            this.constraints[idx] = constraint;
+            idx++;
             this.line = reader.readLine();
         }
     }
@@ -143,6 +155,7 @@ public class Problem {
                 this.courses = new Course[Integer.parseInt(this.line.substring(9))];
             } else if (line.startsWith("Rooms: ")) {
                 this.setnRooms(Integer.parseInt(line.substring(7)));
+                this.rooms = new Room[this.getnRooms()];
             } else if (line.startsWith("Days: ")) {
                 this.setnDays(Integer.parseInt(line.substring(6)));
             } else if (line.startsWith("Periods_per_day: ")) {
