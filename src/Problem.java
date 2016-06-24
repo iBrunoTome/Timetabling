@@ -14,23 +14,57 @@ public class Problem {
     private Course[] courses;
     private Room[] rooms;
     private Constraint[] constraints;
-    private int[][] AA;
-    private int[][] AI;
+    private int[][] classClass;
+    private int[][] classSchedules;
     private int nRooms;
     private int nDays;
     private int nPeriodsPerDay;
 
-    public Problem() {
-
-    }
-
+    /**
+     * Instantiate the problem, read the filein and fill all the necessary matrix
+     *
+     * @param nameFileIn
+     * @throws IOException
+     */
     public Problem(String nameFileIn) throws IOException {
         this.fileIn = new FileReader(nameFileIn);
         this.reader = new BufferedReader(this.fileIn);
         this.line = reader.readLine();
         this.instantiateProblem();
-        this.AA = new int[this.getTotalClass()][this.getTotalClass()];
-        this.AI = new int[this.getTotalClass()][this.getTotalSchedules()];
+        this.classClass = new int[this.getTotalClass()][this.getTotalClass()];
+        this.classSchedules = new int[this.getTotalClass()][this.getTotalSchedules()];
+        this.fillAA();
+    }
+
+    /**
+     * Return a course from an integer line or column from a matrix
+     *
+     * @param idxLine
+     * @return Course
+     */
+    private Course getCourseFromInt(int idxLine) {
+
+        int total = 0;
+        for (Course c : this.courses) {
+            total += c.getnClass();
+            if (idxLine <= total) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    private void fillClassClass() {
+        for (int l = 0; l < this.getTotalClass(); l++) {
+            for (int c = 0; c < this.getTotalClass(); c++) {
+                if (getCourseFromInt(l).equals(getCourseFromInt(c))) {
+                    this.classClass[l][c] = 2;
+                } else if ((getCourseFromInt(l).getTeacherName().equals(getCourseFromInt(c).getTeacherName()))) {
+
+                }
+            }
+        }
     }
 
     /**
@@ -249,19 +283,19 @@ public class Problem {
         this.constraints = constraints;
     }
 
-    public int[][] getAA() {
-        return this.AA;
+    public int[][] getClassClass() {
+        return this.classClass;
     }
 
-    public void setAA(int[][] AA) {
-        this.AA = AA;
+    public void setClassClass(int[][] classClass) {
+        this.classClass = classClass;
     }
 
-    public int[][] getAI() {
-        return this.AI;
+    public int[][] getClassSchedules() {
+        return this.classSchedules;
     }
 
-    public void setAI(int[][] AI) {
-        this.AI = AI;
+    public void setClassSchedules(int[][] classSchedules) {
+        this.classSchedules = classSchedules;
     }
 }
