@@ -19,7 +19,6 @@ public class Problem {
     private int nRooms;
     private int nDays;
     private int nPeriodsPerDay;
-    private int idxLine = 1;
 
     public Problem() {
 
@@ -30,22 +29,45 @@ public class Problem {
         this.reader = new BufferedReader(this.fileIn);
         this.line = reader.readLine();
         this.instantiateProblem();
-
+        this.AA = new int[this.getTotalClass()][this.getTotalClass()];
+        this.AI = new int[this.getTotalClass()][this.getTotalSchedules()];
     }
 
     /**
-     * Preenche o vetor de cursos
+     * Get the schedule number (H) for the matrix
+     *
+     * @return
+     */
+    private int getTotalSchedules() {
+        return this.getnDays() * this.getnPeriodsPerDay();
+    }
+
+    /**
+     * Sum num of students to fill matrix (N)
+     *
+     * @return
+     */
+    private int getTotalClass() {
+        int total = 0;
+        for (int i = 0; i < this.courses.length; i++) {
+            total += this.courses[i].getnStudents();
+        }
+        return total;
+    }
+
+    /**
+     * Fill the array of courses
      *
      * @throws IOException
      */
     private void fillCourses() throws IOException {
         String aux[];
-        while (this.line.isEmpty()) {
+        while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Course course = new Course();
             course.setCourseName(aux[0]);
             course.setTeacherName(aux[1]);
-            course.setnStudents(Integer.parseInt(aux[2]));
+            course.setnClass(Integer.parseInt(aux[2]));
             course.setMinClassDays(Integer.parseInt(aux[3]));
             course.setnStudents(Integer.parseInt(aux[4]));
             this.line = reader.readLine();
@@ -53,13 +75,13 @@ public class Problem {
     }
 
     /**
-     * Preenche o vetor de salas
+     * Fill the array of rooms
      *
      * @throws IOException
      */
     private void fillRooms() throws IOException {
         String aux[];
-        while (this.line.isEmpty()) {
+        while (!this.line.isEmpty()) {
             aux = this.line.split("\t");
             Room room = new Room();
             room.setRoomName(aux[0]);
@@ -69,20 +91,22 @@ public class Problem {
     }
 
     /**
-     * Preenche o vetor de curriculas
+     * Fill the array of curriculas
      *
      * @throws IOException
      */
     private void fillCurriculas() throws IOException {
-        String aux[];
-        while (this.line.isEmpty()) {
-            aux = this.line.split(" ");
+        String auxLeft[];
+        String auxRight[];
+        while (!this.line.isEmpty()) {
+            auxLeft = this.line.split("  ");
+            auxRight = auxLeft[1].split(" ");
             Curricula curricula = new Curricula();
-            curricula.setCurriculaName(aux[0]);
-            curricula.setnCourses(Integer.parseInt(aux[1]));
+            curricula.setCurriculaName(auxLeft[0]);
+            curricula.setnCourses(Integer.parseInt(auxRight[0]));
             String auxCourses[] = new String[curricula.getnCourses()];
             for (int i = 0; i < curricula.getnCourses(); i++) {
-                auxCourses[i] = aux[i + 2];
+                auxCourses[i] = auxRight[i + 1];
             }
             curricula.setCourses(auxCourses);
             this.line = reader.readLine();
@@ -90,13 +114,13 @@ public class Problem {
     }
 
     /**
-     * Preenche o vetor de restrições
+     * Fill the array of constraints
      *
      * @throws IOException
      */
     private void fillConstraints() throws IOException {
         String aux[];
-        while (this.line.isEmpty()) {
+        while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Constraint constraint = new Constraint();
             constraint.setCourseName(aux[0]);
@@ -107,7 +131,7 @@ public class Problem {
     }
 
     /**
-     * Lê o texto e preenche os vetores
+     * Read the text and fill the arrays
      *
      * @throws IOException
      */
@@ -143,7 +167,7 @@ public class Problem {
                 break;
             }
 
-            System.out.println(line);
+            // System.out.println(line);
             line = this.reader.readLine();
         }
     }
