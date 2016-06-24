@@ -26,4 +26,4 @@ CURRICULO
 
 RESTRIÇOES DE INVIABILIDADE
 
-[]
+[nomeAula] [dia] [turno]
