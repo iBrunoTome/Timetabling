@@ -1,14 +1,14 @@
 /**
  * Created by iBrunoTome on 6/19/16.
  */
-public class Disciplina {
+public class Course {
     private String nomeDisciplina;
     private String nomeProfessor;
     private int nAulas;
     private int minDiasAula;
     private int nAlunos;
 
-    public Disciplina() {
+    public Course() {
 
     }
 

@@ -1,20 +1,55 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Created by iBrunoTome on 6/19/16.
  */
 public class Problema {
+    private FileReader fileIn;
+    private BufferedReader reader;
     private String nomeInstancia;
-    private int nSalas;
-    private int nDias;
-    private int nPeriodosPorDia;
-    private Curriculo[] curriculos;
-    private Disciplina[] disciplinas;
+    private String line;
+    private Curricula[] curriculas;
+    private Course[] courses;
     private Sala[] salas;
     private Restricao[] restricoes;
     private int[][] AA;
     private int[][] AI;
+    private int nSalas;
+    private int nDias;
+    private int nPeriodosPorDia;
 
     public Problema() {
 
+    }
+
+    public Problema(String nameFileIn) throws IOException {
+        this.fileIn = new FileReader(nameFileIn);
+        this.reader = new BufferedReader(this.fileIn);
+        this.line = reader.readLine();
+        instantiateProblem();
+
+    }
+
+    private void instantiateProblem() throws IOException {
+        while (line != null) {
+            if (line.startsWith("Name: ")) {
+                this.setNomeInstancia(line.substring(7));
+            } else if (line.startsWith("Courses: ")) {
+                this.courses = new Course[Integer.parseInt(this.line.substring(9))];
+            } else if (line.startsWith("Rooms: ")) {
+                this.setnSalas(Integer.parseInt(line.substring(7)));
+            } else if (line.startsWith("Days: ")) {
+                this.setnDias(Integer.parseInt(line.substring(6)));
+            } else if (line.startsWith("Periods_per_day: ")) {
+                this.setnPeriodosPorDia(Integer.parseInt(line.substring(17)));
+            } else if (line.startsWith("Curricula: ")) {
+                this.curriculas = new Curricula[Integer.parseInt(line.substring(11))];
+            }
+            System.out.println(line);
+            line = this.reader.readLine();
+        }
     }
 
     public String getNomeInstancia() {
@@ -49,20 +84,20 @@ public class Problema {
         this.nPeriodosPorDia = nPeriodosPorDia;
     }
 
-    public Curriculo[] getCurriculos() {
-        return this.curriculos;
+    public Curricula[] getCurriculas() {
+        return this.curriculas;
     }
 
-    public void setCurriculos(Curriculo[] curriculos) {
-        this.curriculos = curriculos;
+    public void setCurriculas(Curricula[] curriculas) {
+        this.curriculas = curriculas;
     }
 
-    public Disciplina[] getDisciplinas() {
-        return this.disciplinas;
+    public Course[] getCourses() {
+        return this.courses;
     }
 
-    public void setDisciplinas(Disciplina[] disciplinas) {
-        this.disciplinas = disciplinas;
+    public void setCourses(Course[] courses) {
+        this.courses = courses;
     }
 
     public Sala[] getSalas() {

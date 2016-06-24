@@ -1,12 +1,12 @@
 /**
  * Created by iBrunoTome on 6/19/16.
  */
-public class Curriculo {
+public class Curricula {
     private String nomeCurriculo;
     private int nDisciplinas;
     private String[] disciplinas;
 
-    public Curriculo() {
+    public Curricula() {
 
     }
 
