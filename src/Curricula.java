@@ -2,35 +2,35 @@
  * Created by iBrunoTome on 6/19/16.
  */
 public class Curricula {
-    private String nomeCurriculo;
-    private int nDisciplinas;
-    private String[] disciplinas;
+    private String curriculaName;
+    private String[] courses;
+    private int nCourses;
 
     public Curricula() {
 
     }
 
-    public String getNomeCurriculo() {
-        return this.nomeCurriculo;
+    public String getCurriculaName() {
+        return this.curriculaName;
     }
 
-    public void setNomeCurriculo(String nomeCurriculo) {
-        this.nomeCurriculo = nomeCurriculo;
+    public void setCurriculaName(String curriculaName) {
+        this.curriculaName = curriculaName;
     }
 
-    public int getnDisciplinas() {
-        return this.nDisciplinas;
+    public int getnCourses() {
+        return this.nCourses;
     }
 
-    public void setnDisciplinas(int nDisciplinas) {
-        this.nDisciplinas = nDisciplinas;
+    public void setnCourses(int nCourses) {
+        this.nCourses = nCourses;
     }
 
-    public String[] getDisciplinas() {
-        return this.disciplinas;
+    public String[] getCourses() {
+        return this.courses;
     }
 
-    public void setDisciplinas(String[] disciplinas) {
-        this.disciplinas = disciplinas;
+    public void setCourses(String[] courses) {
+        this.courses = courses;
     }
 }

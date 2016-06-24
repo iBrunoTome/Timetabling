@@ -2,25 +2,25 @@
  * Created by iBrunoTome on 6/19/16.
  */
 public class Room {
-	private String nomeSala;
-	private int capacidade;
+	private String roomName;
+	private int capacity;
 
 	public Room() {
 	}
 
-	public String getNomeSala() {
-		return nomeSala;
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setNomeSala(String nomeSala) {
-		this.nomeSala = nomeSala;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
-	public int getCapacidade() {
-		return capacidade;
+	public int getCapacity() {
+		return capacity;
 	}
 
-	public void setCapacidade(int capacidade) {
-		this.capacidade = capacidade;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by iBrunoTome on 6/19/16.
  */
-public class Problema {
+public class Problem {
     private FileReader fileIn;
     private BufferedReader reader;
     private String instanceName;
@@ -19,19 +19,55 @@ public class Problema {
     private int nRooms;
     private int nDays;
     private int nPeriodsPerDay;
+    private int idxLine = 1;
 
-    public Problema() {
+    public Problem() {
 
     }
 
-    public Problema(String nameFileIn) throws IOException {
+    public Problem(String nameFileIn) throws IOException {
         this.fileIn = new FileReader(nameFileIn);
         this.reader = new BufferedReader(this.fileIn);
         this.line = reader.readLine();
-        instantiateProblem();
+        this.instantiateProblem();
 
     }
 
+    /**
+     * Preenche o vetor de cursos
+     *
+     * @throws IOException
+     */
+    private void fillCourses() throws IOException {
+        String aux[];
+        while (!Character.isWhitespace(this.line.charAt(0))) {
+            aux = this.line.split(" ");
+            Course course = new Course();
+            course.setCourseName(aux[0]);
+            course.setTeacherName(aux[1]);
+            course.setnStudents(Integer.parseInt(aux[2]));
+            course.setMinClassDays(Integer.parseInt(aux[3]));
+            course.setnStudents(Integer.parseInt(aux[4]));
+            this.line = reader.readLine();
+        }
+    }
+
+    private void fillRooms() throws IOException {
+        String aux[];
+        while (!Character.isWhitespace(this.line.charAt(0))) {
+            aux = this.line.split("\t");
+            Room room = new Room();
+            room.setRoomName(aux[0]);
+            room.setCapacity(Integer.parseInt(aux[1]));
+            this.line = reader.readLine();
+        }
+    }
+
+    /**
+     * Lê o texto e preenche os vetores
+     *
+     * @throws IOException
+     */
     private void instantiateProblem() throws IOException {
         while (line != null) {
             if (line.startsWith("Name: ")) {
@@ -48,6 +84,12 @@ public class Problema {
                 this.curriculas = new Curricula[Integer.parseInt(line.substring(11))];
             } else if (line.startsWith("Constraints: ")) {
                 this.constraints = new Constraint[Integer.parseInt(line.substring(13))];
+            } else if (this.line.startsWith("COURSES: ")) {
+                this.line = this.reader.readLine();
+                fillCourses();
+            } else if (this.line.startsWith("ROOMS: ")) {
+                this.line = this.reader.readLine();
+                fillRooms();
             }
 
             System.out.println(line);

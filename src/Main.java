@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class Main {
@@ -8,9 +6,9 @@ public class Main {
         String nameFileIn = "instancias/comp01.ctt";
 
         try {
-            Problema problem = new Problema(nameFileIn);
+            Problem problem = new Problem(nameFileIn);
         } catch (IOException e) {
-            System.out.println("Problema ao ler arquivo");
+            System.out.println("Problem ao ler arquivo");
         }
 
 

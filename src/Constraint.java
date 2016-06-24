@@ -2,28 +2,28 @@
  * Created by iBrunoTome on 6/19/16.
  */
 public class Constraint {
-    private String nomeDisciplina;
-    private int dia;
+    private String courseName;
+    private int day;
     private int periodo;
 
     public Constraint() {
 
     }
 
-    public String getNomeDisciplina() {
-        return this.nomeDisciplina;
+    public String getCourseName() {
+        return this.courseName;
     }
 
-    public void setNomeDisciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public int getDia() {
-        return this.dia;
+    public int getDay() {
+        return this.day;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
+    public void setDay(int day) {
+        this.day = day;
     }
 
     public int getPeriodo() {

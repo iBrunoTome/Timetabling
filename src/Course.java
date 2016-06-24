@@ -2,53 +2,53 @@
  * Created by iBrunoTome on 6/19/16.
  */
 public class Course {
-    private String nomeDisciplina;
-    private String nomeProfessor;
-    private int nAulas;
-    private int minDiasAula;
-    private int nAlunos;
+    private String courseName;
+    private String teacherName;
+    private int nClass;
+    private int minClassDays;
+    private int nStudents;
 
     public Course() {
 
     }
 
-    public String getNomeDisciplina() {
-        return this.nomeDisciplina;
+    public String getCourseName() {
+        return this.courseName;
     }
 
-    public void setNomeDisciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public String getNomeProfessor() {
-        return this.nomeProfessor;
+    public String getTeacherName() {
+        return this.teacherName;
     }
 
-    public void setNomeProfessor(String nomeProfessor) {
-        this.nomeProfessor = nomeProfessor;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public int getnAulas() {
-        return this.nAulas;
+    public int getnClass() {
+        return this.nClass;
     }
 
-    public void setnAulas(int nAulas) {
-        this.nAulas = nAulas;
+    public void setnClass(int nClass) {
+        this.nClass = nClass;
     }
 
-    public int getMinDiasAula() {
-        return this.minDiasAula;
+    public int getMinClassDays() {
+        return this.minClassDays;
     }
 
-    public void setMinDiasAula(int minDiasAula) {
-        this.minDiasAula = minDiasAula;
+    public void setMinClassDays(int minClassDays) {
+        this.minClassDays = minClassDays;
     }
 
-    public int getnAlunos() {
-        return this.nAlunos;
+    public int getnStudents() {
+        return this.nStudents;
     }
 
-    public void setnAlunos(int nAlunos) {
-        this.nAlunos = nAlunos;
+    public void setnStudents(int nStudents) {
+        this.nStudents = nStudents;
     }
 }
