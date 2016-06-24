@@ -33,7 +33,7 @@ public class Problem {
         this.instantiateProblem();
         this.classClass = new int[this.getTotalClass()][this.getTotalClass()];
         this.classSchedules = new int[this.getTotalClass()][this.getTotalSchedules()];
-        this.fillAA();
+        this.fillClassClass();
     }
 
     /**
