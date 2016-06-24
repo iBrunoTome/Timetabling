@@ -10,6 +10,16 @@ public class Curricula {
 
     }
 
+    public boolean containCourse(Course course) {
+        for (String c : this.courses) {
+            if (c.equals(course.getCourseName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public String getCurriculaName() {
         return this.curriculaName;
     }

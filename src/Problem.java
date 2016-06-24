@@ -33,7 +33,8 @@ public class Problem {
         this.instantiateProblem();
         this.classClass = new int[this.getTotalClass()][this.getTotalClass()];
         this.classSchedules = new int[this.getTotalClass()][this.getTotalSchedules()];
-        this.fillClassClass();
+        this.fillClassClassMatrix();
+        this.fillClassSchedulesMatrix();
     }
 
     /**
@@ -55,13 +56,76 @@ public class Problem {
         return null;
     }
 
-    private void fillClassClass() {
+    /**
+     * Check if the the 2 courses have the same teacher
+     *
+     * @param line
+     * @param column
+     * @return boolean
+     */
+    private boolean courseSameTeacher(int line, int column) {
+        return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName()) ? true : false;
+    }
+
+    /**
+     * Check if the the 2 courses are in the same curricula
+     *
+     * @param line
+     * @param column
+     * @return boolean
+     */
+    private boolean courseSameCurricula(int line, int column) {
+        Course aux1;
+        Course aux2;
+
+        aux1 = this.getCourseFromInt(line);
+        aux2 = this.getCourseFromInt(column);
+
+        for (Curricula c : this.curriculas) {
+            if (c.containCourse(aux1) && c.containCourse(aux2)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Fill the classClass matrix
+     * <p>
+     * <p>Fill with 2 when the classes are in the same course</p>
+     * <p>Fill with 1 when the classes has the same teacher or the classes are in the same curricula</p>
+     * <p>Fill with zero if had no one of constraints above</p>
+     */
+    private void fillClassClassMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalClass(); c++) {
                 if (getCourseFromInt(l).equals(getCourseFromInt(c))) {
                     this.classClass[l][c] = 2;
-                } else if ((getCourseFromInt(l).getTeacherName().equals(getCourseFromInt(c).getTeacherName()))) {
+                } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
+                    this.classClass[l][c] = 1;
+                } else {
+                    this.classClass[l][c] = 0;
+                }
+            }
+        }
+    }
 
+    /**
+     * Fill the classSchedules matrix
+     * <p>
+     * <p>Fill with 1 when the classes is unavailable in a schedule</p>
+     * <p>Fill with 0 when the classes is available in a schedule</p>
+     */
+    private void fillClassSchedulesMatrix() {
+        for (int l = 0; l < this.getTotalClass(); l++) {
+            for (int c = 0; c < this.getTotalSchedules(); c++) {
+                if (getCourseFromInt(l).equals(getCourseFromInt(c))) {
+                    this.classClass[l][c] = 2;
+                } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
+                    this.classClass[l][c] = 1;
+                } else {
+                    this.classClass[l][c] = 0;
                 }
             }
         }
