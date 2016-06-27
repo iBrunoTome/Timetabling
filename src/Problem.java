@@ -3,7 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by iBrunoTome on 6/19/16.
+ * @author Bruno Tomé - 0011254
+ * @author Cláudio Menezes - 0011255
+ * @since 19/06/2016
  */
 public class Problem {
     private FileReader fileIn;
@@ -64,7 +66,11 @@ public class Problem {
      * @return boolean
      */
     private boolean courseSameTeacher(int line, int column) {
-        return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName()) ? true : false;
+        if (getCourseFromInt(line) != null && getCourseFromInt(column) != null) {
+            return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName()) ? true : false;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -100,7 +106,7 @@ public class Problem {
     private void fillClassClassMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalClass(); c++) {
-                if (getCourseFromInt(l).equals(getCourseFromInt(c))) {
+                if (getCourseFromInt(l) != null && getCourseFromInt(c) != null && getCourseFromInt(l).equals(getCourseFromInt(c))) {
                     this.classClass[l][c] = 2;
                 } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
                     this.classClass[l][c] = 1;
@@ -119,7 +125,7 @@ public class Problem {
      *
      * @param line
      * @param column
-     * @return
+     * @return boolean
      */
     private boolean constraintExist(int line, int column) {
         Constraint constraint = unavailableSchedule(line, column);
@@ -143,6 +149,8 @@ public class Problem {
     private Constraint unavailableSchedule(int line, int column) {
         int day = Math.abs(this.getTotalSchedules() / this.getnPeriodsPerDay()) + 1;
         int turn = Math.abs(this.getTotalSchedules() / this.getnDays()) + 1;
+        System.out.println("Dia: " + day);
+        System.out.println("Truno: " + turn);
 
         Course auxCourse = getCourseFromInt(line);
         Constraint auxConstraint = new Constraint();
