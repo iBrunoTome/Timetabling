@@ -129,6 +129,7 @@ public class Problem {
 
         for (Constraint c : this.constraints) {
             if (constraint.equals(c)) {
+                System.out.println("entrei");
                 return true;
             }
         }
@@ -167,9 +168,9 @@ public class Problem {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalSchedules(); c++) {
                 if (constraintExist(l, c)) {
-                    this.classClass[l][c] = 1;
+                    this.classSchedules[l][c] = 1;
                 } else {
-                    this.classClass[l][c] = 0;
+                    this.classSchedules[l][c] = 0;
                 }
             }
         }
@@ -293,8 +294,8 @@ public class Problem {
         while (line != null) {
             if (line.startsWith("Name: ")) {
                 this.setInstanceName(line.substring(7));
-            } else if (line.startsWith("Courses: ")) {
-                this.courses = new Course[Integer.parseInt(this.line.substring(9))];
+            } else if (line.startsWith("Course: ")) {
+                this.courses = new Course[Integer.parseInt(this.line.substring(8))];
             } else if (line.startsWith("Rooms: ")) {
                 this.setnRooms(Integer.parseInt(line.substring(7)));
                 this.rooms = new Room[this.getnRooms()];
