@@ -35,4 +35,11 @@ public class Constraint {
     public void setPeriod(int period) {
         this.period = period;
     }
+
+        public boolean equals(Constraint obj) {
+        if((this.courseName.equals(obj.getCourseName()))&&((this.day == obj.getDay())&&((this.period == obj.getPeriod())))){
+            return true;
+        }else {return false;}
+
+    }
 }
