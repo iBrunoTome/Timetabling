@@ -1,5 +1,7 @@
 /**
- * Created by iBrunoTome on 6/19/16.
+ * @author Bruno Tomé - 0011254
+ * @author Cláudio Menezes - 0011255
+ * @since 19/06/2016
  */
 public class Curricula {
     private String curriculaName;
@@ -11,13 +13,17 @@ public class Curricula {
     }
 
     public boolean containCourse(Course course) {
-        for (String c : this.courses) {
-            if (c.equals(course.getCourseName())) {
-                return true;
+        if (course != null) {
+            for (String c : this.courses) {
+                if (c.equals(course.getCourseName())) {
+                    return true;
+                }
             }
+            return false;
+        } else {
+            return false;
         }
 
-        return false;
     }
 
     public String getCurriculaName() {

@@ -1,5 +1,7 @@
 /**
- * Created by iBrunoTome on 6/19/16.
+ * @author Bruno Tomé - 0011254
+ * @author Cláudio Menezes - 0011255
+ * @since 19/06/2016
  */
 public class Course {
     private String courseName;
