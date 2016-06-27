@@ -36,10 +36,11 @@ public class Constraint {
         this.period = period;
     }
 
-        public boolean equals(Constraint obj) {
-        if((this.courseName.equals(obj.getCourseName()))&&((this.day == obj.getDay())&&((this.period == obj.getPeriod())))){
+    public boolean equals(Constraint obj) {
+        if ((this.courseName.equals(obj.getCourseName())) && ((this.day == obj.getDay()) && ((this.period == obj.getPeriod())))) {
             return true;
-        }else {return false;}
-
+        } else {
+            return false;
+        }
     }
 }

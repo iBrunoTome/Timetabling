@@ -129,7 +129,6 @@ public class Problem {
 
         for (Constraint c : this.constraints) {
             if (constraint.equals(c)) {
-                System.out.println("entrei");
                 return true;
             }
         }
@@ -155,7 +154,6 @@ public class Problem {
         auxConstraint.setDay(day);
         auxConstraint.setPeriod(turn);
         return auxConstraint;
-
     }
 
     /**
@@ -323,7 +321,6 @@ public class Problem {
                 break;
             }
 
-            // System.out.println(line);
             line = this.reader.readLine();
         }
     }
