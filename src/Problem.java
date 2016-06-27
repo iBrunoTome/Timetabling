@@ -42,15 +42,15 @@ public class Problem {
     /**
      * Return a course from an integer line or column from a matrix
      *
-     * @param idxLine
+     * @param idx
      * @return Course
      */
-    private Course getCourseFromInt(int idxLine) {
+    private Course getCourseFromInt(int idx) {
         int total = 0;
 
         for (Course c : this.courses) {
             total += c.getnClass();
-            if (idxLine <= total) {
+            if (idx <= total) {
                 return c;
             }
         }
@@ -127,16 +127,13 @@ public class Problem {
     private boolean constraintExist(int line, int column) {
         Constraint constraint = unavailableSchedule(line, column);
 
-        if (constraint != null) {
-            for (Constraint c : this.constraints) {
-                if (constraint.equals(c)) {
-                    return true;
-                }
+        for (Constraint c : this.constraints) {
+            if (constraint.equals(c)) {
+                return true;
             }
-            return false;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -147,20 +144,17 @@ public class Problem {
      * @return Constraint
      */
     private Constraint unavailableSchedule(int line, int column) {
-        int day = Math.abs(this.getTotalSchedules() / this.getnPeriodsPerDay()) + 1;
-        int turn = Math.abs(this.getTotalSchedules() / this.getnDays()) + 1;
+        int day = Math.abs(column / this.getnPeriodsPerDay()) + 1;
+        int turn = Math.abs(column / this.getnDays()) + 1;
 
         Course auxCourse = getCourseFromInt(line);
 
-        if (auxCourse != null) {
-            Constraint auxConstraint = new Constraint();
-            auxConstraint.setCourseName(auxCourse.getCourseName());
-            auxConstraint.setDay(day);
-            auxConstraint.setPeriod(turn);
-            return auxConstraint;
-        } else {
-            return null;
-        }
+        Constraint auxConstraint = new Constraint();
+        auxConstraint.setCourseName(auxCourse.getCourseName());
+        auxConstraint.setDay(day);
+        auxConstraint.setPeriod(turn);
+        return auxConstraint;
+
     }
 
     /**
@@ -184,7 +178,7 @@ public class Problem {
     /**
      * Get the schedule number (H) for the matrix
      *
-     * @return
+     * @return int
      */
     private int getTotalSchedules() {
         return this.getnDays() * this.getnPeriodsPerDay();
@@ -193,12 +187,12 @@ public class Problem {
     /**
      * Sum num of students to fill matrix (N)
      *
-     * @return
+     * @return int
      */
     private int getTotalClass() {
         int total = 0;
         for (int i = 0; i < this.courses.length; i++) {
-            total += this.courses[i].getnStudents();
+            total += this.courses[i].getnClass();
         }
         return total;
     }
