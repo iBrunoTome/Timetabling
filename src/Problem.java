@@ -46,8 +46,8 @@ public class Problem {
      * @return Course
      */
     private Course getCourseFromInt(int idxLine) {
-
         int total = 0;
+
         for (Course c : this.courses) {
             total += c.getnClass();
             if (idxLine <= total) {
@@ -81,11 +81,8 @@ public class Problem {
      * @return boolean
      */
     private boolean courseSameCurricula(int line, int column) {
-        Course aux1;
-        Course aux2;
-
-        aux1 = this.getCourseFromInt(line);
-        aux2 = this.getCourseFromInt(column);
+        Course aux1 = this.getCourseFromInt(line);
+        Course aux2 = this.getCourseFromInt(column);
 
         for (Curricula c : this.curriculas) {
             if (c.containCourse(aux1) && c.containCourse(aux2)) {
@@ -130,13 +127,16 @@ public class Problem {
     private boolean constraintExist(int line, int column) {
         Constraint constraint = unavailableSchedule(line, column);
 
-        for (Constraint c : this.constraints) {
-            if (constraint.equals(c)) {
-                return true;
+        if (constraint != null) {
+            for (Constraint c : this.constraints) {
+                if (constraint.equals(c)) {
+                    return true;
+                }
             }
+            return false;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -149,16 +149,18 @@ public class Problem {
     private Constraint unavailableSchedule(int line, int column) {
         int day = Math.abs(this.getTotalSchedules() / this.getnPeriodsPerDay()) + 1;
         int turn = Math.abs(this.getTotalSchedules() / this.getnDays()) + 1;
-        System.out.println("Dia: " + day);
-        System.out.println("Truno: " + turn);
 
         Course auxCourse = getCourseFromInt(line);
-        Constraint auxConstraint = new Constraint();
-        auxConstraint.setCourseName(auxCourse.getCourseName());
-        auxConstraint.setDay(day);
-        auxConstraint.setPeriod(turn);
 
-        return auxConstraint;
+        if (auxCourse != null) {
+            Constraint auxConstraint = new Constraint();
+            auxConstraint.setCourseName(auxCourse.getCourseName());
+            auxConstraint.setDay(day);
+            auxConstraint.setPeriod(turn);
+            return auxConstraint;
+        } else {
+            return null;
+        }
     }
 
     /**
