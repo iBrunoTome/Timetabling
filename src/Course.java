@@ -14,6 +14,16 @@ public class Course {
 
     }
 
+    public boolean equals(Course obj) {
+        if (this.courseName.equals(obj.getCourseName()) && this.teacherName.equals(obj.getTeacherName())
+                && this.nClass == obj.getnClass() && this.minClassDays == obj.getMinClassDays()
+                && this.nStudents == obj.getnStudents()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getCourseName() {
         return this.courseName;
     }
