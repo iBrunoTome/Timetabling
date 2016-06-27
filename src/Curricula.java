@@ -13,17 +13,12 @@ public class Curricula {
     }
 
     public boolean containCourse(Course course) {
-        if (course != null) {
-            for (String c : this.courses) {
-                if (c.equals(course.getCourseName())) {
-                    return true;
-                }
+        for (String c : this.courses) {
+            if (c.equals(course.getCourseName())) {
+                return true;
             }
-            return false;
-        } else {
-            return false;
         }
-
+        return false;
     }
 
     public String getCurriculaName() {

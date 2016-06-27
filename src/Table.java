@@ -4,13 +4,15 @@
  * @since 19/06/2016
  */
 public class Table {
+    private int objectiveFunction;
     private int[][] table;
-    private int fo;
-    private int[][][] currDiasPeriodos;
     private int[][] usedRooms;
     private int[][] busyDays;
+    private int[][][] currDiasPeriodos;
+    private Problem currentProblem;
 
-    public Table() {
+    public Table(Problem currentProblem) {
+        this.currentProblem = currentProblem;
     }
 
     public int[][] getTable() {
@@ -21,12 +23,12 @@ public class Table {
         this.table = table;
     }
 
-    public int getFo() {
-        return this.fo;
+    public int getObjective() {
+        return this.objectiveFunction;
     }
 
-    public void setFo(int fo) {
-        this.fo = fo;
+    public void setObjective(int objective) {
+        this.objectiveFunction = objective;
     }
 
     public int[][][] getCurrDiasPeriodos() {

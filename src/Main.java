@@ -4,7 +4,8 @@ public class Main {
     public static void main(String[] args) {
         String nameFileIn = "instancias/comp02.ctt";
         try {
-            Problem problem = new Problem(nameFileIn);
+            Problem currentProblem = new Problem(nameFileIn);
+            Table currentTable = new Table(currentProblem);
         } catch (IOException e) {
             System.out.println("Problem ao ler arquivo");
         }
