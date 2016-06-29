@@ -19,6 +19,7 @@ public class Table {
     public Table(Problem currentProblem) {
         this.currentProblem = currentProblem;
         this.fillSchedulesNonAllocated();
+        System.out.println(currentProblem.getTotalClass());
     }
 
     /**
@@ -51,6 +52,7 @@ public class Table {
         }
 
         Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
+        schedulesNonAllocated.forEach((c)->{System.out.println(c.toString());});
     }
 
 
@@ -93,4 +95,5 @@ public class Table {
     public void setBusyDays(int[][] busyDays) {
         this.busyDays = busyDays;
     }
+
 }

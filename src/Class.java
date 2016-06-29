@@ -20,4 +20,8 @@ public class Class {
     public void setIdxClass(int idxClass) {
         this.idxClass = idxClass;
     }
+
+    public String toString(){
+        return "idxClass: "+ this.idxClass +"  ScheduleViability: "+ this.scheduleViability+"\n";
+    }
 }
