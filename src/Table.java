@@ -44,11 +44,11 @@ public class Table {
                 }
             }
 
-            this.schedulesNonAllocated.add(currentClass);
-        }
 
+            this.schedulesNonAllocated.add(currentClass);
+
+        }
         Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
-        this.schedulesNonAllocated.forEach((c) -> System.out.println(c.toString()));
     }
 
 
