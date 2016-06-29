@@ -179,7 +179,7 @@ public class Problem {
      *
      * @return int
      */
-    private int getTotalSchedules() {
+    public int getTotalSchedules() {
         return this.getnDays() * this.getnPeriodsPerDay();
     }
 
@@ -188,7 +188,7 @@ public class Problem {
      *
      * @return int
      */
-    private int getTotalClass() {
+    public int getTotalClass() {
         int total = 0;
         for (int i = 0; i < this.courses.length; i++) {
             total += this.courses[i].getnClass();
