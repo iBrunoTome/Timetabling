@@ -33,13 +33,7 @@ public class Table {
             currentClass.setScheduleViability(currentProblem.getTotalSchedules());
             for (int c = 0; c < this.currentProblem.getTotalSchedules(); c++) {
                 if (this.currentProblem.getClassClass()[l][c] == 1) {
-                    if (currentClass == null) {
-                        currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
-                    } else {
-                        currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
-                    }
-
-                    this.schedulesNonAllocated.add(currentClass);
+                    currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
                 }
             }
 
