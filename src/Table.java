@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Table {
     private int objectiveFunction;
-    private List<Class> schedulesNonAllocated = new ArrayList<>();
+    private ArrayList<Class> schedulesNonAllocated = new ArrayList<>();
     private int[][] table;
     private int[][] usedRooms;
     private int[][] busyDays;
@@ -26,7 +26,7 @@ public class Table {
      * Fill the array with the unavailable schedules array
      */
     public void fillSchedulesNonAllocated() {
-        // run the matrix, and catch inviability of same teacher or same curricula
+        // Run the matrix, and catch inviability of same teacher or same curricula
         for (int l = 0; l < this.currentProblem.getTotalClass(); l++) {
             Class currentClass = new Class();
             currentClass.setIdxClass(l);
@@ -38,10 +38,12 @@ public class Table {
                     } else {
                         currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
                     }
+
+                    this.schedulesNonAllocated.add(currentClass);
                 }
             }
 
-            //run the matrix classSchudele, and catch inviability Schedules for the currentClass
+            // Run the matrix classSchudele, and catch inviability Schedules for the currentClass
             for (int k = 0; k < currentProblem.getTotalSchedules(); k++) {
                 if (this.currentProblem.getClassSchedules()[l][k] == 1) {
                     currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
@@ -52,7 +54,7 @@ public class Table {
         }
 
         Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
-        schedulesNonAllocated.forEach((c)->{System.out.println(c.toString());});
+        this.schedulesNonAllocated.forEach((c) -> System.out.println(c.toString()));
     }
 
 
