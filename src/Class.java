@@ -2,15 +2,15 @@
  * Created by iBrunoTome on 6/29/16.
  */
 public class Class {
-    int unavailability;
+    int scheduleViability;
     int idxClass;
 
-    public int getUnavailability() {
-        return this.unavailability;
+    public int getScheduleViability() {
+        return this.scheduleViability;
     }
 
-    public void setUnavailability(int unavailability) {
-        this.unavailability = unavailability;
+    public void setScheduleViability(int scheduleViability) {
+        this.scheduleViability = scheduleViability;
     }
 
     public int getIdxClass() {

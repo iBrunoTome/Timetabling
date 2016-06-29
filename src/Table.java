@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,23 +25,34 @@ public class Table {
      * Fill the array with the unavailable schedules array
      */
     public void fillSchedulesNonAllocated() {
-        // Sum the unavailable schedules for the class
+        // run the matrix, and catch inviability of same teacher or same curricula
         for (int l = 0; l < this.currentProblem.getTotalClass(); l++) {
             Class currentClass = new Class();
             currentClass.setIdxClass(l);
+            currentClass.setScheduleViability(currentProblem.getTotalSchedules());
             for (int c = 0; c < this.currentProblem.getTotalSchedules(); c++) {
-                if (this.currentProblem.getClassSchedules()[l][c] == 1) {
+                if (this.currentProblem.getClassClass()[l][c] == 1) {
                     if (currentClass == null) {
-                        currentClass.setUnavailability(1);
+                        currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
                     } else {
-                        currentClass.setUnavailability(currentClass.getUnavailability() + 1);
+                        currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
                     }
                 }
             }
+
+            //run the matrix classSchudele, and catch inviability Schedules for the currentClass
+            for (int k = 0; k < currentProblem.getTotalSchedules(); k++) {
+                if (this.currentProblem.getClassSchedules()[l][k] == 1) {
+                    currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
+                }
+            }
+
+            this.schedulesNonAllocated.add(currentClass);
         }
 
-        Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getUnavailability(), c2.getUnavailability()));
+        Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
     }
+
 
     public int[][] getTable() {
         return this.table;

@@ -44,4 +44,12 @@ public class Curricula {
     public void setCourses(String[] courses) {
         this.courses = courses;
     }
+
+    public boolean equals(Curricula obj) {
+        if ((this.curriculaName.equals(obj.getCurriculaName())) && ((this.nCourses == obj.getnCourses()))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
