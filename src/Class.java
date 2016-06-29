@@ -21,7 +21,7 @@ public class Class {
         this.idxClass = idxClass;
     }
 
-    public String toString(){
-        return "idxClass: "+ this.idxClass +"  ScheduleViability: "+ this.scheduleViability+"\n";
+    public String toString() {
+        return "idxClass: " + this.idxClass + "  ScheduleViability: " + this.scheduleViability + "\n";
     }
 }
