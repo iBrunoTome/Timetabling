@@ -65,9 +65,9 @@ public class Table {
     /**
      * verifify isoleted class in curricula
      *
+     * @param curr
      * @return int of numbre of isolated classes
      */
-
     public int isolatedClassesPerCurricula(int curr) {
         int sumIsoletedClass = 0;
         for (int i = 0; i < this.curriculaDaysPeriods[0].length; i++) {
@@ -81,23 +81,23 @@ public class Table {
     }
 
     /**
-     * calculate the cost to allocated a class, based on weak constraints
+     * Calculate the cost to allocated a class, based on weak constraints
      *
      * @param room
      * @param period
+     * @param period
      * @return cost
      */
-
     public int alocationCost(Class c, int room, int period) {
         return 0;
     }
 
     /**
-     * gerete a list of viable schedules for a class
+     * Gerete a list of viable schedules for a class
      *
+     * @param c
      * @return
      */
-
     public void genereteViableSchedules(Class c) {
         int empytSchedule;
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
@@ -118,6 +118,9 @@ public class Table {
         }
     }
 
+    /**
+     * Fill table with -1
+     */
     private void fillTable() {
         for (int room = 0; room < this.table.length; room++) {
             for (int schedule = 0; schedule < this.table[0].length; schedule++) {
