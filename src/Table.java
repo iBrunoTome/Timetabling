@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Bruno Tomé - 0011254
@@ -9,7 +8,7 @@ import java.util.List;
  */
 public class Table {
     private int objectiveFunction;
-    private ArrayList<Class> schedulesNonAllocated = new ArrayList<>();
+    private ArrayList<Class> listSchedulesNonAllocated = new ArrayList<>();
     private int[][] table;
     private int[][] usedRooms;
     private int[][] busyDays;
@@ -19,7 +18,9 @@ public class Table {
     public Table(Problem currentProblem) {
         this.currentProblem = currentProblem;
         this.fillSchedulesNonAllocated();
-        System.out.println(currentProblem.getTotalClass());
+        this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
+        this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
+        this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
     }
 
     /**
@@ -44,11 +45,10 @@ public class Table {
                 }
             }
 
-
-            this.schedulesNonAllocated.add(currentClass);
+            this.listSchedulesNonAllocated.add(currentClass);
 
         }
-        Collections.sort(this.schedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
+        Collections.sort(this.listSchedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
     }
 
 
