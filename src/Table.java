@@ -9,18 +9,29 @@ import java.util.Collections;
 public class Table {
     private int objectiveFunction;
     private ArrayList<Class> listSchedulesNonAllocated = new ArrayList<>();
+    private ArrayList<Integer> viableSchedules = new ArrayList<>();
     private int[][] table;
-    private int[][] usedRooms;
-    private int[][] busyDays;
-    private int[][][] curriculaDaysPeriods;
+    private int[][] usedRooms;//retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
+    private int[][] busyDays;//retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
+    private int[][][] curriculaDaysPeriods;//retorna a quantidade de aulas do currículo c alocadas no dia d e horário p
     private Problem currentProblem;
 
     public Table(Problem currentProblem) {
         this.currentProblem = currentProblem;
+        this.table = new int[this.currentProblem.getnRooms()][this.currentProblem.getTotalSchedules()];
+        this.fillTable();
         this.fillSchedulesNonAllocated();
         this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
         this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
+    }
+
+
+    /**
+     * generate a inicial table. that is the inicial solution
+     */
+    public void gerateInicialTable() {
+
     }
 
     /**
@@ -51,6 +62,69 @@ public class Table {
         Collections.sort(this.listSchedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
     }
 
+    /**
+     * verifify isoleted class in curricula
+     *
+     * @return int of numbre of isolated classes
+     */
+
+    public int isolatedClassesPerCurricula(int curr) {
+        int sumIsoletedClass = 0;
+        for (int i = 0; i < this.curriculaDaysPeriods[0].length; i++) {
+            for (int p = 0; p < this.curriculaDaysPeriods[0][0].length; p++) {
+                if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
+                    sumIsoletedClass++;
+                }
+            }
+        }
+        return sumIsoletedClass;
+    }
+
+    /**
+     * calculate the cost to allocated a class, based on weak constraints
+     *
+     * @param room
+     * @param period
+     * @return cost
+     */
+
+    public int alocationCost(Class c, int room, int period) {
+        return 0;
+    }
+
+    /**
+     * gerete a list of viable schedules for a class
+     *
+     * @return
+     */
+
+    public void genereteViableSchedules(Class c) {
+        int empytSchedule;
+        for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
+            if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
+                empytSchedule = 0;
+                for (int j = 0; j < this.table.length; j++) {
+                    if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
+                        viableSchedules.add(i);
+                    } else if (this.table[j][i] == -1) {
+                        empytSchedule++;
+                    }
+                }
+                // if not have any class allocated in this schedule
+                if (empytSchedule == this.table.length) {
+                    viableSchedules.add(i);
+                }
+            }
+        }
+    }
+
+    private void fillTable() {
+        for (int room = 0; room < this.table.length; room++) {
+            for (int schedule = 0; schedule < this.table[0].length; schedule++) {
+                this.table[room][schedule] = -1;
+            }
+        }
+    }
 
     public int[][] getTable() {
         return this.table;

@@ -27,3 +27,149 @@ CURRICULO
 RESTRIÇOES DE INVIABILIDADE
 
 [nomeAula] [dia] [turno]
+
+
+======================================================================================================
+		ANOTAÇOES:::)
+
+
+
+
+
+### Restrições Fortes (RFt):
+
+• Aulas: Todas as aulas das disciplinas devem ser alocadas e em períodos diferentes. Uma
+violação ocorre se uma aula não é alocada. (RFt1)
+• Conflitos: Aulas de disciplinas do mesmo currículo ou lecionadas pelo mesmo professor
+devem ser alocadas em períodos diferentes. (RFt2)
+• Ocupação de Sala: Duas aulas não podem ocupar uma sala no mesmo horário. (RFt3)
+• Disponibilidade: Uma aula não pode ser alocada num horário em que a disciplina é
+indisponível. (RFt4)
+
+
+
+
+
+### Restrições Fracas (RFc):
+
+• Dias Mínimos de Trabalho: As aulas de cada disciplina devem ser espalhadas por uma
+quantidade mínima de dias. Cada dia abaixo do mínimo é contado como uma violação.
+(RFc1)
+• Aulas Isoladas: Aulas do mesmo currículo devem ser alocadas em períodos adjacentes.
+Cada aula isolada é contada como uma violação. (RFc2)
+• Capacidade da Sala: O número de alunos da disciplina deve ser menor ou igual ao
+número de assentos da sala em que a aula for alocada. Cada aluno excedente contabiliza
+uma violação. (RFc3)
+• Estabilidade de Sala: Todas as aulas de uma disciplina devem ser alocadas na mesma
+sala. Cada sala distinta é contada como uma violação. (RFc4)
+
+
+
+
+
+MATRIZ CLASSCLASS:
+
+• AA[a 1 ][a 2 ] = 2: as duas aulas são da mesma disciplina;
+• AA[a 1 ][a 2 ] = 1: as duas aulas possuem conflitos entre si, seja por estarem num mesmo
+currículo ou por serem lecionadas pelo mesmo professor;
+• AA[a 1 ][a 2 ] = 0: não há conflitos entre as aulas e elas não pertencem a mesma disciplina.	
+
+MATRIZ CLASSsCHEDULE:
+
+• AI[a][h] = 1: a aula a é indisponível no horário h;
+• AI[a][h] = 0: a aula a pode ser alocada no horário h.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

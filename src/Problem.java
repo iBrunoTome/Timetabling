@@ -40,6 +40,22 @@ public class Problem {
     }
 
     /**
+     * check if two curses are iquals
+     * @param c1
+     * @param c2
+     * @return
+     */
+    public boolean sameCourse(int c1, int c2){
+        Course aux1 = this.getCourseFromInt(c1);
+        Course aux2 = this.getCourseFromInt(c2);
+
+        if(aux1.equals(aux2)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Return a course from an integer line or column from a matrix
      *
      * @param idx
@@ -80,7 +96,7 @@ public class Problem {
      * @param column
      * @return boolean
      */
-    private boolean courseSameCurricula(int line, int column) {
+    public boolean courseSameCurricula(int line, int column) {
         Course aux1 = this.getCourseFromInt(line);
         Course aux2 = this.getCourseFromInt(column);
 
