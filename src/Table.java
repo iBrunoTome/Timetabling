@@ -103,7 +103,7 @@ public class Table {
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
             if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
                 empytSchedule = 0;
-                for (int j = 0; j < this.table.length; j++) {
+                for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
                         viableSchedules.add(i);
                     } else if (this.table[j][i] == -1) {
@@ -111,7 +111,7 @@ public class Table {
                     }
                 }
                 // if not have any class allocated in this schedule
-                if (empytSchedule == this.table.length) {
+                if (empytSchedule == currentProblem.getnRooms()) {
                     viableSchedules.add(i);
                 }
             }
