@@ -9,7 +9,6 @@ import java.util.Collections;
 public class Table {
     private int objectiveFunction;
     private ArrayList<Class> listSchedulesNonAllocated = new ArrayList<>();
-    private ArrayList<Integer> viableSchedules = new ArrayList<>();
     private int[][] table;
     private int[][] usedRooms;//retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
     private int[][] busyDays;//retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
@@ -100,12 +99,13 @@ public class Table {
      */
     public void genereteViableSchedules(Class c) {
         int empytSchedule;
+        int [] viableSchedules;
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
             if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
                 empytSchedule = 0;
                 for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
-                        viableSchedules.add(i);
+                        cviableSchedules.add(i);
                     } else if (this.table[j][i] == -1) {
                         empytSchedule++;
                     }
