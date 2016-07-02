@@ -41,15 +41,16 @@ public class Problem {
 
     /**
      * check if two curses are iquals
+     *
      * @param c1
      * @param c2
      * @return
      */
-    public boolean sameCourse(int c1, int c2){
+    public boolean sameCourse(int c1, int c2) {
         Course aux1 = this.getCourseFromInt(c1);
         Course aux2 = this.getCourseFromInt(c2);
 
-        if(aux1.equals(aux2)){
+        if (aux1.equals(aux2)) {
             return true;
         }
         return false;
