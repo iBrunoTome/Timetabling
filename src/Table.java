@@ -105,7 +105,8 @@ public class Table {
                 empytSchedule = 0;
                 for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
-                        cviableSchedules.add(i);
+                        viableSchedules[0] = i;
+                        c.getViableSchedules().add();
                     } else if (this.table[j][i] == -1) {
                         empytSchedule++;
                     }

@@ -27,4 +27,12 @@ public class Class {
     public String toString() {
         return "idxClass: " + this.idxClass + "  ScheduleViability: " + this.scheduleViability + "\n";
     }
+
+    public ArrayList<Integer[]> getViableSchedules() {
+        return viableSchedules;
+    }
+
+    public void setViableSchedules(ArrayList<Integer[]> viableSchedules) {
+        this.viableSchedules = viableSchedules;
+    }
 }
