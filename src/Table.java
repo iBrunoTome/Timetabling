@@ -99,21 +99,24 @@ public class Table {
      */
     public void genereteViableSchedules(Class c) {
         int empytSchedule;
-        int [] viableSchedules;
+        Integer [] viableSchedules= new Integer[2];
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
             if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
                 empytSchedule = 0;
                 for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
                         viableSchedules[0] = i;
-                        c.getViableSchedules().add();
-                    } else if (this.table[j][i] == -1) {
+                        viableSchedules[1] = j;
+                        c.getViableSchedules().add(viableSchedules);
+                    } else if ((this.table[j][i] != -1) && (!currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && !currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
                         empytSchedule++;
                     }
                 }
                 // if not have any class allocated in this schedule
                 if (empytSchedule == currentProblem.getnRooms()) {
-                    viableSchedules.add(i);
+                    viableSchedules[0] = i;
+                    viableSchedules[1] = j;
+                    c.getViableSchedules().add(viableSchedules);
                 }
             }
         }

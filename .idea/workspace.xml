@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6d252bfe-e53a-4c3a-b86c-67509c5b3041" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Class.java" afterPath="$PROJECT_DIR$/src/Class.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table.java" afterPath="$PROJECT_DIR$/src/Table.java" />
     </list>
     <ignored path="Timetabling.iws" />
@@ -84,8 +83,8 @@
       <file leaf-file-name="Table.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Table.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="107" column="47" selection-start-line="107" selection-start-column="47" selection-end-line="107" selection-end-column="47" />
+            <state relative-caret-position="210">
+              <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -646,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467481553768</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="implemented metod genereteViableSchedules">
+      <created>1467482379382</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1467482379382</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1109,8 +1115,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Table.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="107" column="47" selection-start-line="107" selection-start-column="47" selection-end-line="107" selection-end-column="47" />
+        <state relative-caret-position="210">
+          <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
