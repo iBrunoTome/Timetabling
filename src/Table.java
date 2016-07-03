@@ -79,16 +79,31 @@ public class Table {
         return sumIsoletedClass;
     }
 
+
+
     /**
-     * Calculate the cost to allocated a class, based on weak constraints
+     * Calculate the cost to allocated a class on the table, based on weak constraints
      *
+     * @param  c
+     * @param schedule
      * @param room
-     * @param period
-     * @param period
      * @return cost
      */
-    public int alocationCost(Class c, int room, int period) {
-        return 0;
+    public int alocationCost(Class c, int schedule , int room) {
+        int cost = 0;
+        Course caux = new Course() ;
+        caux = currentProblem.getCourseFromInt(c.getIdxClass());
+
+
+        if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)){
+                cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
+        }
+        if (caux.getMinClassDays()){
+
+        }
+
+
+        return cost;
     }
 
     /**
@@ -100,10 +115,10 @@ public class Table {
     public void genereteViableSchedules(Class c) {
         int flagSameCurricula = 0;
         int flagSameClass = 0;
-        Integer[] viableSchedules = new Integer[2];
+        Integer[] viableSchedules = new Integer[3];
 
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
-            if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
+            if (currentProblem.getClassSchedules()[c.getIdxClass()][i] == 0) {
 
                 for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && (currentProblem.sameCourse(c.getIdxClass(), this.table[j][i]))) {
