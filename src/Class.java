@@ -4,9 +4,10 @@ import java.util.ArrayList;
  * Created by iBrunoTome on 6/29/16.
  */
 public class Class {
-    int scheduleViability;
-    int idxClass;
+    private int scheduleViability;
+    private int idxClass;
     private ArrayList<Integer[]> viableSchedules = new ArrayList<>();
+
 
     public int getScheduleViability() {
         return this.scheduleViability;

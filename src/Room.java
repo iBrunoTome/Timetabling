@@ -5,7 +5,9 @@
  */
 public class Room {
 	private String roomName;
+	private int idx;
 	private int capacity;
+
 
 	public Room() {
 	}
@@ -24,5 +26,13 @@ public class Room {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 }

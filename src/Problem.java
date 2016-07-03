@@ -50,10 +50,7 @@ public class Problem {
         Course aux1 = this.getCourseFromInt(c1);
         Course aux2 = this.getCourseFromInt(c2);
 
-        if (aux1.equals(aux2)) {
-            return true;
-        }
-        return false;
+        return aux1.equals(aux2);
     }
 
     /**
@@ -62,7 +59,7 @@ public class Problem {
      * @param idx
      * @return Course
      */
-    private Course getCourseFromInt(int idx) {
+    public Course getCourseFromInt(int idx) {
         int total = 0;
 
         for (Course c : this.courses) {
@@ -76,6 +73,16 @@ public class Problem {
     }
 
     /**
+     * Return the quantity of room from an integer line or column from a matrix
+     *
+     * @param idx
+     * @return Course
+     */
+    public int getRoomCapacity(int idx) {
+        return this.rooms[idx].getCapacity();
+    }
+
+    /**
      * Check if the the 2 courses have the same teacher
      *
      * @param line
@@ -84,7 +91,7 @@ public class Problem {
      */
     private boolean courseSameTeacher(int line, int column) {
         if (getCourseFromInt(line) != null && getCourseFromInt(column) != null) {
-            return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName()) ? true : false;
+            return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName());
         } else {
             return false;
         }
@@ -224,6 +231,7 @@ public class Problem {
         while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Course course = new Course();
+            course.setIdx(idx);
             course.setCourseName(aux[0]);
             course.setTeacherName(aux[1]);
             course.setnClass(Integer.parseInt(aux[2]));
@@ -248,6 +256,7 @@ public class Problem {
             Room room = new Room();
             room.setRoomName(aux[0]);
             room.setCapacity(Integer.parseInt(aux[1]));
+            room.setIdx(idx);
             this.rooms[idx] = room;
             idx++;
             this.line = reader.readLine();

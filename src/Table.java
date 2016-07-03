@@ -62,7 +62,7 @@ public class Table {
     }
 
     /**
-     * verifify isoleted class in curricula
+     * verifify isoleted class in curricula(weak constraint)
      *
      * @param curr
      * @return int of numbre of isolated classes
@@ -80,15 +80,51 @@ public class Table {
     }
 
     /**
-     * Calculate the cost to allocated a class, based on weak constraints
+     * verify how many rooms a class use
+     * @param course room
+     * @return integer number of rooms
+     */
+    public int stabilityRoom(Course course, int room){
+        int stability = 0;
+        for (int i = 0; i < this.currentProblem.getnRooms();i++){
+            if (this.usedRooms[course.getIdx()][i] > 0){
+                stability++;
+            }
+        }
+        return stability;
+    }
+
+
+
+    /**
+     * Calculate the cost to allocated a class on the table, based on weak constraints
      *
+     * @param  c
+     * @param schedule
      * @param room
-     * @param period
-     * @param period
      * @return cost
      */
-    public int alocationCost(Class c, int room, int period) {
-        return 0;
+    public int alocationClassCost(Class c, int schedule , int room) {
+        int cost = 0;
+        Course caux = new Course() ;
+        caux = currentProblem.getCourseFromInt(c.getIdxClass());
+
+        // 1- weak constraint: room capacity
+        if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)){
+                cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
+        }
+        // 2- weak constraint: min days necessity for a class
+        if (caux.getMinClassDays() > this.busyDays[c.getIdxClass()][room]){
+            cost += caux.getMinClassDays() - this.busyDays[c.getIdxClass()][room];
+        }
+        //3- weak constraint: all class in the same room
+        if(this.busyDays[][]){
+
+        }
+        //4- weak constraint: isolateded classes
+
+
+        return cost;
     }
 
     /**
@@ -100,10 +136,10 @@ public class Table {
     public void genereteViableSchedules(Class c) {
         int flagSameCurricula = 0;
         int flagSameClass = 0;
-        Integer[] viableSchedules = new Integer[2];
+        Integer[] viableSchedules = new Integer[3];
 
         for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
-            if (currentProblem.getClassSchedules()[c.idxClass][i] == 0) {
+            if (currentProblem.getClassSchedules()[c.getIdxClass()][i] == 0) {
 
                 for (int j = 0; j < currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] != -1) && (currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && (currentProblem.sameCourse(c.getIdxClass(), this.table[j][i]))) {
