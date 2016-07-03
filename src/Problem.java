@@ -231,6 +231,7 @@ public class Problem {
         while (!this.line.isEmpty()) {
             aux = this.line.split(" ");
             Course course = new Course();
+            course.setIdx(idx);
             course.setCourseName(aux[0]);
             course.setTeacherName(aux[1]);
             course.setnClass(Integer.parseInt(aux[2]));
@@ -255,6 +256,7 @@ public class Problem {
             Room room = new Room();
             room.setRoomName(aux[0]);
             room.setCapacity(Integer.parseInt(aux[1]));
+            room.setIdx(idx);
             this.rooms[idx] = room;
             idx++;
             this.line = reader.readLine();

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d252bfe-e53a-4c3a-b86c-67509c5b3041" name="Default" comment="implemented metod genereteViableSchedules">
+    <list default="true" id="6d252bfe-e53a-4c3a-b86c-67509c5b3041" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Class.java" afterPath="$PROJECT_DIR$/src/Class.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FormatoITC.txt" afterPath="$PROJECT_DIR$/FormatoITC.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Course.java" afterPath="$PROJECT_DIR$/src/Course.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Problem.java" afterPath="$PROJECT_DIR$/src/Problem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Room.java" afterPath="$PROJECT_DIR$/src/Room.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table.java" afterPath="$PROJECT_DIR$/src/Table.java" />
     </list>
     <ignored path="Timetabling.iws" />
@@ -41,18 +41,17 @@
       <file leaf-file-name="Problem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Problem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+            <state relative-caret-position="618">
+              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2125#2126#0" expanded="true" />
                 <element signature="e#2177#2178#0" expanded="true" />
-                <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
                 <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
                 <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
                 <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-                <element signature="e#11069#11070#0" expanded="true" />
-                <element signature="e#11103#11104#0" expanded="true" />
+                <element signature="e#11131#11132#0" expanded="true" />
+                <element signature="e#11165#11166#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,8 +83,8 @@
       <file leaf-file-name="Table.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Table.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-840">
-              <caret line="13" column="105" selection-start-line="13" selection-start-column="105" selection-end-line="13" selection-end-column="105" />
+            <state relative-caret-position="1830">
+              <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,9 +105,14 @@
       <file leaf-file-name="Course.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Course.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="120">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+              <folding>
+                <element signature="e#1550#1551#0" expanded="true" />
+                <element signature="e#1576#1577#0" expanded="true" />
+                <element signature="e#1611#1612#0" expanded="true" />
+                <element signature="e#1641#1642#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,12 +166,12 @@
         <option value="$PROJECT_DIR$/src/Tabela.java" />
         <option value="$PROJECT_DIR$/FormatoITC.txt" />
         <option value="$PROJECT_DIR$/src/Constraint.java" />
-        <option value="$PROJECT_DIR$/src/Course.java" />
         <option value="$PROJECT_DIR$/src/Curricula.java" />
         <option value="$PROJECT_DIR$/src/Grasp.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Room.java" />
         <option value="$PROJECT_DIR$/src/Class.java" />
+        <option value="$PROJECT_DIR$/src/Course.java" />
         <option value="$PROJECT_DIR$/src/Problem.java" />
         <option value="$PROJECT_DIR$/src/Table.java" />
       </list>
@@ -697,7 +701,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467483182316</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="implemented metod genereteViableSchedules">
+      <created>1467550746774</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1467550746774</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -761,7 +772,7 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -808,12 +819,11 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
             <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
             <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
             <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-            <element signature="e#11069#11070#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
+            <element signature="e#11165#11166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -893,12 +903,11 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
             <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
             <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
             <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-            <element signature="e#11069#11070#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
+            <element signature="e#11165#11166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -972,12 +981,11 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
             <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
             <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
             <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-            <element signature="e#11069#11070#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
+            <element signature="e#11165#11166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1043,12 +1051,11 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
             <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
             <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
             <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-            <element signature="e#11069#11070#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
+            <element signature="e#11165#11166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1146,6 +1153,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Room.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1161,42 +1176,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Course.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="120">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding>
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1576#1577#0" expanded="true" />
+            <element signature="e#1611#1612#0" expanded="true" />
+            <element signature="e#1641#1642#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Problem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+        <state relative-caret-position="618">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2125#2126#0" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="method#fillCourses#0;class#Problem#0" expanded="false" />
             <element signature="method#fillCurriculas#0;class#Problem#0" expanded="false" />
             <element signature="method#fillConstraints#0;class#Problem#0" expanded="false" />
             <element signature="method#instantiateProblem#0;class#Problem#0" expanded="false" />
-            <element signature="e#11069#11070#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
+            <element signature="e#11165#11166#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Table.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-840">
-          <caret line="13" column="105" selection-start-line="13" selection-start-column="105" selection-end-line="13" selection-end-column="105" />
+        <state relative-caret-position="1830">
+          <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

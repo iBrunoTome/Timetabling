@@ -62,7 +62,7 @@ public class Table {
     }
 
     /**
-     * verifify isoleted class in curricula
+     * verifify isoleted class in curricula(weak constraint)
      *
      * @param curr
      * @return int of numbre of isolated classes
@@ -79,6 +79,20 @@ public class Table {
         return sumIsoletedClass;
     }
 
+    /**
+     * verify how many rooms a class use
+     * @param course room
+     * @return integer number of rooms
+     */
+    public int stabilityRoom(Course course, int room){
+        int stability = 0;
+        for (int i = 0; i < this.currentProblem.getnRooms();i++){
+            if (this.usedRooms[course.getIdx()>][i] > 0){
+
+            }
+        }
+    }
+
 
 
     /**
@@ -89,18 +103,24 @@ public class Table {
      * @param room
      * @return cost
      */
-    public int alocationCost(Class c, int schedule , int room) {
+    public int alocationClassCost(Class c, int schedule , int room) {
         int cost = 0;
         Course caux = new Course() ;
         caux = currentProblem.getCourseFromInt(c.getIdxClass());
 
-
+        // 1- weak constraint: room capacity
         if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)){
                 cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
         }
-        if (caux.getMinClassDays()){
+        // 2- weak constraint: min days necessity for a class
+        if (caux.getMinClassDays() > this.busyDays[c.getIdxClass()][room]){
+            cost += caux.getMinClassDays() - this.busyDays[c.getIdxClass()][room];
+        }
+        //3- weak constraint: all class in the same room
+        if(this.busyDays[][]){
 
         }
+        //4- weak constraint: isolateded classes
 
 
         return cost;

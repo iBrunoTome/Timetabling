@@ -6,6 +6,7 @@
 public class Course {
     private String courseName;
     private String teacherName;
+    private int idx;
     private int nClass;
     private int minClassDays;
     private int nStudents;
@@ -62,5 +63,13 @@ public class Course {
 
     public void setnStudents(int nStudents) {
         this.nStudents = nStudents;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 }
