@@ -34,6 +34,16 @@ public class Table {
     }
 
     /**
+     * initialize the matrix with zeros.
+     */
+    public void initializeBuzyDaysMatrix(){}
+
+    /**
+     * initialize the matrix with zeros.
+     */
+    public void initializeUsedRoomsMatrix(){}
+
+    /**
      * Fill the array with the unavailable schedules array
      */
     public void fillSchedulesNonAllocated() {
@@ -87,10 +97,11 @@ public class Table {
     public int stabilityRoom(Course course, int room){
         int stability = 0;
         for (int i = 0; i < this.currentProblem.getnRooms();i++){
-            if (this.usedRooms[course.getIdx()>][i] > 0){
-
+            if (this.usedRooms[course.getIdx()][i] > 0){
+                stability++;
             }
         }
+        return stability;
     }
 
 
