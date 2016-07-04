@@ -276,6 +276,7 @@ public class Problem {
             auxLeft = this.line.split("  ");
             auxRight = auxLeft[1].split(" ");
             Curricula curricula = new Curricula();
+            curricula.setIdx(idx);
             curricula.setCurriculaName(auxLeft[0]);
             curricula.setnCourses(Integer.parseInt(auxRight[0]));
             String auxCourses[] = new String[curricula.getnCourses()];

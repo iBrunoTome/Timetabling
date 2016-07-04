@@ -4,6 +4,16 @@
  * @since 19/06/2016
  */
 public class Curricula {
+    private int idx;
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
+    }
+
     private String curriculaName;
     private String[] courses;
     private int nCourses;

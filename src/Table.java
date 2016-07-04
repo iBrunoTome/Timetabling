@@ -173,7 +173,7 @@ public class Table {
             cost += weak;
         }
         // 4 - weak constraint: isolateded classes
-
+        if
 
         return cost;
     }
