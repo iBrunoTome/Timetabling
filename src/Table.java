@@ -63,8 +63,7 @@ public class Table {
 
         Class classAux = this.listClassNonAllocated.get(0);
         classAux = this.genereteViableSchedules(classAux);
-        while (!this.listClassNonAllocated.isEmpty() && classAux.getViableSchedules().size() > 0) {
-            System.out.println("Entrei");
+        while (!this.listClassNonAllocated.isEmpty()) {
             int[] minMax = this.getMinMax(classAux);
 
             interval = (int) (minMax[0] + (alfa * (minMax[1] - minMax[0])));
@@ -246,25 +245,34 @@ public class Table {
      * @return Class c
      */
     public Class genereteViableSchedules(Class c) {
-        boolean flagSameCurricula = false;
-        boolean flagSameClass = false;
+        boolean flagSameCurricula;
+        boolean flagSameClass;
         Integer[] viableSchedules = new Integer[3];
 
         for (int i = 0; i < this.currentProblem.getTotalSchedules(); i++) {
+            flagSameCurricula = false;
+            flagSameClass = false;
             if (this.currentProblem.getClassSchedules()[c.getIdxClass()][i] == 0) {
                 for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
-                    if ((this.table[j][i] != -1) && (this.currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && (this.currentProblem.sameCourse(c.getIdxClass(), this.table[j][i]))) {
-                        flagSameClass = true;
-                        flagSameCurricula = true;
+                    if (this.table[j][i] != -1) {
+                        if (this.currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) {
+                            flagSameCurricula = true;
+                        }
+
+                        if (this.currentProblem.sameCourse(c.getIdxClass(), this.table[j][i])) {
+                            flagSameClass = true;
+                        }
                     }
                 }
 
                 for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
-                    if ((this.table[j][i] == -1) && ((flagSameClass == true) || (flagSameCurricula == true))) {
-                        viableSchedules[0] = i;
-                        viableSchedules[1] = j;
-                        viableSchedules[2] = this.alocationClassCost(c, i, j);
-                        c.getViableSchedules().add(viableSchedules);
+                    if ((this.table[j][i] == -1)) {
+                        if ((flagSameClass == false) && (flagSameCurricula == false)) {
+                            viableSchedules[0] = i;
+                            viableSchedules[1] = j;
+                            viableSchedules[2] = this.alocationClassCost(c, i, j);
+                            c.getViableSchedules().add(viableSchedules);
+                        }
                     }
                 }
             }
