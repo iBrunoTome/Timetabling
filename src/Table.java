@@ -44,6 +44,9 @@ public class Table {
         for (int i = 0; i < this.currentProblem.getCourses().length; i++) {
             for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
                 this.usedRooms[i][j] = 0;
+            }
+
+            for (int j = 0; j < this.currentProblem.getnDays(); j++) {
                 this.busyDays[i][j] = 0;
             }
         }
