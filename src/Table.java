@@ -21,7 +21,9 @@ public class Table {
         this.fillTable();
         this.fillSchedulesNonAllocated();
         this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
+        initializeBuzyDaysMatrix();
         this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
+        initializeUsedRoomsMatrix();
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
     }
 
@@ -30,6 +32,32 @@ public class Table {
      * generate a inicial table. that is the inicial solution
      */
     public void gerateInicialTable() {
+
+    }
+
+    /**
+     * initialize the matrix with zeros.
+     */
+    public void initializeBuzyDaysMatrix(){
+        for (int i = 0; i < this.currentProblem.getCourses().length; i++){
+            for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
+                this.busyDays[i][j] = 0;
+            }
+        }
+    }
+
+    /**
+     * initialize the matrix with zeros.
+     */
+    public void initializeUsedRoomsMatrix(){
+        for (int i = 0; i < this.currentProblem.getCourses().length; i++){
+            for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
+                this.usedRooms[i][j] = 0;
+            }
+        }
+    }
+
+    public  void initializeCurrPeriodDaysMatrix(){
 
     }
 
@@ -81,10 +109,10 @@ public class Table {
 
     /**
      * verify how many rooms a class use
-     * @param course room
+     * @param course
      * @return integer number of rooms
      */
-    public int stabilityRoom(Course course, int room){
+    public int stabilityRoom(Course course){
         int stability = 0;
         for (int i = 0; i < this.currentProblem.getnRooms();i++){
             if (this.usedRooms[course.getIdx()][i] > 0){
@@ -118,7 +146,7 @@ public class Table {
             cost += caux.getMinClassDays() - this.busyDays[c.getIdxClass()][room];
         }
         //3- weak constraint: all class in the same room
-        if(this.busyDays[][]){
+        if(stabilityRoom()){
 
         }
         //4- weak constraint: isolateded classes
