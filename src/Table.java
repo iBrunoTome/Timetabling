@@ -37,7 +37,7 @@ public class Table {
     /**
      * Initialize the matrix with zeros.
      */
-    public void initializeBusyUsedMatrix() {
+    private void initializeBusyUsedMatrix() {
         for (int i = 0; i < this.currentProblem.getCourses().length; i++) {
             for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
                 this.usedRooms[i][j] = 0;
@@ -46,14 +46,24 @@ public class Table {
         }
     }
 
-    public void initializeCurrPeriodDaysMatrix() {
-
+    /**
+     * Initialize the curriculaDaysPeriods matrix with zeros
+     */
+    private void initializeCurriculaDaysPeriodsMatrix() {
+        for (int i = 0; i < this.currentProblem.getCurriculas().length; i++) {
+            for (int j = 0; j < this.currentProblem.getnDays(); j++) {
+                for (int k = 0; k < this.currentProblem.getnPeriodsPerDay(); k++) {
+                    this.curriculaDaysPeriods[i][j][k] = 0;
+                }
+            }
+        }
     }
+
 
     /**
      * Fill the array with the unavailable schedules array
      */
-    public void fillSchedulesNonAllocated() {
+    private void fillSchedulesNonAllocated() {
         // Run the matrix, and catch inviability of same teacher or same curricula
         for (int l = 0; l < this.currentProblem.getTotalClass(); l++) {
             Class currentClass = new Class();
@@ -102,7 +112,7 @@ public class Table {
      * @param course
      * @return integer number of rooms
      */
-    public int stabilityRoom(Course course) {
+    private int stabilityRoom(Course course) {
         int stability = 0;
         for (int i = 0; i < this.currentProblem.getnRooms(); i++) {
             if (this.usedRooms[course.getIdx()][i] > 0) {
@@ -141,7 +151,7 @@ public class Table {
         if (weak > 1) {
             cost += weak;
         }
-        // 4- weak constraint: isolateded classes
+        // 4 - weak constraint: isolateded classes
 
 
         return cost;
