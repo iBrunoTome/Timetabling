@@ -1,7 +1,6 @@
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * @author Bruno Tomé - 0011254
@@ -10,7 +9,8 @@ import java.util.Collections;
  */
 public class Table {
     private int objectiveFunction;
-    private ArrayList<Class> listSchedulesNonAllocated = new ArrayList<>();
+    private ArrayList<Class> listClassNonAllocated = new ArrayList<>();
+    private ArrayList<Class> listClassAllocated = new ArrayList<>();
     private int[][] table;
     private int[][] usedRooms; // Retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
     private int[][] busyDays; // Retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
@@ -20,21 +20,76 @@ public class Table {
     public Table(Problem currentProblem) {
         this.currentProblem = currentProblem;
         this.table = new int[this.currentProblem.getnRooms()][this.currentProblem.getTotalSchedules()];
-        this.fillTable();
-        this.fillSchedulesNonAllocated();
         this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
         this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
         this.initializeBusyUsedMatrix();
         this.initializeCurriculaDaysPeriodsMatrix();
+        this.gerateInicialTable();
     }
 
+    /**
+     * Get the min and the max viable schedules
+     *
+     * @param c
+     * @return
+     */
+    private int[] getMinMax(Class c) {
+        int min = c.getViableSchedules().get(0)[2];
+        int max = c.getViableSchedules().get(0)[2];
+        for (Integer[] s : c.getViableSchedules()) {
+            if (s[2] < min) {
+                min = s[2];
+            }
+
+            if (s[2] < max) {
+                max = s[2];
+            }
+        }
+
+        return new int[]{min, max};
+    }
 
     /**
-     * Generate a inicial table. that is the inicial solution
+     * Generate a inicial table. That is the inicial solution
      */
     public void gerateInicialTable() {
+        this.fillTable();
+        this.fillClassNonAllocated();
 
+        int interval;
+        int choosen;
+        final Double alfa = 0.15;
+
+        Class classAux = this.listClassNonAllocated.get(0);
+        classAux = this.genereteViableSchedules(classAux);
+        while (!this.listClassNonAllocated.isEmpty() && classAux.getViableSchedules().size() > 0) {
+            System.out.println("Entrei");
+            int[] minMax = this.getMinMax(classAux);
+
+            interval = (int) (minMax[0] + (alfa * (minMax[1] - minMax[0])));
+
+            for (Integer[] s : classAux.getViableSchedules()) {
+                if (s[2] > interval) {
+                    classAux.getViableSchedules().remove(s);
+                }
+            }
+
+            Random random = new Random();
+            choosen = random.nextInt(classAux.getViableSchedules().size());
+            int line = classAux.getViableSchedules().get(choosen)[0];
+            int column = classAux.getViableSchedules().get(choosen)[1];
+            this.table[line][column] = classAux.getIdxClass();
+
+            classAux.getViableSchedules().removeAll(classAux.getViableSchedules());
+            classAux.getViableSchedules().add(new Integer[]{line, column});
+
+            this.listClassAllocated.add(classAux);
+            this.listClassNonAllocated.remove(0);
+
+            classAux = this.listClassNonAllocated.get(0);
+            classAux = this.genereteViableSchedules(classAux);
+        }
     }
 
     /**
@@ -69,7 +124,7 @@ public class Table {
     /**
      * Fill the array with the unavailable schedules array
      */
-    private void fillSchedulesNonAllocated() {
+    private void fillClassNonAllocated() {
         // Run the matrix, and catch inviability of same teacher or same curricula
         for (int l = 0; l < this.currentProblem.getTotalClass(); l++) {
             Class currentClass = new Class();
@@ -88,10 +143,10 @@ public class Table {
                 }
             }
 
-            this.listSchedulesNonAllocated.add(currentClass);
+            this.listClassNonAllocated.add(currentClass);
 
         }
-        Collections.sort(this.listSchedulesNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
+        Collections.sort(this.listClassNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
     }
 
     /**
@@ -188,33 +243,34 @@ public class Table {
      * Gerete a list of viable schedules for a class
      *
      * @param c
-     * @return
+     * @return Class c
      */
-    public void genereteViableSchedules(Class c) {
-        int flagSameCurricula = 0;
-        int flagSameClass = 0;
+    public Class genereteViableSchedules(Class c) {
+        boolean flagSameCurricula = false;
+        boolean flagSameClass = false;
         Integer[] viableSchedules = new Integer[3];
 
-        for (int i = 0; i < currentProblem.getClassSchedules()[0].length; i++) {
-            if (currentProblem.getClassSchedules()[c.getIdxClass()][i] == 0) {
-
-                for (int j = 0; j < currentProblem.getnRooms(); j++) {
-                    if ((this.table[j][i] != -1) && (currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && (currentProblem.sameCourse(c.getIdxClass(), this.table[j][i]))) {
-                        flagSameClass = 1;
-                        flagSameCurricula = 1;
+        for (int i = 0; i < this.currentProblem.getTotalSchedules(); i++) {
+            if (this.currentProblem.getClassSchedules()[c.getIdxClass()][i] == 0) {
+                for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
+                    if ((this.table[j][i] != -1) && (this.currentProblem.courseSameCurricula(c.getIdxClass(), this.table[j][i])) && (this.currentProblem.sameCourse(c.getIdxClass(), this.table[j][i]))) {
+                        flagSameClass = true;
+                        flagSameCurricula = true;
                     }
                 }
-                for (int j = 0; j < currentProblem.getnRooms(); j++) {
-                    if ((this.table[j][i] == -1) && ((flagSameClass == 1) || (flagSameCurricula == 1))) {
+
+                for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
+                    if ((this.table[j][i] == -1) && ((flagSameClass == true) || (flagSameCurricula == true))) {
                         viableSchedules[0] = i;
                         viableSchedules[1] = j;
+                        viableSchedules[2] = this.alocationClassCost(c, i, j);
                         c.getViableSchedules().add(viableSchedules);
                     }
                 }
-
-
             }
         }
+
+        return c;
     }
 
     /**
