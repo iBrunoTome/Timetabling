@@ -1,3 +1,5 @@
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -122,6 +124,23 @@ public class Table {
         return stability;
     }
 
+    /**
+     * verify how many days a course have
+     * @param course
+     * @return workDays
+     */
+
+    public int daysOfWork(Course course){
+        int workDays = 0;
+        for(int i = 0; i < this.currentProblem.getnDays(); i++){
+            if(this.busyDays[course.getIdx()][i] > 0){
+                workDays++;
+            }
+        }
+        return workDays;
+    }
+    
+
 
     /**
      * Calculate the cost to allocated a class on the table, based on weak constraints
@@ -143,8 +162,8 @@ public class Table {
         }
         // 2 - weak constraint: min days necessity for a class
         weak = caux.getMinClassDays();
-        if (weak > this.busyDays[c.getIdxClass()][room]) {
-            cost += ((weak - this.busyDays[c.getIdxClass()][room]) * 5);
+        if (weak > daysOfWork(caux)) {
+            cost += ((weak - daysOfWork(caux)) * 5);
         }
         // 3 - weak constraint: all class in the same room
         weak = stabilityRoom(caux);
