@@ -73,6 +73,22 @@ public class Problem {
     }
 
     /**
+     * Return a curricula from an integer line or column from a matrix
+     *
+     * @param course
+     * @return Curricula
+     */
+    public Curricula getCurriculaFromCourse(Course course) {
+        for (Curricula c : this.curriculas) {
+            if (c.containCourse(course)) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Return the quantity of room from an integer line or column from a matrix
      *
      * @param idx

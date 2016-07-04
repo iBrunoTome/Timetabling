@@ -25,7 +25,8 @@ public class Table {
         this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
         this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
-        initializeBusyUsedMatrix();
+        this.initializeBusyUsedMatrix();
+        this.initializeCurriculaDaysPeriodsMatrix();
     }
 
 
@@ -169,11 +170,13 @@ public class Table {
         }
         // 3 - weak constraint: all class in the same room
         weak = stabilityRoom(caux);
-        if (weak > 1) {
+        cost += weak;
+        // 4 - weak constraint: isolateded classes
+        Curricula curriculaAux = this.currentProblem.getCurriculaFromCourse(caux);
+        if (curriculaAux != null) {
+            weak = this.isolatedClassesPerCurricula(curriculaAux.getIdx());
             cost += weak;
         }
-        // 4 - weak constraint: isolateded classes
-        if
 
         return cost;
     }

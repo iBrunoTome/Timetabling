@@ -5,15 +5,6 @@
  */
 public class Curricula {
     private int idx;
-
-    public int getIdx() {
-        return idx;
-    }
-
-    public void setIdx(int idx) {
-        this.idx = idx;
-    }
-
     private String curriculaName;
     private String[] courses;
     private int nCourses;
@@ -29,6 +20,14 @@ public class Curricula {
             }
         }
         return false;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     public String getCurriculaName() {
