@@ -156,26 +156,26 @@ public class Table {
     public int alocationClassCost(Class c, int schedule, int room) {
         int cost = 0;
         Course caux = new Course();
-        caux = currentProblem.getCourseFromInt(c.getIdxClass());
+        caux = this.currentProblem.getCourseFromInt(c.getIdxClass());
 
         // 1 - weak constraint: room capacity
         int weak = caux.getnStudents();
-        if (weak <= currentProblem.getRoomCapacity(room)) {
-            cost = weak - currentProblem.getRoomCapacity(room);
+        if (weak <= this.currentProblem.getRoomCapacity(room)) {
+            cost = weak - this.currentProblem.getRoomCapacity(room);
         }
         // 2 - weak constraint: min days necessity for a class
         weak = caux.getMinClassDays();
-        if (weak > daysOfWork(caux)) {
+        if (weak > this.daysOfWork(caux)) {
             cost += ((weak - daysOfWork(caux)) * 5);
         }
         // 3 - weak constraint: all class in the same room
-        weak = stabilityRoom(caux);
+        weak = this.stabilityRoom(caux);
         cost += weak;
         // 4 - weak constraint: isolateded classes
         Curricula curriculaAux = this.currentProblem.getCurriculaFromCourse(caux);
         if (curriculaAux != null) {
             weak = this.isolatedClassesPerCurricula(curriculaAux.getIdx());
-            cost += weak;
+            cost += (weak * 2);
         }
 
         return cost;
