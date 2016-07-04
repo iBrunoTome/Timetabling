@@ -94,13 +94,15 @@ public class Table {
      * verifify isoleted class in curricula(weak constraint)
      *
      * @param curr
-     * @return int of numbre of isolated classes
+     * @return int of number of isolated classes
      */
     public int isolatedClassesPerCurricula(int curr) {
         int sumIsoletedClass = 0;
-        for (int i = 0; i < this.curriculaDaysPeriods[0].length; i++) {
-            for (int p = 0; p < this.curriculaDaysPeriods[0][0].length; p++) {
+        for (int i = 0; i < this.currentProblem.getnDays(); i++) {
+            for (int p = 0; p < this.currentProblem.getnPeriodsPerDay(); p++) {
                 if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
+                    sumIsoletedClass += 2;
+                } else if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) || (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
                     sumIsoletedClass++;
                 }
             }
@@ -112,7 +114,7 @@ public class Table {
      * verify how many rooms a class use
      *
      * @param course
-     * @return integer number of rooms
+     * @return int number of rooms
      */
     private int stabilityRoom(Course course) {
         int stability = 0;
@@ -126,20 +128,20 @@ public class Table {
 
     /**
      * verify how many days a course have
+     *
      * @param course
      * @return workDays
      */
 
-    public int daysOfWork(Course course){
+    public int daysOfWork(Course course) {
         int workDays = 0;
-        for(int i = 0; i < this.currentProblem.getnDays(); i++){
-            if(this.busyDays[course.getIdx()][i] > 0){
+        for (int i = 0; i < this.currentProblem.getnDays(); i++) {
+            if (this.busyDays[course.getIdx()][i] > 0) {
                 workDays++;
             }
         }
         return workDays;
     }
-    
 
 
     /**
