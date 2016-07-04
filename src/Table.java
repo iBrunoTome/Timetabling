@@ -35,8 +35,8 @@ public class Table {
      * @return
      */
     private int[] getMinMax(Class c) {
-        int min = c.getViableSchedules().get(0)[2];
-        int max = c.getViableSchedules().get(0)[2];
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
         for (Integer[] s : c.getViableSchedules()) {
             if (s[2] < min) {
                 min = s[2];
@@ -78,6 +78,7 @@ public class Table {
             choosen = random.nextInt(classAux.getViableSchedules().size());
             int line = classAux.getViableSchedules().get(choosen)[0];
             int column = classAux.getViableSchedules().get(choosen)[1];
+            System.out.println("linha  "+line+"\n coluna "+column+" \nchoosen "+choosen);
             this.table[line][column] = classAux.getIdxClass();
 
             classAux.getViableSchedules().removeAll(classAux.getViableSchedules());
@@ -158,10 +159,19 @@ public class Table {
         int sumIsoletedClass = 0;
         for (int i = 0; i < this.currentProblem.getnDays(); i++) {
             for (int p = 0; p < this.currentProblem.getnPeriodsPerDay(); p++) {
-                if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
-                    sumIsoletedClass += 2;
-                } else if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) || (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
-                    sumIsoletedClass++;
+                if((p > 0) && (p < currentProblem.getnPeriodsPerDay()-1)) {
+                    if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
+                        sumIsoletedClass += 2;
+                    } else if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) || (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
+                        sumIsoletedClass++;
+                    }
+                }else{
+                    if((p == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)){
+                        sumIsoletedClass++;
+                    }
+                    if((p == currentProblem.getnPeriodsPerDay()) && ((this.curriculaDaysPeriods[curr][i][p - 1] == 0))){
+                        sumIsoletedClass++;
+                    }
                 }
             }
         }
@@ -268,8 +278,8 @@ public class Table {
                 for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
                     if ((this.table[j][i] == -1)) {
                         if ((flagSameClass == false) && (flagSameCurricula == false)) {
-                            viableSchedules[0] = i;
-                            viableSchedules[1] = j;
+                            viableSchedules[0] = j;
+                            viableSchedules[1] = i;
                             viableSchedules[2] = this.alocationClassCost(c, i, j);
                             c.getViableSchedules().add(viableSchedules);
                         }
