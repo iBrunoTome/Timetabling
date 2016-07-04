@@ -10,9 +10,9 @@ public class Table {
     private int objectiveFunction;
     private ArrayList<Class> listSchedulesNonAllocated = new ArrayList<>();
     private int[][] table;
-    private int[][] usedRooms;//retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
-    private int[][] busyDays;//retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
-    private int[][][] curriculaDaysPeriods;//retorna a quantidade de aulas do currículo c alocadas no dia d e horário p
+    private int[][] usedRooms; // Retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
+    private int[][] busyDays; // Retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
+    private int[][][] curriculaDaysPeriods; // Retorna a quantidade de aulas do currículo c alocadas no dia d e horário p
     private Problem currentProblem;
 
     public Table(Problem currentProblem) {
@@ -21,43 +21,32 @@ public class Table {
         this.fillTable();
         this.fillSchedulesNonAllocated();
         this.busyDays = new int[this.currentProblem.getCourses().length][this.currentProblem.getnDays()];
-        initializeBuzyDaysMatrix();
         this.usedRooms = new int[this.currentProblem.getCourses().length][this.currentProblem.getnRooms()];
-        initializeUsedRoomsMatrix();
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
+        initializeBusyUsedMatrix();
     }
 
 
     /**
-     * generate a inicial table. that is the inicial solution
+     * Generate a inicial table. that is the inicial solution
      */
     public void gerateInicialTable() {
 
     }
 
     /**
-     * initialize the matrix with zeros.
+     * Initialize the matrix with zeros.
      */
-    public void initializeBuzyDaysMatrix(){
-        for (int i = 0; i < this.currentProblem.getCourses().length; i++){
+    public void initializeBusyUsedMatrix() {
+        for (int i = 0; i < this.currentProblem.getCourses().length; i++) {
             for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
+                this.usedRooms[i][j] = 0;
                 this.busyDays[i][j] = 0;
             }
         }
     }
 
-    /**
-     * initialize the matrix with zeros.
-     */
-    public void initializeUsedRoomsMatrix(){
-        for (int i = 0; i < this.currentProblem.getCourses().length; i++){
-            for (int j = 0; j < this.currentProblem.getnRooms(); j++) {
-                this.usedRooms[i][j] = 0;
-            }
-        }
-    }
-
-    public  void initializeCurrPeriodDaysMatrix(){
+    public void initializeCurrPeriodDaysMatrix() {
 
     }
 
@@ -109,13 +98,14 @@ public class Table {
 
     /**
      * verify how many rooms a class use
+     *
      * @param course
      * @return integer number of rooms
      */
-    public int stabilityRoom(Course course){
+    public int stabilityRoom(Course course) {
         int stability = 0;
-        for (int i = 0; i < this.currentProblem.getnRooms();i++){
-            if (this.usedRooms[course.getIdx()][i] > 0){
+        for (int i = 0; i < this.currentProblem.getnRooms(); i++) {
+            if (this.usedRooms[course.getIdx()][i] > 0) {
                 stability++;
             }
         }
@@ -123,30 +113,29 @@ public class Table {
     }
 
 
-
     /**
      * Calculate the cost to allocated a class on the table, based on weak constraints
      *
-     * @param  c
+     * @param c
      * @param schedule
      * @param room
      * @return cost
      */
-    public int alocationClassCost(Class c, int schedule , int room) {
+    public int alocationClassCost(Class c, int schedule, int room) {
         int cost = 0;
-        Course caux = new Course() ;
+        Course caux = new Course();
         caux = currentProblem.getCourseFromInt(c.getIdxClass());
 
         // 1- weak constraint: room capacity
-        if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)){
-                cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
+        if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)) {
+            cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
         }
         // 2- weak constraint: min days necessity for a class
-        if (caux.getMinClassDays() > this.busyDays[c.getIdxClass()][room]){
+        if (caux.getMinClassDays() > this.busyDays[c.getIdxClass()][room]) {
             cost += caux.getMinClassDays() - this.busyDays[c.getIdxClass()][room];
         }
         //3- weak constraint: all class in the same room
-        if(stabilityRoom()){
+        if (stabilityRoom()) {
 
         }
         //4- weak constraint: isolateded classes
