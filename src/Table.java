@@ -126,19 +126,22 @@ public class Table {
         Course caux = new Course();
         caux = currentProblem.getCourseFromInt(c.getIdxClass());
 
-        // 1- weak constraint: room capacity
-        if (caux.getnStudents() <= currentProblem.getRoomCapacity(room)) {
-            cost = caux.getnStudents() - currentProblem.getRoomCapacity(room);
+        // 1 - weak constraint: room capacity
+        int weak = caux.getnStudents();
+        if (weak <= currentProblem.getRoomCapacity(room)) {
+            cost = weak - currentProblem.getRoomCapacity(room);
         }
-        // 2- weak constraint: min days necessity for a class
-        if (caux.getMinClassDays() > this.busyDays[c.getIdxClass()][room]) {
-            cost += caux.getMinClassDays() - this.busyDays[c.getIdxClass()][room];
+        // 2 - weak constraint: min days necessity for a class
+        weak = caux.getMinClassDays();
+        if (weak > this.busyDays[c.getIdxClass()][room]) {
+            cost += ((weak - this.busyDays[c.getIdxClass()][room]) * 5);
         }
-        //3- weak constraint: all class in the same room
-        if (stabilityRoom()) {
-
+        // 3 - weak constraint: all class in the same room
+        weak = stabilityRoom(caux);
+        if (weak > 1) {
+            cost += weak;
         }
-        //4- weak constraint: isolateded classes
+        // 4- weak constraint: isolateded classes
 
 
         return cost;
