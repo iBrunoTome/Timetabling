@@ -184,8 +184,8 @@ public class Problem {
      * @return Constraint
      */
     private Constraint unavailableSchedule(int line, int column) {
-        int day = Math.abs(column / this.getnPeriodsPerDay()) + 1;
-        int turn = Math.abs(column / this.getnDays()) + 1;
+        int day = Math.abs(column / this.getnPeriodsPerDay());
+        int turn = Math.abs(column / this.getnDays());
 
         Course auxCourse = getCourseFromInt(line);
 

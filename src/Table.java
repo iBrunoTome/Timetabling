@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class Table {
     private int objectiveFunction;
+    private final Double alfa = 0.15;
     private ArrayList<Class> listClassNonAllocated = new ArrayList<>();
     private ArrayList<Class> listClassAllocated = new ArrayList<>();
     private int[][] table;
@@ -51,42 +52,66 @@ public class Table {
     }
 
     /**
+     * cut off the list of viableSchedules based on cost to allocated be smaller than inteval
+     * @param c
+     * @return c
+     */
+    public Class restrictedSchedulesList(Class c){
+        c = this.generateViableSchedules(c);
+
+        int[] minMax = this.getMinMax(c);
+
+        int interval = (int) (minMax[0] + (this.alfa * (minMax[1] - minMax[0])));
+
+        ArrayList<Integer[]> aux = new ArrayList<>(c.getViableSchedules());
+        for (Integer[] s : aux) {
+            if (s[2] > interval) {
+                c.getViableSchedules().remove(s);
+            }
+        }
+
+
+        return c;
+    }
+
+    public void refreshDynamicMatrix(Class c){
+       int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
+       int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
+       int day = Math.abs(c.getViableSchedules().get(0)[1]/currentProblem.getnPeriodsPerDay());
+       int room = c.getViableSchedules().get(0)[0];
+       int period = c.getViableSchedules().get(0)[1]- (currentProblem.getnPeriodsPerDay()*day);
+
+        this.busyDays[course][day] += 1;
+        this.usedRooms[course][room] += 1;
+        this.curriculaDaysPeriods[currucula][day][period] += 1;
+    }
+
+    /**
      * Generate a inicial table. That is the inicial solution
      */
     public void gerateInicialTable() {
         this.fillTable();
         this.fillClassNonAllocated();
 
-        int interval;
         int choosen;
-        final Double alfa = 0.15;
 
         while (!this.listClassNonAllocated.isEmpty()) {
 
 
             Class classAux = this.listClassNonAllocated.get(0);
-            classAux = this.genereteViableSchedules(classAux);
+            classAux = this.restrictedSchedulesList(classAux);
 
-            int[] minMax = this.getMinMax(classAux);
 
-            interval = (int) (minMax[0] + (alfa * (minMax[1] - minMax[0])));
-
-            ArrayList<Integer[]> aux = new ArrayList<>(classAux.getViableSchedules());
-            for (Integer[] s : aux) {
-                if (s[2] > interval) {
-                    classAux.getViableSchedules().remove(s);
-                }
+            while(classAux.getViableSchedules().isEmpty()){
+                classAux = this.generateNewSchedules(classAux);
             }
-
-            if (classAux.getViableSchedules().isEmpty()){
-                System.out.println("dcscasdvasdfadsf");
-            }
+            //System.out.println("linha  "+this.listClassAllocated.size());
 
             Random random = new Random();
             choosen = random.nextInt(classAux.getViableSchedules().size());
             int line = classAux.getViableSchedules().get(choosen)[0];
             int column = classAux.getViableSchedules().get(choosen)[1];
-            System.out.println("linha  "+line+"\n coluna "+column+" \nchoosen "+choosen);
+            //System.out.println("linha  "+line+"\n coluna "+column+" \nchoosen "+choosen);
             this.table[line][column] = classAux.getIdxClass();
 
             classAux.getViableSchedules().removeAll(classAux.getViableSchedules());
@@ -94,6 +119,9 @@ public class Table {
 
             this.listClassAllocated.add(classAux);
             this.listClassNonAllocated.remove(0);
+            this.refreshDynamicMatrix(classAux);
+
+
 
 
         }
@@ -154,6 +182,35 @@ public class Table {
 
         }
         Collections.sort(this.listClassNonAllocated, (c1, c2) -> Double.compare(c1.getScheduleViability(), c2.getScheduleViability()));
+    }
+
+    /**
+     *when viableSchedules are empity we need to rerange the table
+     * @param c
+     * @return
+     */
+    public Class generateNewSchedules(Class c){
+
+        Random random = new Random();
+        int choosen = random.nextInt(this.listClassAllocated.size()-1);
+        Class classCoosen = this.listClassAllocated.get(choosen);
+        this.listClassAllocated.remove(choosen);
+
+        System.out.println("estrou"+this.listClassAllocated.size());
+
+        int line = classCoosen.getViableSchedules().get(0)[0];
+        int colum = classCoosen.getViableSchedules().get(0)[1];
+
+        this.table[line][colum] = -1;
+        System.out.println("estrou"+line+" "+colum);
+
+        this.listClassNonAllocated.add(classCoosen);
+
+
+        this.restrictedSchedulesList(c);
+
+        return c;
+
     }
 
     /**
@@ -256,12 +313,12 @@ public class Table {
     }
 
     /**
-     * Gerete a list of viable schedules for a class
+     * Generate a list of viable schedules for a class
      *
      * @param c
      * @return Class c
      */
-    public Class genereteViableSchedules(Class c) {
+    public Class generateViableSchedules(Class c) {
         boolean flagSameCurricula;
         boolean flagSameClass;
         Integer[] viableSchedules = new Integer[3];
