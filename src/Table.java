@@ -61,17 +61,25 @@ public class Table {
         int choosen;
         final Double alfa = 0.15;
 
-        Class classAux = this.listClassNonAllocated.get(0);
-        classAux = this.genereteViableSchedules(classAux);
         while (!this.listClassNonAllocated.isEmpty()) {
+
+
+            Class classAux = this.listClassNonAllocated.get(0);
+            classAux = this.genereteViableSchedules(classAux);
+
             int[] minMax = this.getMinMax(classAux);
 
             interval = (int) (minMax[0] + (alfa * (minMax[1] - minMax[0])));
 
-            for (Integer[] s : classAux.getViableSchedules()) {
+            ArrayList<Integer[]> aux = new ArrayList<>(classAux.getViableSchedules());
+            for (Integer[] s : aux) {
                 if (s[2] > interval) {
                     classAux.getViableSchedules().remove(s);
                 }
+            }
+
+            if (classAux.getViableSchedules().isEmpty()){
+                System.out.println("dcscasdvasdfadsf");
             }
 
             Random random = new Random();
@@ -87,8 +95,7 @@ public class Table {
             this.listClassAllocated.add(classAux);
             this.listClassNonAllocated.remove(0);
 
-            classAux = this.listClassNonAllocated.get(0);
-            classAux = this.genereteViableSchedules(classAux);
+
         }
     }
 
