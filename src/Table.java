@@ -36,6 +36,7 @@ public class Table {
      * @return
      */
     private int[] getMinMax(Class c) {
+        //System.out.println(c.toString());
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (Integer[] s : c.getViableSchedules()) {
@@ -43,7 +44,7 @@ public class Table {
                 min = s[2];
             }
 
-            if (s[2] < max) {
+            if (s[2] > max) {
                 max = s[2];
             }
         }
@@ -58,6 +59,10 @@ public class Table {
      */
     public Class restrictedSchedulesList(Class c){
         c = this.generateViableSchedules(c);
+
+        while(c.getViableSchedules().isEmpty()){
+            this.generateNewSchedules(c);
+        }
 
         int[] minMax = this.getMinMax(c);
 
@@ -75,9 +80,10 @@ public class Table {
     }
 
     public void refreshDynamicMatrix(Class c){
+
        int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
        int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
-       int day = Math.abs(c.getViableSchedules().get(0)[1]/currentProblem.getnPeriodsPerDay());
+       int day = (int) Math.abs((c.getViableSchedules().get(0)[1])/currentProblem.getnPeriodsPerDay());
        int room = c.getViableSchedules().get(0)[0];
        int period = c.getViableSchedules().get(0)[1]- (currentProblem.getnPeriodsPerDay()*day);
 
@@ -105,13 +111,12 @@ public class Table {
             while(classAux.getViableSchedules().isEmpty()){
                 classAux = this.generateNewSchedules(classAux);
             }
-            //System.out.println("linha  "+this.listClassAllocated.size());
+            this.refreshDynamicMatrix(classAux);
 
             Random random = new Random();
             choosen = random.nextInt(classAux.getViableSchedules().size());
             int line = classAux.getViableSchedules().get(choosen)[0];
             int column = classAux.getViableSchedules().get(choosen)[1];
-            //System.out.println("linha  "+line+"\n coluna "+column+" \nchoosen "+choosen);
             this.table[line][column] = classAux.getIdxClass();
 
             classAux.getViableSchedules().removeAll(classAux.getViableSchedules());
@@ -202,12 +207,13 @@ public class Table {
         int colum = classCoosen.getViableSchedules().get(0)[1];
 
         this.table[line][colum] = -1;
-        System.out.println("estrou"+line+" "+colum);
+       // System.out.println("estrou"+line+" "+colum);
 
         this.listClassNonAllocated.add(classCoosen);
 
 
         this.restrictedSchedulesList(c);
+
 
         return c;
 
@@ -292,21 +298,21 @@ public class Table {
         // 1 - weak constraint: room capacity
         int weak = caux.getnStudents();
         if (weak <= this.currentProblem.getRoomCapacity(room)) {
-            cost = weak - this.currentProblem.getRoomCapacity(room);
+            cost = Math.abs(weak - this.currentProblem.getRoomCapacity(room));
         }
         // 2 - weak constraint: min days necessity for a class
         weak = caux.getMinClassDays();
         if (weak > this.daysOfWork(caux)) {
-            cost += ((weak - daysOfWork(caux)) * 5);
+            cost += Math.abs(((weak - daysOfWork(caux)) * 5));
         }
         // 3 - weak constraint: all class in the same room
         weak = this.stabilityRoom(caux);
-        cost += weak;
+        cost += Math.abs(weak);
         // 4 - weak constraint: isolateded classes
         Curricula curriculaAux = this.currentProblem.getCurriculaFromCourse(caux);
         if (curriculaAux != null) {
             weak = this.isolatedClassesPerCurricula(curriculaAux.getIdx());
-            cost += (weak * 2);
+            cost += Math.abs((weak * 2));
         }
 
         return cost;
