@@ -54,18 +54,18 @@ public class Table {
 
     /**
      * cut off the list of viableSchedules based on cost to allocated be smaller than inteval
+     *
      * @param c
      * @return c
      */
-    public Class restrictedSchedulesList(Class c){
+    public Class restrictedSchedulesList(Class c) {
         c = this.generateViableSchedules(c);
 
-        while(c.getViableSchedules().isEmpty()){
+        while (c.getViableSchedules().isEmpty()) {
             this.generateNewSchedules(c);
         }
 
         int[] minMax = this.getMinMax(c);
-
         int interval = (int) (minMax[0] + (this.alfa * (minMax[1] - minMax[0])));
 
         ArrayList<Integer[]> aux = new ArrayList<>(c.getViableSchedules());
@@ -75,17 +75,20 @@ public class Table {
             }
         }
 
-
         return c;
     }
 
-    public void refreshDynamicMatrix(Class c){
-
-       int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
-       int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
-       int day = (int) Math.abs((c.getViableSchedules().get(0)[1])/currentProblem.getnPeriodsPerDay());
-       int room = c.getViableSchedules().get(0)[0];
-       int period = c.getViableSchedules().get(0)[1]- (currentProblem.getnPeriodsPerDay()*day);
+    /**
+     * Update all dynamic matrix after allocated a class in the table
+     *
+     * @param c
+     */
+    public void refreshDynamicMatrix(Class c) {
+        int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
+        int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
+        int day = (int) Math.abs((c.getViableSchedules().get(0)[1]) / currentProblem.getnPeriodsPerDay());
+        int room = c.getViableSchedules().get(0)[0];
+        int period = c.getViableSchedules().get(0)[1] - (currentProblem.getnPeriodsPerDay() * day);
 
         this.busyDays[course][day] += 1;
         this.usedRooms[course][room] += 1;
@@ -102,13 +105,10 @@ public class Table {
         int choosen;
 
         while (!this.listClassNonAllocated.isEmpty()) {
-
-
             Class classAux = this.listClassNonAllocated.get(0);
             classAux = this.restrictedSchedulesList(classAux);
 
-
-            while(classAux.getViableSchedules().isEmpty()){
+            while (classAux.getViableSchedules().isEmpty()) {
                 classAux = this.generateNewSchedules(classAux);
             }
             this.refreshDynamicMatrix(classAux);
@@ -125,10 +125,6 @@ public class Table {
             this.listClassAllocated.add(classAux);
             this.listClassNonAllocated.remove(0);
             this.refreshDynamicMatrix(classAux);
-
-
-
-
         }
     }
 
@@ -190,24 +186,25 @@ public class Table {
     }
 
     /**
-     *when viableSchedules are empity we need to rerange the table
+     * when viableSchedules are empity we need to rerange the table
+     *
      * @param c
      * @return
      */
-    public Class generateNewSchedules(Class c){
+    public Class generateNewSchedules(Class c) {
 
         Random random = new Random();
-        int choosen = random.nextInt(this.listClassAllocated.size()-1);
+        int choosen = random.nextInt(this.listClassAllocated.size() - 1);
         Class classCoosen = this.listClassAllocated.get(choosen);
         this.listClassAllocated.remove(choosen);
 
-        System.out.println("estrou"+this.listClassAllocated.size());
+        System.out.println("estrou" + this.listClassAllocated.size());
 
         int line = classCoosen.getViableSchedules().get(0)[0];
         int colum = classCoosen.getViableSchedules().get(0)[1];
 
         this.table[line][colum] = -1;
-       // System.out.println("estrou"+line+" "+colum);
+        // System.out.println("estrou"+line+" "+colum);
 
         this.listClassNonAllocated.add(classCoosen);
 
@@ -229,17 +226,17 @@ public class Table {
         int sumIsoletedClass = 0;
         for (int i = 0; i < this.currentProblem.getnDays(); i++) {
             for (int p = 0; p < this.currentProblem.getnPeriodsPerDay(); p++) {
-                if((p > 0) && (p < currentProblem.getnPeriodsPerDay()-1)) {
+                if ((p > 0) && (p < currentProblem.getnPeriodsPerDay() - 1)) {
                     if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
                         sumIsoletedClass += 2;
                     } else if ((this.curriculaDaysPeriods[curr][i][p - 1] == 0) || (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
                         sumIsoletedClass++;
                     }
-                }else{
-                    if((p == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)){
+                } else {
+                    if ((p == 0) && (this.curriculaDaysPeriods[curr][i][p + 1] == 0)) {
                         sumIsoletedClass++;
                     }
-                    if((p == currentProblem.getnPeriodsPerDay()) && ((this.curriculaDaysPeriods[curr][i][p - 1] == 0))){
+                    if ((p == currentProblem.getnPeriodsPerDay()) && ((this.curriculaDaysPeriods[curr][i][p - 1] == 0))) {
                         sumIsoletedClass++;
                     }
                 }
