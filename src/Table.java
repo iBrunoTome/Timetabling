@@ -127,7 +127,7 @@ public class Table {
             this.listClassNonAllocated.remove(0);
             this.refreshDynamicMatrix(classAux);
         }
-        System.out.println("total de aulas alocadas: "+this.getListClassAllocated().size());
+        System.out.println("All fucking classes allocated: "+this.getListClassAllocated().size());
     }
 
     /**
