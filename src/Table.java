@@ -8,8 +8,8 @@ import java.util.Random;
  * @since 19/06/2016
  */
 public class Table {
-    private int objectiveFunction;
     private final Double alfa = 0.15;
+    private int objectiveFunction;
     private ArrayList<Class> listClassNonAllocated = new ArrayList<>();
     private ArrayList<Class> listClassAllocated = new ArrayList<>();
     private int[][] table;
@@ -117,15 +117,17 @@ public class Table {
             choosen = random.nextInt(classAux.getViableSchedules().size());
             int line = classAux.getViableSchedules().get(choosen)[0];
             int column = classAux.getViableSchedules().get(choosen)[1];
+            int cost = classAux.getViableSchedules().get(choosen)[2];
             this.table[line][column] = classAux.getIdxClass();
 
             classAux.getViableSchedules().removeAll(classAux.getViableSchedules());
-            classAux.getViableSchedules().add(new Integer[]{line, column});
+            classAux.getViableSchedules().add(new Integer[]{line, column, cost});
 
             this.listClassAllocated.add(classAux);
             this.listClassNonAllocated.remove(0);
             this.refreshDynamicMatrix(classAux);
         }
+        System.out.println("total de aulas alocadas: "+this.getListClassAllocated().size());
     }
 
     /**
@@ -198,8 +200,6 @@ public class Table {
         Class classCoosen = this.listClassAllocated.get(choosen);
         this.listClassAllocated.remove(choosen);
 
-        System.out.println("estrou" + this.listClassAllocated.size());
-
         int line = classCoosen.getViableSchedules().get(0)[0];
         int colum = classCoosen.getViableSchedules().get(0)[1];
 
@@ -209,7 +209,7 @@ public class Table {
         this.listClassNonAllocated.add(classCoosen);
 
 
-        this.restrictedSchedulesList(c);
+        this.generateViableSchedules(c);
 
 
         return c;
@@ -283,11 +283,10 @@ public class Table {
      * Calculate the cost to allocated a class on the table, based on weak constraints
      *
      * @param c
-     * @param schedule
      * @param room
      * @return cost
      */
-    public int alocationClassCost(Class c, int schedule, int room) {
+    public int alocationClassCost(Class c, int room) {
         int cost = 0;
         Course caux = new Course();
         caux = this.currentProblem.getCourseFromInt(c.getIdxClass());
@@ -347,7 +346,7 @@ public class Table {
                         if ((flagSameClass == false) && (flagSameCurricula == false)) {
                             viableSchedules[0] = j;
                             viableSchedules[1] = i;
-                            viableSchedules[2] = this.alocationClassCost(c, i, j);
+                            viableSchedules[2] = this.alocationClassCost(c, j);
                             c.getViableSchedules().add(viableSchedules);
                         }
                     }
@@ -407,6 +406,14 @@ public class Table {
 
     public void setBusyDays(int[][] busyDays) {
         this.busyDays = busyDays;
+    }
+
+    public ArrayList<Class> getListClassAllocated() {
+        return listClassAllocated;
+    }
+
+    public void setListClassAllocated(ArrayList<Class> listClassAllocated) {
+        this.listClassAllocated = listClassAllocated;
     }
 
 }
