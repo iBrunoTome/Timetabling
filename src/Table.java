@@ -26,7 +26,7 @@ public class Table {
         this.curriculaDaysPeriods = new int[this.currentProblem.getCurriculas().length][this.currentProblem.getnDays()][this.currentProblem.getnPeriodsPerDay()];
         this.initializeBusyUsedMatrix();
         this.initializeCurriculaDaysPeriodsMatrix();
-        this.gerateInicialTable();
+        this.generateInicialTable();
     }
 
     /**
@@ -98,7 +98,7 @@ public class Table {
     /**
      * Generate a inicial table. That is the inicial solution
      */
-    public void gerateInicialTable() {
+    public void generateInicialTable() {
         this.fillTable();
         this.fillClassNonAllocated();
 
