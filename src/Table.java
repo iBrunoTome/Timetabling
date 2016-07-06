@@ -128,6 +128,9 @@ public class Table {
             this.refreshDynamicMatrix(classAux);
         }
         System.out.println("All fucking classes allocated: "+this.getListClassAllocated().size());
+
+        System.out.println(this.toString());
+
     }
 
     /**
@@ -414,6 +417,21 @@ public class Table {
 
     public void setListClassAllocated(ArrayList<Class> listClassAllocated) {
         this.listClassAllocated = listClassAllocated;
+    }
+
+    public String toString(){
+        String line = " Schedules\n"+"      ";
+        for (int k = 0; k < currentProblem.getTotalSchedules();k++){
+            line += " "+k+" ";
+        }
+        line += " \n";
+        for (int i = 0; i < currentProblem.getnRooms();i++){
+            line += "\n\nRoom"+i;
+            for (int j = 0; j < currentProblem.getTotalSchedules();j++){
+                line += "  "+this.table[i][j]+"   ";
+            }
+        }
+        return line;
     }
 
 }
