@@ -30,11 +30,7 @@ public class Class {
     }
 
     public ArrayList<Integer[]> getViableSchedules() {
-        return viableSchedules;
-    }
-
-    public void setViableSchedules(ArrayList<Integer[]> viableSchedules) {
-        this.viableSchedules = viableSchedules;
+        return this.viableSchedules;
     }
 
 

@@ -53,7 +53,7 @@ public class Table {
     }
 
     /**
-     * cut off the list of viableSchedules based on cost to allocated be smaller than inteval
+     * Cut off the list of viableSchedules based on cost to allocated be smaller than inteval
      *
      * @param c
      * @return c
@@ -127,7 +127,7 @@ public class Table {
             this.listClassNonAllocated.remove(0);
             this.refreshDynamicMatrix(classAux);
         }
-        System.out.println("All fucking classes allocated: "+this.getListClassAllocated().size());
+        System.out.println("All fucking classes allocated: " + this.getListClassAllocated().size());
 
         System.out.println(this.toString());
 
@@ -191,7 +191,7 @@ public class Table {
     }
 
     /**
-     * when viableSchedules are empity we need to rerange the table
+     * When viableSchedules are empity we need to rerange the table
      *
      * @param c
      * @return
@@ -207,20 +207,15 @@ public class Table {
         int colum = classCoosen.getViableSchedules().get(0)[1];
 
         this.table[line][colum] = -1;
-        // System.out.println("estrou"+line+" "+colum);
-
         this.listClassNonAllocated.add(classCoosen);
-
-
         this.generateViableSchedules(c);
-
 
         return c;
 
     }
 
     /**
-     * verifify isoleted class in curricula(weak constraint)
+     * Verifi isoleted class in curricula(weak constraint)
      *
      * @param curr
      * @return int of number of isolated classes
@@ -249,7 +244,7 @@ public class Table {
     }
 
     /**
-     * verify how many rooms a class use
+     * Verify how many rooms a class use
      *
      * @param course
      * @return int number of rooms
@@ -265,7 +260,7 @@ public class Table {
     }
 
     /**
-     * verify how many days a course have
+     * Verify how many days a course have
      *
      * @param course
      * @return workDays
@@ -371,64 +366,20 @@ public class Table {
         }
     }
 
-    public int[][] getTable() {
-        return this.table;
-    }
-
-    public void setTable(int[][] table) {
-        this.table = table;
-    }
-
-    public int getObjective() {
-        return this.objectiveFunction;
-    }
-
-    public void setObjective(int objective) {
-        this.objectiveFunction = objective;
-    }
-
-    public int[][][] getCurriculaDaysPeriods() {
-        return this.curriculaDaysPeriods;
-    }
-
-    public void setCurriculaDaysPeriods(int[][][] curriculaDaysPeriods) {
-        this.curriculaDaysPeriods = curriculaDaysPeriods;
-    }
-
-    public int[][] getUsedRooms() {
-        return this.usedRooms;
-    }
-
-    public void setUsedRooms(int[][] usedRooms) {
-        this.usedRooms = usedRooms;
-    }
-
-    public int[][] getBusyDays() {
-        return this.busyDays;
-    }
-
-    public void setBusyDays(int[][] busyDays) {
-        this.busyDays = busyDays;
-    }
-
     public ArrayList<Class> getListClassAllocated() {
         return listClassAllocated;
     }
 
-    public void setListClassAllocated(ArrayList<Class> listClassAllocated) {
-        this.listClassAllocated = listClassAllocated;
-    }
-
-    public String toString(){
-        String line = " Schedules\n"+"      ";
-        for (int k = 0; k < currentProblem.getTotalSchedules();k++){
-            line += " "+k+" ";
+    public String toString() {
+        String line = "Schedules\n" + "      ";
+        for (int k = 0; k < this.currentProblem.getTotalSchedules(); k++) {
+            line += "\t" + k + "\t";
         }
         line += " \n";
-        for (int i = 0; i < currentProblem.getnRooms();i++){
-            line += "\n\nRoom"+i;
-            for (int j = 0; j < currentProblem.getTotalSchedules();j++){
-                line += "  "+this.table[i][j]+"   ";
+        for (int i = 0; i < this.currentProblem.getnRooms(); i++) {
+            line += "\n\nRoom" + i;
+            for (int j = 0; j < this.currentProblem.getTotalSchedules(); j++) {
+                line += "\t" + this.table[i][j] + "\t";
             }
         }
         return line;

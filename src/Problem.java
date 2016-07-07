@@ -40,7 +40,7 @@ public class Problem {
     }
 
     /**
-     * check if two curses are iquals
+     * Check if two curses are iquals
      *
      * @param c1
      * @param c2
@@ -99,7 +99,7 @@ public class Problem {
     }
 
     /**
-     * Check if the the 2 courses have the same teacher
+     * Check if the 2 courses have the same teacher
      *
      * @param line
      * @param column
@@ -114,7 +114,7 @@ public class Problem {
     }
 
     /**
-     * Check if the the 2 courses are in the same curricula
+     * Check if the 2 courses are in the same curricula
      *
      * @param line
      * @param column
@@ -404,10 +404,6 @@ public class Problem {
         return this.curriculas;
     }
 
-    public void setCurriculas(Curricula[] curriculas) {
-        this.curriculas = curriculas;
-    }
-
     public Course[] getCourses() {
         return this.courses;
     }
@@ -436,15 +432,7 @@ public class Problem {
         return this.classClass;
     }
 
-    public void setClassClass(int[][] classClass) {
-        this.classClass = classClass;
-    }
-
     public int[][] getClassSchedules() {
         return this.classSchedules;
-    }
-
-    public void setClassSchedules(int[][] classSchedules) {
-        this.classSchedules = classSchedules;
     }
 }
