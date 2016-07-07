@@ -81,92 +81,92 @@ DisAssMv t059 5 4 65
 MecVibMn t060 5 5 65
 
 ROOMS:
-36	42
-37	42
-38	48
-31	50
-27	100
-B	216
-D	216
-E	216
-F	216
-G	216
-A	312
-L	336
-50	80
-52	90
-DS1	90
-DS2	90
+36 42
+37 42
+38 48
+31 50
+27 100
+B 216
+D 216
+E 216
+F 216
+G 216
+A 312
+L 336
+50 80
+52 90
+DS1 90
+DS2 90
 
 CURRICULA:
-q000  3 Mat1Ar FonInfAr LabEle1Ar 
-q001  3 Mat1Ar FonInfAr LabEle2Ar 
-q002  3 Mat1Ar FonInfAr LabEle3Ar 
-q003  1 Mat1Cn 
-q004  4 ChiGenAn DisCn GeoAn MecRazCn 
-q005  5 TecCosAn FonChiAn StrIndAn ChiInd1Gv CamEleAn 
-q006  3 TecCos1Cv Idr2Cn IngConAn 
-q008  4 ChiGenAn MecRazCn DisCn TecMatCn 
-q009  4 TecCos1Cv ArcTecCn Idr2Cn GeoAn 
-q010  4 TecCos1Cv ArcTecCn DisEdiCn ArcComCv 
-q011  1 Mat1En 
-q012  4 ChiStaEn RetLogEn TeoRetEn ConAutEn 
-q013  4 CamEle1Ev ComEleEn EleSis1En EleIndEv 
-q014  4 CamEle1Ev ComEleEn EleSis1En RetCal1G1n 
-q015  4 CamEle1Ev ComEleEn EleSis1En MetMatEn 
-q016  1 Mat1G2n 
-q017  3 TeoRetEn ChiStaEn ConAutEn 
-q018  4 GesAziGv RetCal1G1n OrgPro1Gv CalEle1Ev 
-q019  4 GesAziGv RetCal1G1n OrgPro1Gv EleTel1Ens 
-q020  4 GesAziGv RetCal1G1n OrgPro1Gv CalProG2n 
-q022  5 ChiG2n DisIndMn DisComEsG2n FonMecG2n TerAppG2n 
-q023  4 GesAziGv TecMec1Mn OrgPro1Gv FonChiAn 
-q024  4 GesAziGv TecMec1Mn OrgPro1Gv ImpTec1Cv 
-q025  4 GesAziGv TecMec1Mn OrgPro1Gv CalProG2n 
-q026  1 Mat1Mn 
-q027  5 ChiG2n FonMecG2n FluMn DisIndMn DisIndEsMn 
-q028  4 ComMecMn CosMacMn TecMec1Mn AppIndGns 
-q029  4 GeoAppAns IdrNumAns StaAns StaPenAns 
-q030  5 GeoAppAns MecSuoAns StaAns IdrNumAns StaPenAns 
-q031  7 IdrNumAns PriIngAns StaAns CamEleAn StrIndAn ChiInd1Gv GeoAppAns 
-q032  3 MecCom1Cv TeoStr1Cv DisEdiCn 
-q033  3 MecCom1Cv TeoStr1Cv CalAut1Cv 
-q034  3 ArcTecCns CalAut1Cv Idr2Cn 
-q035  3 ArcTecCns CalAut1Cv MecCom1Cv 
-q036  3 ArcTecCns CalAut1Cv StoArcCv 
-q038  3 EleTel1Ens CalEle1Ev EleIndEv 
-q039  3 EleTel1Ens CalEle1Ev MetMatEn 
-q040  4 EleTel1Ens CalEle1Ev EleIndEv MetMatEn 
-q041  4 EleTel1Ens CalEle1Ev EleIndEv RetCal1G1n 
-q042  4 EleTel1Ens CalEle1Ev SisTel1Ens RetCal1G1n 
-q043  4 EleTel1Ens CalEle1Ev SisTel1Ens MetMatEn 
-q044  4 GesAziGv RetLogEn RetCal2Gns EleTel1Ens 
-q045  4 GesAziGv RetLogEn RetCal2Gns CalEle1Ev 
-q046  4 GesAziGv RetLogEn RetCal2Gns CalProG2n 
-q047  4 AppIndGns GesAziGv RetCal1G1n ImpTec1Cv 
-q048  4 AppIndGns GesAziGv RetCal1G1n FonChiAn 
-q049  4 AppIndGns GesAziGv RetCal1G1n CalProG2n 
-q050  2 TerAppMv ImpTec1Cv 
-q051  6 TecCos1Cv GeoAn IngConAn StoArcCv TeoStr1Cv MecCom1Cv 
-q052  4 TecCos1Cv GeoAn IngConAn StoArcCv 
-q053  3 TecCos1Cv GeoAn IngConAn 
-q054  3 CalAut1Cv CosZonCv ArcComCv 
-q055  2 ArcComCv ImpTec1Cv 
-q056  3 RivSpeCv IdrAppCv CosZonCv 
-q057  3 IdrAppCv RivSpeCv ImpTec1Cv 
-q058  3 CalEle1Ev ComEleEn CamEle1Ev 
-q059  2 EleSis1En EleIndEv 
-q060  4 EleSis1En EleIndEv EleTel1Ens RetCal1G1n 
-q061  4 EleSis1En EleTel1Ens SisTel1Ens RetCal1G1n 
-q062  4 GesAziGv TecMec1Mn Mac1Mv ChiInd1Gv 
-q063  3 GesAziGv TecMec1Mn Mac1Mv 
-q064  3 GesAziGv TecMec1Mn ComEleEn 
-q065  2 OrgPro1Gv RetCal1G1n 
-q066  3 OrgPro1Gv RetCal1G1n ImpTec1Cv 
-q067  3 OrgPro1Gv RetCal1G1n EleIndEv 
-q068  3 Mac1Mv TerAppMv TecMec1Mn 
-q069  2 DisAssMv MecVibMn 
-q070  3 DisAssMv MecVibMn ImpTec1Cv 
+q000 3 Mat1Ar FonInfAr LabEle1Ar 
+q001 3 Mat1Ar FonInfAr LabEle2Ar 
+q002 3 Mat1Ar FonInfAr LabEle3Ar 
+q003 1 Mat1Cn 
+q004 4 ChiGenAn DisCn GeoAn MecRazCn 
+q005 5 TecCosAn FonChiAn StrIndAn ChiInd1Gv CamEleAn 
+q006 3 TecCos1Cv Idr2Cn IngConAn 
+q008 4 ChiGenAn MecRazCn DisCn TecMatCn 
+q009 4 TecCos1Cv ArcTecCn Idr2Cn GeoAn 
+q010 4 TecCos1Cv ArcTecCn DisEdiCn ArcComCv 
+q011 1 Mat1En 
+q012 4 ChiStaEn RetLogEn TeoRetEn ConAutEn 
+q013 4 CamEle1Ev ComEleEn EleSis1En EleIndEv 
+q014 4 CamEle1Ev ComEleEn EleSis1En RetCal1G1n 
+q015 4 CamEle1Ev ComEleEn EleSis1En MetMatEn 
+q016 1 Mat1G2n 
+q017 3 TeoRetEn ChiStaEn ConAutEn 
+q018 4 GesAziGv RetCal1G1n OrgPro1Gv CalEle1Ev 
+q019 4 GesAziGv RetCal1G1n OrgPro1Gv EleTel1Ens 
+q020 4 GesAziGv RetCal1G1n OrgPro1Gv CalProG2n 
+q022 5 ChiG2n DisIndMn DisComEsG2n FonMecG2n TerAppG2n 
+q023 4 GesAziGv TecMec1Mn OrgPro1Gv FonChiAn 
+q024 4 GesAziGv TecMec1Mn OrgPro1Gv ImpTec1Cv 
+q025 4 GesAziGv TecMec1Mn OrgPro1Gv CalProG2n 
+q026 1 Mat1Mn 
+q027 5 ChiG2n FonMecG2n FluMn DisIndMn DisIndEsMn 
+q028 4 ComMecMn CosMacMn TecMec1Mn AppIndGns 
+q029 4 GeoAppAns IdrNumAns StaAns StaPenAns 
+q030 5 GeoAppAns MecSuoAns StaAns IdrNumAns StaPenAns 
+q031 7 IdrNumAns PriIngAns StaAns CamEleAn StrIndAn ChiInd1Gv GeoAppAns 
+q032 3 MecCom1Cv TeoStr1Cv DisEdiCn 
+q033 3 MecCom1Cv TeoStr1Cv CalAut1Cv 
+q034 3 ArcTecCns CalAut1Cv Idr2Cn 
+q035 3 ArcTecCns CalAut1Cv MecCom1Cv 
+q036 3 ArcTecCns CalAut1Cv StoArcCv 
+q038 3 EleTel1Ens CalEle1Ev EleIndEv 
+q039 3 EleTel1Ens CalEle1Ev MetMatEn 
+q040 4 EleTel1Ens CalEle1Ev EleIndEv MetMatEn 
+q041 4 EleTel1Ens CalEle1Ev EleIndEv RetCal1G1n 
+q042 4 EleTel1Ens CalEle1Ev SisTel1Ens RetCal1G1n 
+q043 4 EleTel1Ens CalEle1Ev SisTel1Ens MetMatEn 
+q044 4 GesAziGv RetLogEn RetCal2Gns EleTel1Ens 
+q045 4 GesAziGv RetLogEn RetCal2Gns CalEle1Ev 
+q046 4 GesAziGv RetLogEn RetCal2Gns CalProG2n 
+q047 4 AppIndGns GesAziGv RetCal1G1n ImpTec1Cv 
+q048 4 AppIndGns GesAziGv RetCal1G1n FonChiAn 
+q049 4 AppIndGns GesAziGv RetCal1G1n CalProG2n 
+q050 2 TerAppMv ImpTec1Cv 
+q051 6 TecCos1Cv GeoAn IngConAn StoArcCv TeoStr1Cv MecCom1Cv 
+q052 4 TecCos1Cv GeoAn IngConAn StoArcCv 
+q053 3 TecCos1Cv GeoAn IngConAn 
+q054 3 CalAut1Cv CosZonCv ArcComCv 
+q055 2 ArcComCv ImpTec1Cv 
+q056 3 RivSpeCv IdrAppCv CosZonCv 
+q057 3 IdrAppCv RivSpeCv ImpTec1Cv 
+q058 3 CalEle1Ev ComEleEn CamEle1Ev 
+q059 2 EleSis1En EleIndEv 
+q060 4 EleSis1En EleIndEv EleTel1Ens RetCal1G1n 
+q061 4 EleSis1En EleTel1Ens SisTel1Ens RetCal1G1n 
+q062 4 GesAziGv TecMec1Mn Mac1Mv ChiInd1Gv 
+q063 3 GesAziGv TecMec1Mn Mac1Mv 
+q064 3 GesAziGv TecMec1Mn ComEleEn 
+q065 2 OrgPro1Gv RetCal1G1n 
+q066 3 OrgPro1Gv RetCal1G1n ImpTec1Cv 
+q067 3 OrgPro1Gv RetCal1G1n EleIndEv 
+q068 3 Mac1Mv TerAppMv TecMec1Mn 
+q069 2 DisAssMv MecVibMn 
+q070 3 DisAssMv MecVibMn ImpTec1Cv 
 
 UNAVAILABILITY_CONSTRAINTS:
 ChiGenAn 0 0

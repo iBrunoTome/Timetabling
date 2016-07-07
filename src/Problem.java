@@ -268,7 +268,7 @@ public class Problem {
         String aux[];
         int idx = 0;
         while (!this.line.isEmpty()) {
-            aux = this.line.split("\t");
+            aux = this.line.split(" ");
             Room room = new Room();
             room.setRoomName(aux[0]);
             room.setCapacity(Integer.parseInt(aux[1]));
@@ -285,19 +285,17 @@ public class Problem {
      * @throws IOException
      */
     private void fillCurriculas() throws IOException {
-        String auxLeft[];
-        String auxRight[];
+        String aux[];
         int idx = 0;
         while (!this.line.isEmpty()) {
-            auxLeft = this.line.split("  ");
-            auxRight = auxLeft[1].split(" ");
+            aux = this.line.split(" ");
             Curricula curricula = new Curricula();
             curricula.setIdx(idx);
-            curricula.setCurriculaName(auxLeft[0]);
-            curricula.setnCourses(Integer.parseInt(auxRight[0]));
+            curricula.setCurriculaName(aux[0]);
+            curricula.setnCourses(Integer.parseInt(aux[1]));
             String auxCourses[] = new String[curricula.getnCourses()];
             for (int i = 0; i < curricula.getnCourses(); i++) {
-                auxCourses[i] = auxRight[i + 1];
+                auxCourses[i] = aux[i + 2];
             }
             curricula.setCourses(auxCourses);
             this.curriculas[idx] = curricula;

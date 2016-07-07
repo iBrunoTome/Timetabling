@@ -63,156 +63,156 @@ Bibgra t045 3 3 280
 BibgraCS t046 3 3 60
 
 ROOMS:
-10	130
-14	50
-15	50
-C1	48
-L	65
-M	60
-O	30
-B	200
-A	450
+10 130
+14 50
+15 50
+C1 48
+L 65
+M 60
+O 30
+B 200
+A 450
 
 CURRICULA:
-q000  4 LetIta1 LinLatA StoArtMed1 StoFil1 
-q001  3 LinLetLat1 StoMod1 StoArtMod1 
-q002  4 LinLetLat1 StoMod1 StoArtMod1 Bibeco 
-q003  4 LinLetLat1 StoMod1 StoArtMod1 Bibgra 
-q004  4 StoCon StoArtCon1 LinTed1 AlfInf
-q005  4 LetIta1 LinGreA LinLatA StoFil1 
-q006  3 LinLetGre1 LinLetLat1 ArcCla1 
-q007  3 LinLetLat1 LetCriAnt Papiro 
-q009  3 LinLetGre1 ArcCla1 StoVicOriAnt 
-q010  3 LinLetLat1 EpiGre Papiro 
-q011  4 LinLetLat1 EpiGre Papiro LetCriAnt 
-q012  4 LinLetLat1 EpiGre Papiro Numism 
-q013  4 LinLetLat1 EpiGre Papiro StoCriChi 
-q015  5 LinLetLat1 StoMod1 StoArtMod1 FonSocAntCulI AntCul1 
-q016  4 StoCon StoCriChi StoArtCon1 StoSci 
-q017  5 LetIta1 LinLatA StoFil1 FonSocAntCulI AntCul1 
-q018  4 LinLetLat1 StoMod1 Geo2 AntCul1 
-q019  3 StoCon StoSci PsiArt 
-q020  4 StoCon StoSci PsiArt Geo2 
-q021  4 StoCon StoSci PsiArt AntCul1 
-q022  3 LetIta1 LinLatA StoFil1 
-q023  6 StoMod1 StoCriChi StoSci LetCriAnt FonSocAntCulI AntCul1 
-q024  4 FonSocAntCulI AntCul1 StoArtMed1 StoMod1 
-q025  4 FonSocAntCulI AntCul1 StoArtMod1 StoMod1 
-q026  4 FonSocAntCulI AntCul1 StoArtMed1 StoCon 
-q027  4 FonSocAntCulI AntCul1 StoArtMod1 StoCon 
-q028  4 LetIta1 MetRicArc ArcCla1 LinLatB 
-q029  2 Numism LinGreA 
-q030  3 Numism LinGreA PrePro 
-q031  3 Numism LinGreA StoVicOriAnt 
-q032  2 ArcPae LegBenCul1 
-q033  5 ArcPae LegBenCul1 StoCriChi Papiro FilSem 
-q034  5 ArcPae LegBenCul1 StoCriChi ArcEge FilSem 
-q035  5 ArcPae LegBenCul1 AntCul1 Papiro FilSem 
-q036  5 ArcPae LegBenCul1 AntCul1 ArcEge FilSem 
-q037  6 Bibeco ConBenArcLib Papiro LinLatB StoMod1 LegBenCul1 
-q038  2 Bibgra LetIta1 
-q039  5 Bibgra LetIta1 StoMod1 StoCon StoArtMed1 
-q040  5 Bibgra LetIta1 StoMod1 StoCon StoArtMod1 
-q041  5 Bibgra LetIta1 StoMod1 StoCon StoArtCon1 
-q042  5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtMed1 
-q043  5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtMod1 
-q044  5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtCon1 
-q045  5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtMed1 
-q046  5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtMod1 
-q047  5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtCon1 
-q048  5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtMed1 
-q049  5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtMod1 
-q050  5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtCon1 
-q051  5 Bibgra LetIta1 StoCon ResBenArcLib StoArtMed1 
-q052  5 Bibgra LetIta1 StoCon ResBenArcLib StoArtMod1 
-q053  5 Bibgra LetIta1 StoCon ResBenArcLib StoArtCon1 
-q054  5 Bibgra LetIta1 StoCon LinLetGre1 StoArtMed1 
-q055  5 Bibgra LetIta1 StoCon LinLetGre1 StoArtMod1 
-q056  5 Bibgra LetIta1 StoCon LinLetGre1 StoArtCon1 
-q057  5 Bibgra LetIta1 StoCon LinLetLat1 StoArtMed1 
-q058  5 Bibgra LetIta1 StoCon LinLetLat1 StoArtMod1 
-q059  5 Bibgra LetIta1 StoCon LinLetLat1 StoArtCon1 
-q060  4 ArcPae StoCon StoMod1 InfArcBib 
-q061  4 ArcPae StoCon StoMod1 LinLetGre1 
-q062  4 ArcPae StoCon StoMod1 LinLetLat1 
-q063  4 ArcPae StoCon StoMod1 ResBenArcLib 
-q064  4 ArcPae StoCon StoMod1 TeoTecCatCla 
-q065  4 ArcPae StoCon InfArcBib LinLetGre1 
-q066  4 ArcPae StoCon InfArcBib LinLetLat1 
-q067  4 ArcPae StoCon InfArcBib ResBenArcLib 
-q068  4 ArcPae StoCon InfArcBib TeoTecCatCla 
-q069  4 ArcPae StoCon LinLetGre1 LinLetLat1 
-q070  4 ArcPae StoCon LinLetGre1 ResBenArcLib 
-q071  4 ArcPae StoCon LinLetGre1 TeoTecCatCla 
-q072  4 ArcPae StoCon LinLetLat1 ResBenArcLib 
-q073  4 ArcPae StoCon LinLetLat1 TeoTecCatCla 
-q074  4 ArcPae StoCon ResBenArcLib TeoTecCatCla 
-q075  4 ArcPae StoMod1 InfArcBib LinLetGre1 
-q076  4 ArcPae StoMod1 InfArcBib LinLetLat1 
-q077  4 ArcPae StoMod1 InfArcBib ResBenArcLib 
-q078  4 ArcPae StoMod1 InfArcBib TeoTecCatCla 
-q079  4 ArcPae StoMod1 LinLetGre1 LinLetLat1 
-q080  4 ArcPae StoMod1 LinLetGre1 ResBenArcLib 
-q081  4 ArcPae StoMod1 LinLetGre1 TeoTecCatCla 
-q082  4 ArcPae StoMod1 LinLetLat1 ResBenArcLib 
-q083  4 ArcPae StoMod1 LinLetLat1 TeoTecCatCla 
-q084  4 ArcPae StoMod1 ResBenArcLib TeoTecCatCla 
-q085  4 LetIta1 StoArtMed1 LinLatB IcoIcoA 
-q086  3 StoMod1 StoArtMod1 LegBenCul1 
-q087  4 StoMod1 StoArtMod1 LegBenCul1 IcoIcoA 
-q088  4 StoMod1 StoArtMod1 LegBenCul1 MetRicStoArt 
-q089  4 StoMod1 StoArtMod1 LegBenCul1 StoArtLatAmeA 
-q090  3 StoCon StoArtCon1 ArcPae 
-q091  5 StoCon StoArtCon1 StoArtLatAmeA ArcPae StoFil1 
-q092  5 StoCon StoArtCon1 StoArtLatAmeA ArcPae PsiArt 
-q093  3 StoArc LegBenCul1 AntCul1 
-q094  3 StoArt LegBenCul1 AntCul1 
-q095  4 StoArt LegBenCul1 AntCul1 StoMod1 
-q096  4 StoArt LegBenCul1 AntCul1 StoCon 
-q100  5 StoVicOriAnt ArcEge BioArcCS StoGreCS Papiro 
-q101  4 StoVicOriAnt Papiro BioArcCS StoGreCS 
-q102  5 PrePro ArcEge BioArcCS StoGreCS Papiro 
-q103  4 PrePro Papiro BioArcCS StoGreCS
-q104  1 Antrop 
-q105  3 BibgraCS LegBenCul2 StoMod1 
-q106  3 BibgraCS LegBenCul2 StoCon 
-q108  2 Papiro LinLetLat1 
-q109  2 Papiro LetIta4CS 
-q110  2 Papiro BibgraCS 
-q111  2 BibgraCS LinLetLat1 
-q112  2 BibgraCS LetIta4CS 
-q113  2 LegBenCul2 AntCul1 
-q114  7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA IcoIcoB MetRicStoArt 
-q115  7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA IcoIcoB StoArtLatAmeA 
-q120  7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA MetRicStoArt StoArtLatAmeA 
-q121  7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoB MetRicStoArt StoArtLatAmeA 
-q122  6 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA StoArtLatAmeA
-q123  6 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 MetRicStoArt StoArtLatAmeA
-q124  2 ChiAppBenCul StoFil1 
-q125  2 ChiAppBenCul PsiArt 
-q126  2 ArcPae AntCul1 
-q127  4 FilTesItaCS Bibeco StoMedCS StoArtMed1 
-q128  4 FilTesItaCS Bibeco StoMedCS StoArtMod1 
-q129  4 FilTesItaCS Bibeco StoMedCS StoArtCon1 
-q130  4 FilTesItaCS Bibeco StoMedCS IcoIcoA 
-q131  4 FilTesItaCS Bibeco StoMedCS IcoIcoB 
-q132  4 FilTesItaCS Bibgra StoMedCS StoArtMed1 
-q133  4 FilTesItaCS Bibgra StoMedCS StoArtMod1 
-q134  4 FilTesItaCS Bibgra StoMedCS StoArtCon1 
-q135  4 FilTesItaCS Bibgra StoMedCS IcoIcoA 
-q136  4 FilTesItaCS Bibgra StoMedCS IcoIcoB 
-q137  2 LetIta4CS LinLetLat1 
-q139  5 Papiro LinLetLat1 EpiGre LetCriAnt StoGreCS 
-q140  3 Papiro LetCriAnt FilSem 
-q142  6 LinLetLat1 Papiro EpiGre PrePro ArcEge Numism 
-q143  2 StoGreCS Papiro 
-q144  3 StoCriChi Numism StoMedCS 
-q145  2 AntCul1 StoArtMed1 
-q146  2 AntCul1 StoArtMod1 
-q147  2 AntCul1 StoArtCon1 
-q148  2 AntCul1 IcoIcoA 
-q149  2 AntCul1 IcoIcoB 
-q150  2 AntCul1 StoArtLatAmeA 
+q000 4 LetIta1 LinLatA StoArtMed1 StoFil1 
+q001 3 LinLetLat1 StoMod1 StoArtMod1 
+q002 4 LinLetLat1 StoMod1 StoArtMod1 Bibeco 
+q003 4 LinLetLat1 StoMod1 StoArtMod1 Bibgra 
+q004 4 StoCon StoArtCon1 LinTed1 AlfInf
+q005 4 LetIta1 LinGreA LinLatA StoFil1 
+q006 3 LinLetGre1 LinLetLat1 ArcCla1 
+q007 3 LinLetLat1 LetCriAnt Papiro 
+q009 3 LinLetGre1 ArcCla1 StoVicOriAnt 
+q010 3 LinLetLat1 EpiGre Papiro 
+q011 4 LinLetLat1 EpiGre Papiro LetCriAnt 
+q012 4 LinLetLat1 EpiGre Papiro Numism 
+q013 4 LinLetLat1 EpiGre Papiro StoCriChi 
+q015 5 LinLetLat1 StoMod1 StoArtMod1 FonSocAntCulI AntCul1 
+q016 4 StoCon StoCriChi StoArtCon1 StoSci 
+q017 5 LetIta1 LinLatA StoFil1 FonSocAntCulI AntCul1 
+q018 4 LinLetLat1 StoMod1 Geo2 AntCul1 
+q019 3 StoCon StoSci PsiArt 
+q020 4 StoCon StoSci PsiArt Geo2 
+q021 4 StoCon StoSci PsiArt AntCul1 
+q022 3 LetIta1 LinLatA StoFil1 
+q023 6 StoMod1 StoCriChi StoSci LetCriAnt FonSocAntCulI AntCul1 
+q024 4 FonSocAntCulI AntCul1 StoArtMed1 StoMod1 
+q025 4 FonSocAntCulI AntCul1 StoArtMod1 StoMod1 
+q026 4 FonSocAntCulI AntCul1 StoArtMed1 StoCon 
+q027 4 FonSocAntCulI AntCul1 StoArtMod1 StoCon 
+q028 4 LetIta1 MetRicArc ArcCla1 LinLatB 
+q029 2 Numism LinGreA 
+q030 3 Numism LinGreA PrePro 
+q031 3 Numism LinGreA StoVicOriAnt 
+q032 2 ArcPae LegBenCul1 
+q033 5 ArcPae LegBenCul1 StoCriChi Papiro FilSem 
+q034 5 ArcPae LegBenCul1 StoCriChi ArcEge FilSem 
+q035 5 ArcPae LegBenCul1 AntCul1 Papiro FilSem 
+q036 5 ArcPae LegBenCul1 AntCul1 ArcEge FilSem 
+q037 6 Bibeco ConBenArcLib Papiro LinLatB StoMod1 LegBenCul1 
+q038 2 Bibgra LetIta1 
+q039 5 Bibgra LetIta1 StoMod1 StoCon StoArtMed1 
+q040 5 Bibgra LetIta1 StoMod1 StoCon StoArtMod1 
+q041 5 Bibgra LetIta1 StoMod1 StoCon StoArtCon1 
+q042 5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtMed1 
+q043 5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtMod1 
+q044 5 Bibgra LetIta1 StoMod1 ResBenArcLib StoArtCon1 
+q045 5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtMed1 
+q046 5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtMod1 
+q047 5 Bibgra LetIta1 StoMod1 LinLetGre1 StoArtCon1 
+q048 5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtMed1 
+q049 5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtMod1 
+q050 5 Bibgra LetIta1 StoMod1 LinLetLat1 StoArtCon1 
+q051 5 Bibgra LetIta1 StoCon ResBenArcLib StoArtMed1 
+q052 5 Bibgra LetIta1 StoCon ResBenArcLib StoArtMod1 
+q053 5 Bibgra LetIta1 StoCon ResBenArcLib StoArtCon1 
+q054 5 Bibgra LetIta1 StoCon LinLetGre1 StoArtMed1 
+q055 5 Bibgra LetIta1 StoCon LinLetGre1 StoArtMod1 
+q056 5 Bibgra LetIta1 StoCon LinLetGre1 StoArtCon1 
+q057 5 Bibgra LetIta1 StoCon LinLetLat1 StoArtMed1 
+q058 5 Bibgra LetIta1 StoCon LinLetLat1 StoArtMod1 
+q059 5 Bibgra LetIta1 StoCon LinLetLat1 StoArtCon1 
+q060 4 ArcPae StoCon StoMod1 InfArcBib 
+q061 4 ArcPae StoCon StoMod1 LinLetGre1 
+q062 4 ArcPae StoCon StoMod1 LinLetLat1 
+q063 4 ArcPae StoCon StoMod1 ResBenArcLib 
+q064 4 ArcPae StoCon StoMod1 TeoTecCatCla 
+q065 4 ArcPae StoCon InfArcBib LinLetGre1 
+q066 4 ArcPae StoCon InfArcBib LinLetLat1 
+q067 4 ArcPae StoCon InfArcBib ResBenArcLib 
+q068 4 ArcPae StoCon InfArcBib TeoTecCatCla 
+q069 4 ArcPae StoCon LinLetGre1 LinLetLat1 
+q070 4 ArcPae StoCon LinLetGre1 ResBenArcLib 
+q071 4 ArcPae StoCon LinLetGre1 TeoTecCatCla 
+q072 4 ArcPae StoCon LinLetLat1 ResBenArcLib 
+q073 4 ArcPae StoCon LinLetLat1 TeoTecCatCla 
+q074 4 ArcPae StoCon ResBenArcLib TeoTecCatCla 
+q075 4 ArcPae StoMod1 InfArcBib LinLetGre1 
+q076 4 ArcPae StoMod1 InfArcBib LinLetLat1 
+q077 4 ArcPae StoMod1 InfArcBib ResBenArcLib 
+q078 4 ArcPae StoMod1 InfArcBib TeoTecCatCla 
+q079 4 ArcPae StoMod1 LinLetGre1 LinLetLat1 
+q080 4 ArcPae StoMod1 LinLetGre1 ResBenArcLib 
+q081 4 ArcPae StoMod1 LinLetGre1 TeoTecCatCla 
+q082 4 ArcPae StoMod1 LinLetLat1 ResBenArcLib 
+q083 4 ArcPae StoMod1 LinLetLat1 TeoTecCatCla 
+q084 4 ArcPae StoMod1 ResBenArcLib TeoTecCatCla 
+q085 4 LetIta1 StoArtMed1 LinLatB IcoIcoA 
+q086 3 StoMod1 StoArtMod1 LegBenCul1 
+q087 4 StoMod1 StoArtMod1 LegBenCul1 IcoIcoA 
+q088 4 StoMod1 StoArtMod1 LegBenCul1 MetRicStoArt 
+q089 4 StoMod1 StoArtMod1 LegBenCul1 StoArtLatAmeA 
+q090 3 StoCon StoArtCon1 ArcPae 
+q091 5 StoCon StoArtCon1 StoArtLatAmeA ArcPae StoFil1 
+q092 5 StoCon StoArtCon1 StoArtLatAmeA ArcPae PsiArt 
+q093 3 StoArc LegBenCul1 AntCul1 
+q094 3 StoArt LegBenCul1 AntCul1 
+q095 4 StoArt LegBenCul1 AntCul1 StoMod1 
+q096 4 StoArt LegBenCul1 AntCul1 StoCon 
+q100 5 StoVicOriAnt ArcEge BioArcCS StoGreCS Papiro 
+q101 4 StoVicOriAnt Papiro BioArcCS StoGreCS 
+q102 5 PrePro ArcEge BioArcCS StoGreCS Papiro 
+q103 4 PrePro Papiro BioArcCS StoGreCS
+q104 1 Antrop 
+q105 3 BibgraCS LegBenCul2 StoMod1 
+q106 3 BibgraCS LegBenCul2 StoCon 
+q108 2 Papiro LinLetLat1 
+q109 2 Papiro LetIta4CS 
+q110 2 Papiro BibgraCS 
+q111 2 BibgraCS LinLetLat1 
+q112 2 BibgraCS LetIta4CS 
+q113 2 LegBenCul2 AntCul1 
+q114 7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA IcoIcoB MetRicStoArt 
+q115 7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA IcoIcoB StoArtLatAmeA 
+q120 7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA MetRicStoArt StoArtLatAmeA 
+q121 7 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoB MetRicStoArt StoArtLatAmeA 
+q122 6 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 IcoIcoA StoArtLatAmeA
+q123 6 LegBenCul2 AntCul1 StoArtMed2CS ArcCla1 MetRicStoArt StoArtLatAmeA
+q124 2 ChiAppBenCul StoFil1 
+q125 2 ChiAppBenCul PsiArt 
+q126 2 ArcPae AntCul1 
+q127 4 FilTesItaCS Bibeco StoMedCS StoArtMed1 
+q128 4 FilTesItaCS Bibeco StoMedCS StoArtMod1 
+q129 4 FilTesItaCS Bibeco StoMedCS StoArtCon1 
+q130 4 FilTesItaCS Bibeco StoMedCS IcoIcoA 
+q131 4 FilTesItaCS Bibeco StoMedCS IcoIcoB 
+q132 4 FilTesItaCS Bibgra StoMedCS StoArtMed1 
+q133 4 FilTesItaCS Bibgra StoMedCS StoArtMod1 
+q134 4 FilTesItaCS Bibgra StoMedCS StoArtCon1 
+q135 4 FilTesItaCS Bibgra StoMedCS IcoIcoA 
+q136 4 FilTesItaCS Bibgra StoMedCS IcoIcoB 
+q137 2 LetIta4CS LinLetLat1 
+q139 5 Papiro LinLetLat1 EpiGre LetCriAnt StoGreCS 
+q140 3 Papiro LetCriAnt FilSem 
+q142 6 LinLetLat1 Papiro EpiGre PrePro ArcEge Numism 
+q143 2 StoGreCS Papiro 
+q144 3 StoCriChi Numism StoMedCS 
+q145 2 AntCul1 StoArtMed1 
+q146 2 AntCul1 StoArtMod1 
+q147 2 AntCul1 StoArtCon1 
+q148 2 AntCul1 IcoIcoA 
+q149 2 AntCul1 IcoIcoB 
+q150 2 AntCul1 StoArtLatAmeA 
 
 UNAVAILABILITY_CONSTRAINTS:
 LinTed1 5 2

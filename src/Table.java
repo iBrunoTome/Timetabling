@@ -13,8 +13,8 @@ public class Table {
     private ArrayList<Class> listClassNonAllocated = new ArrayList<>();
     private ArrayList<Class> listClassAllocated = new ArrayList<>();
     private int[][] table;
-    private int[][] usedRooms; // Retorna quantidade de aulas da disciplina  na sala na semana.verificar quantas salas estão ocupadas por disciplina
-    private int[][] busyDays; // Retorna a quantidade de aulas da disciplina no dia. contar em quantos dias há aulas de uma disciplina
+    private int[][] usedRooms; // Retorna quantidade de aulas da disciplina  na sala na semana. Verificar quantas salas estão ocupadas por disciplina
+    private int[][] busyDays; // Retorna a quantidade de aulas da disciplina no dia. Contar em quantos dias há aulas de uma disciplina
     private int[][][] curriculaDaysPeriods; // Retorna a quantidade de aulas do currículo c alocadas no dia d e horário p
     private Problem currentProblem;
 
@@ -86,7 +86,7 @@ public class Table {
     public void refreshDynamicMatrix(Class c) {
         int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
         int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
-        int day = (int) Math.abs((c.getViableSchedules().get(0)[1]) / currentProblem.getnPeriodsPerDay());
+        int day = Math.abs((c.getViableSchedules().get(0)[1]) / currentProblem.getnPeriodsPerDay());
         int room = c.getViableSchedules().get(0)[0];
         int period = c.getViableSchedules().get(0)[1] - (currentProblem.getnPeriodsPerDay() * day);
 
@@ -128,9 +128,7 @@ public class Table {
             this.refreshDynamicMatrix(classAux);
         }
         System.out.println("All fucking classes allocated: " + this.getListClassAllocated().size());
-
         System.out.println(this.toString());
-
     }
 
     /**
@@ -371,13 +369,27 @@ public class Table {
     }
 
     public String toString() {
-        String line = "Schedules\n" + "      ";
-        for (int k = 0; k < this.currentProblem.getTotalSchedules(); k++) {
-            line += "\t" + k + "\t";
+        String line = "        ";
+        int qtdSpaceBefore = 0;
+        int qtdSpaceAfter = 0;
+        for (int i = 0; i < this.currentProblem.getnDays(); i++) {
+            qtdSpaceBefore = 3;
+            qtdSpaceAfter = i < 10 ?  2 : 4;
+            for (int j = 0; j < (this.currentProblem.getnPeriodsPerDay() / 2) + qtdSpaceBefore; j++) {
+                line += "\t";
+            }
+            line += "Day" + (i + 1);
+            for (int j = 0; j < (this.currentProblem.getnPeriodsPerDay() / 2) + qtdSpaceAfter; j++) {
+                line += "\t";
+            }
+            line += "||";
         }
-        line += " \n";
+        line += "\nSchedules  ";
+        for (int i = 0; i < this.currentProblem.getTotalSchedules(); i++) {
+            line += "\t" + i + "\t";
+        }
         for (int i = 0; i < this.currentProblem.getnRooms(); i++) {
-            line += "\n\nRoom" + i;
+            line += "\n\nRoom" + i+ "\t";
             for (int j = 0; j < this.currentProblem.getTotalSchedules(); j++) {
                 line += "\t" + this.table[i][j] + "\t";
             }

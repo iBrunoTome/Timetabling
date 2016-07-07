@@ -1,13 +1,18 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) {
-        String nameFileIn = "instancias/comp01.ctt";
+
+        String nameFileIn = "comp01.ctt";
         try {
-            Problem currentProblem = new Problem(nameFileIn);
+            Problem currentProblem = new Problem("instancias/" + nameFileIn);
             Table currentTable = new Table(currentProblem);
+            PrintWriter writer = new PrintWriter("solucoes/" + nameFileIn + ".txt");
+            writer.println(currentTable.toString());
+            writer.close();
         } catch (IOException e) {
-            System.out.println("Problem ao ler arquivo");
+            System.out.println("Problema ao ler arquivo");
         }
     }
 }
