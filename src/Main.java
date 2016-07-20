@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
 
-        String nameFileIn = "comp01.ctt";
+        String nameFileIn = "comp03.ctt";
         try {
             Problem currentProblem = new Problem("instancias/" + nameFileIn);
             Table currentTable = new Table(currentProblem);
@@ -12,7 +12,8 @@ public class Main {
             writer.println(currentTable.toString());
             writer.close();
         } catch (IOException e) {
-            System.out.println("Problema ao ler arquivo");
+            e.printStackTrace();
+            System.out.println("Problema ao ler ou escrever arquivo ");
         }
     }
 }

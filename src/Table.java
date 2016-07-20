@@ -83,16 +83,23 @@ public class Table {
      *
      * @param c
      */
-    public void refreshDynamicMatrix(Class c) {
+    public void refreshDynamicMatrix(Class c, Boolean type) {
         int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
         int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
         int day = Math.abs((c.getViableSchedules().get(0)[1]) / currentProblem.getnPeriodsPerDay());
         int room = c.getViableSchedules().get(0)[0];
         int period = c.getViableSchedules().get(0)[1] - (currentProblem.getnPeriodsPerDay() * day);
 
-        this.busyDays[course][day] += 1;
-        this.usedRooms[course][room] += 1;
-        this.curriculaDaysPeriods[currucula][day][period] += 1;
+        if (type) {
+            this.busyDays[course][day] += 1;
+            this.usedRooms[course][room] += 1;
+            this.curriculaDaysPeriods[currucula][day][period] += 1;
+        } else {
+            this.busyDays[course][day] -= 1;
+            this.usedRooms[course][room] -= 1;
+            this.curriculaDaysPeriods[currucula][day][period] -= 1;
+        }
+
     }
 
     /**
@@ -111,7 +118,7 @@ public class Table {
             while (classAux.getViableSchedules().isEmpty()) {
                 classAux = this.generateNewSchedules(classAux);
             }
-            this.refreshDynamicMatrix(classAux);
+
 
             Random random = new Random();
             choosen = random.nextInt(classAux.getViableSchedules().size());
@@ -125,7 +132,7 @@ public class Table {
 
             this.listClassAllocated.add(classAux);
             this.listClassNonAllocated.remove(0);
-            this.refreshDynamicMatrix(classAux);
+            this.refreshDynamicMatrix(classAux,true);
         }
         System.out.println("All fucking classes allocated: " + this.getListClassAllocated().size());
         System.out.println(this.toString());
@@ -198,14 +205,15 @@ public class Table {
 
         Random random = new Random();
         int choosen = random.nextInt(this.listClassAllocated.size() - 1);
-        Class classCoosen = this.listClassAllocated.get(choosen);
+        Class classChoosen = this.listClassAllocated.get(choosen);
         this.listClassAllocated.remove(choosen);
+        this.refreshDynamicMatrix(classChoosen,false);
 
-        int line = classCoosen.getViableSchedules().get(0)[0];
-        int colum = classCoosen.getViableSchedules().get(0)[1];
+        int line = classChoosen.getViableSchedules().get(0)[0];
+        int column = classChoosen.getViableSchedules().get(0)[1];
 
-        this.table[line][colum] = -1;
-        this.listClassNonAllocated.add(classCoosen);
+        this.table[line][column] = -1;
+        this.listClassNonAllocated.add(classChoosen);
         this.generateViableSchedules(c);
 
         return c;
@@ -374,7 +382,7 @@ public class Table {
         int qtdSpaceAfter = 0;
         for (int i = 0; i < this.currentProblem.getnDays(); i++) {
             qtdSpaceBefore = 3;
-            qtdSpaceAfter = i < 10 ?  2 : 4;
+            qtdSpaceAfter = i < 10 ? 2 : 4;
             for (int j = 0; j < (this.currentProblem.getnPeriodsPerDay() / 2) + qtdSpaceBefore; j++) {
                 line += "\t";
             }
@@ -389,7 +397,7 @@ public class Table {
             line += "\t" + i + "\t";
         }
         for (int i = 0; i < this.currentProblem.getnRooms(); i++) {
-            line += "\n\nRoom" + i+ "\t";
+            line += "\n\nRoom" + i + "\t";
             for (int j = 0; j < this.currentProblem.getTotalSchedules(); j++) {
                 line += "\t" + this.table[i][j] + "\t";
             }
