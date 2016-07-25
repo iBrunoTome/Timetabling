@@ -175,14 +175,14 @@ public class Table {
         for (int l = 0; l < this.currentProblem.getTotalClass(); l++) {
             Class currentClass = new Class();
             currentClass.setIdxClass(l);
-            currentClass.setScheduleViability(currentProblem.getTotalSchedules());
-            for (int c = 0; c < this.currentProblem.getTotalSchedules(); c++) {
+            currentClass.setScheduleViability(this.currentProblem.getTotalSchedules());
+            for (int c = 0; c < this.currentProblem.getTotalClass(); c++) {
                 if (this.currentProblem.getClassClass()[l][c] == 1) {
                     currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
                 }
             }
 
-            // Run the matrix classSchudele, and catch inviability Schedules for the currentClass
+            // Run the matrix classSchedule, and catch inviability Schedules for the currentClass
             for (int k = 0; k < currentProblem.getTotalSchedules(); k++) {
                 if (this.currentProblem.getClassSchedules()[l][k] == 1) {
                     currentClass.setScheduleViability(currentClass.getScheduleViability() - 1);
@@ -378,10 +378,9 @@ public class Table {
 
     public String toString() {
         String line = "        ";
-        int qtdSpaceBefore;
+        int qtdSpaceBefore = this.currentProblem.getnPeriodsPerDay() >= 5 ? 3 : 1;
         int qtdSpaceAfter;
         for (int i = 0; i < this.currentProblem.getnDays(); i++) {
-            qtdSpaceBefore = 3;
             qtdSpaceAfter = i < 10 ? 2 : 4;
             for (int j = 0; j < (this.currentProblem.getnPeriodsPerDay() / 2) + qtdSpaceBefore; j++) {
                 line += "\t";
