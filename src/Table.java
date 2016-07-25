@@ -32,11 +32,10 @@ public class Table {
     /**
      * Get the min and the max viable schedules
      *
-     * @param c
-     * @return
+     * @param c is a class
+     * @return int[] is a range with min and max value of viable schedules
      */
     private int[] getMinMax(Class c) {
-        //System.out.println(c.toString());
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (Integer[] s : c.getViableSchedules()) {
@@ -55,8 +54,8 @@ public class Table {
     /**
      * Cut off the list of viableSchedules based on cost to allocated be smaller than inteval
      *
-     * @param c
-     * @return c
+     * @param c is a class
+     * @return c another class with some viables schedules removed
      */
     public Class restrictedSchedulesList(Class c) {
         c = this.generateViableSchedules(c);
@@ -81,7 +80,8 @@ public class Table {
     /**
      * Update all dynamic matrix after allocated a class in the table
      *
-     * @param c
+     * @param c is a class
+     * @param type for sum (true) or subtract (false) into matrix
      */
     public void refreshDynamicMatrix(Class c, Boolean type) {
         int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
@@ -139,7 +139,7 @@ public class Table {
     }
 
     /**
-     * Initialize the matrix with zeros.
+     * Initialize the usedRooms matrix and busyDays matrix with zeros
      */
     private void initializeBusyUsedMatrix() {
         for (int i = 0; i < this.currentProblem.getCourses().length; i++) {
@@ -198,11 +198,10 @@ public class Table {
     /**
      * When viableSchedules are empity we need to rerange the table
      *
-     * @param c
+     * @param c is a class for pass as a parameter to remove from viable schedules
      * @return
      */
     public Class generateNewSchedules(Class c) {
-
         Random random = new Random();
         int choosen = random.nextInt(this.listClassAllocated.size() - 1);
         Class classChoosen = this.listClassAllocated.get(choosen);
@@ -214,17 +213,15 @@ public class Table {
 
         this.table[line][column] = -1;
         this.listClassNonAllocated.add(classChoosen);
-        this.generateViableSchedules(c);
-
-        return c;
-
+        return this.generateViableSchedules(c);
     }
 
     /**
-     * Verifi isoleted class in curricula(weak constraint)
+     * Verify isolated class in curricula (weak constraint)
      *
-     * @param curr
-     * @return int of number of isolated classes
+     * @param curr is a curricula
+     * @return int is a the number of isolated classes        System.setProperty("java.net.preferIPv4Stack", "true");
+
      */
     public int isolatedClassesPerCurricula(int curr) {
         int sumIsoletedClass = 0;
@@ -246,13 +243,14 @@ public class Table {
                 }
             }
         }
+
         return sumIsoletedClass;
     }
 
     /**
-     * Verify how many rooms a class use
+     * Verify how many rooms a course use
      *
-     * @param course
+     * @param course is a course to check how many rooms the
      * @return int number of rooms
      */
     private int stabilityRoom(Course course) {
@@ -265,13 +263,14 @@ public class Table {
         return stability;
     }
 
+
+
     /**
      * Verify how many days a course have
      *
-     * @param course
-     * @return workDays
+     * @param course to check how many days it has
+     * @return workDays is a int indicating the work days of a course
      */
-
     public int daysOfWork(Course course) {
         int workDays = 0;
         for (int i = 0; i < this.currentProblem.getnDays(); i++) {
@@ -286,13 +285,13 @@ public class Table {
     /**
      * Calculate the cost to allocated a class on the table, based on weak constraints
      *
-     * @param c
-     * @param room
-     * @return cost
+     * @param c is a class that will be tested
+     * @param room is a room that will be tested
+     * @return cost is the cost to alocate the class in this room
      */
     public int alocationClassCost(Class c, int room) {
         int cost = 0;
-        Course caux = new Course();
+        Course caux;
         caux = this.currentProblem.getCourseFromInt(c.getIdxClass());
 
         // 1 - weak constraint: room capacity

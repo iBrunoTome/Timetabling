@@ -8,7 +8,6 @@ import java.io.IOException;
  * @since 19/06/2016
  */
 public class Problem {
-    private FileReader fileIn;
     private BufferedReader reader;
     private String instanceName;
     private String line;
@@ -25,12 +24,12 @@ public class Problem {
     /**
      * Instantiate the problem, read the filein and fill all the necessary matrix
      *
-     * @param nameFileIn
-     * @throws IOException
+     * @param nameFileIn Is the name of ITC instance
+     * @throws IOException Exception of file reader
      */
     public Problem(String nameFileIn) throws IOException {
-        this.fileIn = new FileReader(nameFileIn);
-        this.reader = new BufferedReader(this.fileIn);
+        FileReader fileIn = new FileReader(nameFileIn);
+        this.reader = new BufferedReader(fileIn);
         this.line = reader.readLine();
         this.instantiateProblem();
         this.classClass = new int[this.getTotalClass()][this.getTotalClass()];
@@ -40,11 +39,11 @@ public class Problem {
     }
 
     /**
-     * Check if two curses are iquals
+     * Check if two curses are equals
      *
-     * @param c1
-     * @param c2
-     * @return
+     * @param c1 idx of course 1
+     * @param c2 idx of course 2
+     * @return true if the both courses are the same
      */
     public boolean sameCourse(int c1, int c2) {
         Course aux1 = this.getCourseFromInt(c1);
@@ -56,8 +55,8 @@ public class Problem {
     /**
      * Return a course from an integer line or column from a matrix
      *
-     * @param idx
-     * @return Course
+     * @param idx idx of course
+     * @return Course from int parameter
      */
     public Course getCourseFromInt(int idx) {
         int total = 0;
@@ -75,8 +74,8 @@ public class Problem {
     /**
      * Return a curricula from an integer line or column from a matrix
      *
-     * @param course
-     * @return Curricula
+     * @param course for compare if curricula have this course
+     * @return Curricula from the parameter course
      */
     public Curricula getCurriculaFromCourse(Course course) {
         for (Curricula c : this.curriculas) {
@@ -89,10 +88,10 @@ public class Problem {
     }
 
     /**
-     * Return the quantity of room from an integer line or column from a matrix
+     * Return the quantity of rooms from an integer line or column from a matrix
      *
-     * @param idx
-     * @return Course
+     * @param idx of the room
+     * @return int indicating the capacity of the room
      */
     public int getRoomCapacity(int idx) {
         return this.rooms[idx].getCapacity();
@@ -101,13 +100,13 @@ public class Problem {
     /**
      * Check if the 2 courses have the same teacher
      *
-     * @param line
-     * @param column
-     * @return boolean
+     * @param line   is an int indicating the idx of a course
+     * @param column is an int indicating the idx of a course
+     * @return boolean true if courses have the same teacher, otherwise return false
      */
     private boolean courseSameTeacher(int line, int column) {
-        if (getCourseFromInt(line) != null && getCourseFromInt(column) != null) {
-            return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName());
+        if (this.getCourseFromInt(line) != null && this.getCourseFromInt(column) != null) {
+            return this.getCourseFromInt(line).getTeacherName().equals(this.getCourseFromInt(column).getTeacherName());
         } else {
             return false;
         }
@@ -116,9 +115,9 @@ public class Problem {
     /**
      * Check if the 2 courses are in the same curricula
      *
-     * @param line
-     * @param column
-     * @return boolean
+     * @param line   is an int indicating the idx of a course
+     * @param column is an int indicating the idx of a course
+     * @return boolean if courses have same curricula, otherwise return false
      */
     public boolean courseSameCurricula(int line, int column) {
         Course aux1 = this.getCourseFromInt(line);
@@ -154,15 +153,12 @@ public class Problem {
         }
     }
 
-    // abs(totalSchedules / periodsPerDay) + 1 == dia atual
-    // abs(totalSchedules / day) + 1 == turno atual
-
     /**
-     * Check if constraint exist in the array of constraints
+     * Check if constraint exist in the list of constraints
      *
-     * @param line
-     * @param column
-     * @return boolean
+     * @param line is the idx of a course
+     * @param column is the total of days x periods
+     * @return boolean true if the constraint exists, otherwise return false
      */
     private boolean constraintExist(int line, int column) {
         Constraint constraint = unavailableSchedule(line, column);
@@ -179,16 +175,15 @@ public class Problem {
     /**
      * Check if a class is available in the schedule
      *
-     * @param line
-     * @param column
-     * @return Constraint
+     * @param line is the idx of a course
+     * @param column is the total of days x periods
+     * @return Constraint based on line and column of schedules
      */
     private Constraint unavailableSchedule(int line, int column) {
         int day = Math.abs(column / this.getnPeriodsPerDay());
         int turn = Math.abs(column / this.getnDays());
 
         Course auxCourse = getCourseFromInt(line);
-
         Constraint auxConstraint = new Constraint();
         auxConstraint.setCourseName(auxCourse.getCourseName());
         auxConstraint.setDay(day);
@@ -205,7 +200,7 @@ public class Problem {
     private void fillClassSchedulesMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalSchedules(); c++) {
-                if (constraintExist(l, c)) {
+                if (this.constraintExist(l, c)) {
                     this.classSchedules[l][c] = 1;
                 } else {
                     this.classSchedules[l][c] = 0;
@@ -217,21 +212,21 @@ public class Problem {
     /**
      * Get the schedule number (H) for the matrix
      *
-     * @return int
+     * @return int is the total of days x periods
      */
     public int getTotalSchedules() {
         return this.getnDays() * this.getnPeriodsPerDay();
     }
 
     /**
-     * Sum num of students to fill matrix (N)
+     * Sum of classes
      *
-     * @return int
+     * @return int the sum of classes
      */
     public int getTotalClass() {
         int total = 0;
-        for (int i = 0; i < this.courses.length; i++) {
-            total += this.courses[i].getnClass();
+        for (Course course : this.courses) {
+            total += course.getnClass();
         }
         return total;
     }
@@ -239,7 +234,7 @@ public class Problem {
     /**
      * Fill the array of courses
      *
-     * @throws IOException
+     * @throws IOException exception of file reader
      */
     private void fillCourses() throws IOException {
         String aux[];
@@ -262,7 +257,7 @@ public class Problem {
     /**
      * Fill the array of rooms
      *
-     * @throws IOException
+     * @throws IOException expection of file reader
      */
     private void fillRooms() throws IOException {
         String aux[];
@@ -282,7 +277,7 @@ public class Problem {
     /**
      * Fill the array of curriculas
      *
-     * @throws IOException
+     * @throws IOException exception of file reader
      */
     private void fillCurriculas() throws IOException {
         String aux[];
@@ -294,9 +289,7 @@ public class Problem {
             curricula.setCurriculaName(aux[0]);
             curricula.setnCourses(Integer.parseInt(aux[1]));
             String auxCourses[] = new String[curricula.getnCourses()];
-            for (int i = 0; i < curricula.getnCourses(); i++) {
-                auxCourses[i] = aux[i + 2];
-            }
+            System.arraycopy(aux, 2, auxCourses, 0, curricula.getnCourses());
             curricula.setCourses(auxCourses);
             this.curriculas[idx] = curricula;
             idx++;
@@ -307,7 +300,7 @@ public class Problem {
     /**
      * Fill the array of constraints
      *
-     * @throws IOException
+     * @throws IOException exception of file reader
      */
     private void fillConstraints() throws IOException {
         String aux[];
@@ -327,7 +320,7 @@ public class Problem {
     /**
      * Read the text and fill the arrays
      *
-     * @throws IOException
+     * @throws IOException exception of file reader
      */
     private void instantiateProblem() throws IOException {
         while (line != null) {
