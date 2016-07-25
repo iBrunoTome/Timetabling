@@ -320,7 +320,7 @@ public class Table {
     /**
      * Generate a list of viable schedules for a class
      *
-     * @param c
+     * @param c is a class to generate viable schedules
      * @return Class c
      */
     public Class generateViableSchedules(Class c) {

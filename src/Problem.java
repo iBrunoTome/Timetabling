@@ -63,7 +63,7 @@ public class Problem {
 
         for (Course c : this.courses) {
             total += c.getnClass();
-            if (idx <= total) {
+            if (idx < total) {
                 return c;
             }
         }
@@ -142,9 +142,9 @@ public class Problem {
     private void fillClassClassMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalClass(); c++) {
-                if (getCourseFromInt(l) != null && getCourseFromInt(c) != null && getCourseFromInt(l).equals(getCourseFromInt(c))) {
+                if (this.getCourseFromInt(l) != null && this.getCourseFromInt(c) != null && this.getCourseFromInt(l).equals(this.getCourseFromInt(c))) {
                     this.classClass[l][c] = 2;
-                } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
+                } else if (this.courseSameTeacher(l, c) || (this.courseSameCurricula(l, c))) {
                     this.classClass[l][c] = 1;
                 } else {
                     this.classClass[l][c] = 0;
@@ -161,7 +161,7 @@ public class Problem {
      * @return boolean true if the constraint exists, otherwise return false
      */
     private boolean constraintExist(int line, int column) {
-        Constraint constraint = unavailableSchedule(line, column);
+        Constraint constraint = this.unavailableSchedule(line, column);
 
         for (Constraint c : this.constraints) {
             if (constraint.equals(c)) {
@@ -180,10 +180,10 @@ public class Problem {
      * @return Constraint based on line and column of schedules
      */
     private Constraint unavailableSchedule(int line, int column) {
-        int day = Math.abs(column / this.getnPeriodsPerDay());
-        int turn = Math.abs(column / this.getnDays());
+        int day = Math.floorDiv(column, this.getnPeriodsPerDay());
+        int turn = column % this.getnPeriodsPerDay();
 
-        Course auxCourse = getCourseFromInt(line);
+        Course auxCourse = this.getCourseFromInt(line);
         Constraint auxConstraint = new Constraint();
         auxConstraint.setCourseName(auxCourse.getCourseName());
         auxConstraint.setDay(day);
@@ -341,21 +341,21 @@ public class Problem {
                 this.constraints = new Constraint[Integer.parseInt(line.substring(13))];
             } else if (this.line.startsWith("COURSES:")) {
                 this.line = this.reader.readLine();
-                fillCourses();
+                this.fillCourses();
             } else if (this.line.startsWith("ROOMS:")) {
                 this.line = this.reader.readLine();
-                fillRooms();
+                this.fillRooms();
             } else if (this.line.startsWith("CURRICULA:")) {
                 this.line = this.reader.readLine();
-                fillCurriculas();
+                this.fillCurriculas();
             } else if (this.line.startsWith("UNAVAILABILITY_CONSTRAINTS:")) {
                 this.line = this.reader.readLine();
-                fillConstraints();
+                this.fillConstraints();
             } else if (this.line.startsWith("END.")) {
                 break;
             }
 
-            line = this.reader.readLine();
+            this.line = this.reader.readLine();
         }
     }
 
