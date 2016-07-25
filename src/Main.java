@@ -3,7 +3,8 @@ import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) {
-        String nameFileIn = "comp07.ctt";
+
+        String nameFileIn = "comp02.ctt";
         try {
             Problem currentProblem = new Problem("instancias/" + nameFileIn);
             Table currentTable = new Table(currentProblem);

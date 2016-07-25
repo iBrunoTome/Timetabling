@@ -8,6 +8,7 @@ import java.io.IOException;
  * @since 19/06/2016
  */
 public class Problem {
+    private FileReader fileIn;
     private BufferedReader reader;
     private String instanceName;
     private String line;
@@ -24,26 +25,32 @@ public class Problem {
     /**
      * Instantiate the problem, read the filein and fill all the necessary matrix
      *
-     * @param nameFileIn Is the name of ITC instance
-     * @throws IOException Exception of file reader
+     * @param nameFileIn
+     * @throws IOException
      */
     public Problem(String nameFileIn) throws IOException {
-        FileReader fileIn = new FileReader(nameFileIn);
-        this.reader = new BufferedReader(fileIn);
+        this.fileIn = new FileReader(nameFileIn);
+        this.reader = new BufferedReader(this.fileIn);
         this.line = reader.readLine();
         this.instantiateProblem();
         this.classClass = new int[this.getTotalClass()][this.getTotalClass()];
         this.classSchedules = new int[this.getTotalClass()][this.getTotalSchedules()];
         this.fillClassClassMatrix();
         this.fillClassSchedulesMatrix();
+        for (int i = 0; i < this.getTotalClass();i++) {
+            for (int j = 0; j < this.getTotalSchedules(); j++) {
+                System.out.print(classSchedules[i][j]);
+            }
+            System.out.println();
+        }
     }
 
     /**
-     * Check if two curses are equals
+     * Check if two curses are iquals
      *
-     * @param c1 idx of course 1
-     * @param c2 idx of course 2
-     * @return true if the both courses are the same
+     * @param c1
+     * @param c2
+     * @return
      */
     public boolean sameCourse(int c1, int c2) {
         Course aux1 = this.getCourseFromInt(c1);
@@ -55,8 +62,8 @@ public class Problem {
     /**
      * Return a course from an integer line or column from a matrix
      *
-     * @param idx idx of course
-     * @return Course from int parameter
+     * @param idx
+     * @return Course
      */
     public Course getCourseFromInt(int idx) {
         int total = 0;
@@ -74,8 +81,8 @@ public class Problem {
     /**
      * Return a curricula from an integer line or column from a matrix
      *
-     * @param course for compare if curricula have this course
-     * @return Curricula from the parameter course
+     * @param course
+     * @return Curricula
      */
     public Curricula getCurriculaFromCourse(Course course) {
         for (Curricula c : this.curriculas) {
@@ -88,10 +95,10 @@ public class Problem {
     }
 
     /**
-     * Return the quantity of rooms from an integer line or column from a matrix
+     * Return the quantity of room from an integer line or column from a matrix
      *
-     * @param idx of the room
-     * @return int indicating the capacity of the room
+     * @param idx
+     * @return Course
      */
     public int getRoomCapacity(int idx) {
         return this.rooms[idx].getCapacity();
@@ -100,13 +107,13 @@ public class Problem {
     /**
      * Check if the 2 courses have the same teacher
      *
-     * @param line   is an int indicating the idx of a course
-     * @param column is an int indicating the idx of a course
-     * @return boolean true if courses have the same teacher, otherwise return false
+     * @param line
+     * @param column
+     * @return boolean
      */
     private boolean courseSameTeacher(int line, int column) {
-        if (this.getCourseFromInt(line) != null && this.getCourseFromInt(column) != null) {
-            return this.getCourseFromInt(line).getTeacherName().equals(this.getCourseFromInt(column).getTeacherName());
+        if (getCourseFromInt(line) != null && getCourseFromInt(column) != null) {
+            return getCourseFromInt(line).getTeacherName().equals(getCourseFromInt(column).getTeacherName());
         } else {
             return false;
         }
@@ -115,9 +122,9 @@ public class Problem {
     /**
      * Check if the 2 courses are in the same curricula
      *
-     * @param line   is an int indicating the idx of a course
-     * @param column is an int indicating the idx of a course
-     * @return boolean if courses have same curricula, otherwise return false
+     * @param line
+     * @param column
+     * @return boolean
      */
     public boolean courseSameCurricula(int line, int column) {
         Course aux1 = this.getCourseFromInt(line);
@@ -142,9 +149,9 @@ public class Problem {
     private void fillClassClassMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalClass(); c++) {
-                if (this.getCourseFromInt(l) != null && this.getCourseFromInt(c) != null && this.getCourseFromInt(l).equals(this.getCourseFromInt(c))) {
+                if (getCourseFromInt(l) != null && getCourseFromInt(c) != null && getCourseFromInt(l).equals(getCourseFromInt(c))) {
                     this.classClass[l][c] = 2;
-                } else if (this.courseSameTeacher(l, c) || (this.courseSameCurricula(l, c))) {
+                } else if (courseSameTeacher(l, c) || (courseSameCurricula(l, c))) {
                     this.classClass[l][c] = 1;
                 } else {
                     this.classClass[l][c] = 0;
@@ -153,15 +160,18 @@ public class Problem {
         }
     }
 
+    // abs(totalSchedules / periodsPerDay) + 1 == dia atual
+    // abs(totalSchedules / day) + 1 == turno atual
+
     /**
-     * Check if constraint exist in the list of constraints
+     * Check if constraint exist in the array of constraints
      *
-     * @param line is the idx of a course
-     * @param column is the total of days x periods
-     * @return boolean true if the constraint exists, otherwise return false
+     * @param line
+     * @param column
+     * @return boolean
      */
     private boolean constraintExist(int line, int column) {
-        Constraint constraint = this.unavailableSchedule(line, column);
+        Constraint constraint = unavailableSchedule(line, column);
 
         for (Constraint c : this.constraints) {
             if (constraint.equals(c)) {
@@ -175,15 +185,16 @@ public class Problem {
     /**
      * Check if a class is available in the schedule
      *
-     * @param line is the idx of a course
-     * @param column is the total of days x periods
-     * @return Constraint based on line and column of schedules
+     * @param line
+     * @param column
+     * @return Constraint
      */
     private Constraint unavailableSchedule(int line, int column) {
         int day = Math.floorDiv(column, this.getnPeriodsPerDay());
         int turn = column % this.getnPeriodsPerDay();
 
-        Course auxCourse = this.getCourseFromInt(line);
+        Course auxCourse = getCourseFromInt(line);
+
         Constraint auxConstraint = new Constraint();
         auxConstraint.setCourseName(auxCourse.getCourseName());
         auxConstraint.setDay(day);
@@ -200,7 +211,7 @@ public class Problem {
     private void fillClassSchedulesMatrix() {
         for (int l = 0; l < this.getTotalClass(); l++) {
             for (int c = 0; c < this.getTotalSchedules(); c++) {
-                if (this.constraintExist(l, c)) {
+                if (constraintExist(l, c)) {
                     this.classSchedules[l][c] = 1;
                 } else {
                     this.classSchedules[l][c] = 0;
@@ -212,21 +223,21 @@ public class Problem {
     /**
      * Get the schedule number (H) for the matrix
      *
-     * @return int is the total of days x periods
+     * @return int
      */
     public int getTotalSchedules() {
         return this.getnDays() * this.getnPeriodsPerDay();
     }
 
     /**
-     * Sum of classes
+     * Sum num of students to fill matrix (N)
      *
-     * @return int the sum of classes
+     * @return int
      */
     public int getTotalClass() {
         int total = 0;
-        for (Course course : this.courses) {
-            total += course.getnClass();
+        for (int i = 0; i < this.courses.length; i++) {
+            total += this.courses[i].getnClass();
         }
         return total;
     }
@@ -234,7 +245,7 @@ public class Problem {
     /**
      * Fill the array of courses
      *
-     * @throws IOException exception of file reader
+     * @throws IOException
      */
     private void fillCourses() throws IOException {
         String aux[];
@@ -257,7 +268,7 @@ public class Problem {
     /**
      * Fill the array of rooms
      *
-     * @throws IOException expection of file reader
+     * @throws IOException
      */
     private void fillRooms() throws IOException {
         String aux[];
@@ -277,7 +288,7 @@ public class Problem {
     /**
      * Fill the array of curriculas
      *
-     * @throws IOException exception of file reader
+     * @throws IOException
      */
     private void fillCurriculas() throws IOException {
         String aux[];
@@ -289,7 +300,9 @@ public class Problem {
             curricula.setCurriculaName(aux[0]);
             curricula.setnCourses(Integer.parseInt(aux[1]));
             String auxCourses[] = new String[curricula.getnCourses()];
-            System.arraycopy(aux, 2, auxCourses, 0, curricula.getnCourses());
+            for (int i = 0; i < curricula.getnCourses(); i++) {
+                auxCourses[i] = aux[i + 2];
+            }
             curricula.setCourses(auxCourses);
             this.curriculas[idx] = curricula;
             idx++;
@@ -300,7 +313,7 @@ public class Problem {
     /**
      * Fill the array of constraints
      *
-     * @throws IOException exception of file reader
+     * @throws IOException
      */
     private void fillConstraints() throws IOException {
         String aux[];
@@ -320,7 +333,7 @@ public class Problem {
     /**
      * Read the text and fill the arrays
      *
-     * @throws IOException exception of file reader
+     * @throws IOException
      */
     private void instantiateProblem() throws IOException {
         while (line != null) {
@@ -341,21 +354,21 @@ public class Problem {
                 this.constraints = new Constraint[Integer.parseInt(line.substring(13))];
             } else if (this.line.startsWith("COURSES:")) {
                 this.line = this.reader.readLine();
-                this.fillCourses();
+                fillCourses();
             } else if (this.line.startsWith("ROOMS:")) {
                 this.line = this.reader.readLine();
-                this.fillRooms();
+                fillRooms();
             } else if (this.line.startsWith("CURRICULA:")) {
                 this.line = this.reader.readLine();
-                this.fillCurriculas();
+                fillCurriculas();
             } else if (this.line.startsWith("UNAVAILABILITY_CONSTRAINTS:")) {
                 this.line = this.reader.readLine();
-                this.fillConstraints();
+                fillConstraints();
             } else if (this.line.startsWith("END.")) {
                 break;
             }
 
-            this.line = this.reader.readLine();
+            line = this.reader.readLine();
         }
     }
 
