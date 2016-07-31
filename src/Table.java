@@ -80,7 +80,7 @@ public class Table {
     /**
      * Update all dynamic matrix after allocated a class in the table
      *
-     * @param c is a class
+     * @param c    is a class
      * @param type for sum (true) or subtract (false) into matrix
      */
     public void refreshDynamicMatrix(Class c, Boolean type) {
@@ -221,7 +221,6 @@ public class Table {
      *
      * @param curr is a curricula
      * @return int is a the number of isolated classes        System.setProperty("java.net.preferIPv4Stack", "true");
-
      */
     public int isolatedClassesPerCurricula(int curr) {
         int sumIsoletedClass = 0;
@@ -264,7 +263,6 @@ public class Table {
     }
 
 
-
     /**
      * Verify how many days a course have
      *
@@ -285,7 +283,7 @@ public class Table {
     /**
      * Calculate the cost to allocated a class on the table, based on weak constraints
      *
-     * @param c is a class that will be tested
+     * @param c    is a class that will be tested
      * @param room is a room that will be tested
      * @return cost is the cost to alocate the class in this room
      */
