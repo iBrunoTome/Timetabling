@@ -37,12 +37,6 @@ public class Problem {
         this.classSchedules = new int[this.getTotalClass()][this.getTotalSchedules()];
         this.fillClassClassMatrix();
         this.fillClassSchedulesMatrix();
-        for (int i = 0; i < this.getTotalClass();i++) {
-            for (int j = 0; j < this.getTotalSchedules(); j++) {
-                System.out.print(classSchedules[i][j]);
-            }
-            System.out.println();
-        }
     }
 
     /**

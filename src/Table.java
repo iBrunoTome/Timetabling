@@ -134,7 +134,9 @@ public class Table {
             this.listClassNonAllocated.remove(0);
             this.refreshDynamicMatrix(classAux, true);
         }
+        this.calculateObjetiveFunction();
         System.out.println("All fucking classes allocated: " + this.getListClassAllocated().size());
+        System.out.println("objective function:  "+this.objectiveFunction);
         System.out.println(this.toString());
     }
 
@@ -249,7 +251,7 @@ public class Table {
     /**
      * Verify how many rooms a course use
      *
-     * @param course is a course to check how many rooms the
+     * @param course is a course to check how many rooms
      * @return int number of rooms
      */
     private int stabilityRoom(Course course) {
@@ -280,6 +282,41 @@ public class Table {
     }
 
 
+    public void calculateObjetiveFunction(){
+        int cost = 0;
+
+        // 1 - weak constraint: room capacity
+        for (Course c : this.currentProblem.getCourses()){
+            int weak = c.getnStudents();
+            for(int r = 0; r < this.currentProblem.getnRooms(); r++){
+                if (this.usedRooms[c.getIdx()][r] > 0){
+                    if (weak > this.currentProblem.getRoomCapacity(r)) {
+                        cost += Math.abs(weak - this.currentProblem.getRoomCapacity(r));
+                    }
+                }
+            }
+            // 2 - weak constraint: min days necessity for a class
+            weak = c.getMinClassDays();
+            if (weak > this.daysOfWork(c)) {
+                cost += Math.abs(((weak - daysOfWork(c)) * 5));
+            }
+
+            // 3 - weak constraint: all class in the same room
+            weak = this.stabilityRoom(c);
+            cost += Math.abs(weak);
+
+            // 4 - weak constraint: isolateded classes
+            Curricula curriculaAux = this.currentProblem.getCurriculaFromCourse(c);
+            if (curriculaAux != null) {
+                weak = this.isolatedClassesPerCurricula(curriculaAux.getIdx());
+                cost += Math.abs((weak * 2));
+            }
+        }
+
+        this.objectiveFunction = cost;
+    }
+
+
     /**
      * Calculate the cost to allocated a class on the table, based on weak constraints
      *
@@ -294,7 +331,7 @@ public class Table {
 
         // 1 - weak constraint: room capacity
         int weak = caux.getnStudents();
-        if (weak <= this.currentProblem.getRoomCapacity(room)) {
+        if (weak > this.currentProblem.getRoomCapacity(room)) {
             cost = Math.abs(weak - this.currentProblem.getRoomCapacity(room));
         }
         // 2 - weak constraint: min days necessity for a class
