@@ -29,6 +29,30 @@ public class Table {
         this.generateInicialTable();
     }
 
+    public int[][] getTable() {
+        return table;
+    }
+
+    public void setTable(int[][] table) {
+        this.table = table;
+    }
+
+    public Problem getCurrentProblem() {
+        return currentProblem;
+    }
+
+    public void setCurrentProblem(Problem currentProblem) {
+        this.currentProblem = currentProblem;
+    }
+
+    public int getObjectiveFunction() {
+        return objectiveFunction;
+    }
+
+    public void setObjectiveFunction(int objectiveFunction) {
+        this.objectiveFunction = objectiveFunction;
+    }
+
     /**
      * Get the min and the max viable schedules
      *
@@ -85,19 +109,19 @@ public class Table {
      */
     public void refreshDynamicMatrix(Class c, Boolean type) {
         int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
-        int currucula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
-        int day = Math.abs((c.getViableSchedules().get(0)[1]) / currentProblem.getnPeriodsPerDay());
+        int curricula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
+        int day = Math.abs(c.getViableSchedules().get(0)[1] / currentProblem.getnPeriodsPerDay());
         int room = c.getViableSchedules().get(0)[0];
         int period = c.getViableSchedules().get(0)[1] - (currentProblem.getnPeriodsPerDay() * day);
 
         if (type) {
             this.busyDays[course][day] += 1;
             this.usedRooms[course][room] += 1;
-            this.curriculaDaysPeriods[currucula][day][period] += 1;
+            this.curriculaDaysPeriods[curricula][day][period] += 1;
         } else {
             this.busyDays[course][day] -= 1;
             this.usedRooms[course][room] -= 1;
-            this.curriculaDaysPeriods[currucula][day][period] -= 1;
+            this.curriculaDaysPeriods[curricula][day][period] -= 1;
         }
 
     }
@@ -119,7 +143,6 @@ public class Table {
                 classAux = this.generateNewSchedules(classAux);
             }
 
-
             Random random = new Random();
             choosen = random.nextInt(classAux.getViableSchedules().size());
             int line = classAux.getViableSchedules().get(choosen)[0];
@@ -136,7 +159,7 @@ public class Table {
         }
         this.calculateObjetiveFunction();
         System.out.println("All fucking classes allocated: " + this.getListClassAllocated().size());
-        System.out.println("objective function:  "+this.objectiveFunction);
+        System.out.println("objective function:  " + this.objectiveFunction);
         System.out.println(this.toString());
     }
 
@@ -222,7 +245,7 @@ public class Table {
      * Verify isolated class in curricula (weak constraint)
      *
      * @param curr is a curricula
-     * @return int is a the number of isolated classes        System.setProperty("java.net.preferIPv4Stack", "true");
+     * @return int is a the number of isolated classes
      */
     public int isolatedClassesPerCurricula(int curr) {
         int sumIsoletedClass = 0;
@@ -282,14 +305,14 @@ public class Table {
     }
 
 
-    public void calculateObjetiveFunction(){
+    public void calculateObjetiveFunction() {
         int cost = 0;
 
         // 1 - weak constraint: room capacity
-        for (Course c : this.currentProblem.getCourses()){
+        for (Course c : this.currentProblem.getCourses()) {
             int weak = c.getnStudents();
-            for(int r = 0; r < this.currentProblem.getnRooms(); r++){
-                if (this.usedRooms[c.getIdx()][r] > 0){
+            for (int r = 0; r < this.currentProblem.getnRooms(); r++) {
+                if (this.usedRooms[c.getIdx()][r] > 0) {
                     if (weak > this.currentProblem.getRoomCapacity(r)) {
                         cost += Math.abs(weak - this.currentProblem.getRoomCapacity(r));
                     }
@@ -337,7 +360,7 @@ public class Table {
         // 2 - weak constraint: min days necessity for a class
         weak = caux.getMinClassDays();
         if (weak > this.daysOfWork(caux)) {
-            cost += Math.abs(((weak - daysOfWork(caux)) * 5));
+            cost += Math.abs((weak - daysOfWork(caux)) * 5);
         }
         // 3 - weak constraint: all class in the same room
         weak = this.stabilityRoom(caux);
@@ -346,7 +369,7 @@ public class Table {
         Curricula curriculaAux = this.currentProblem.getCurriculaFromCourse(caux);
         if (curriculaAux != null) {
             weak = this.isolatedClassesPerCurricula(curriculaAux.getIdx());
-            cost += Math.abs((weak * 2));
+            cost += Math.abs(weak * 2);
         }
 
         return cost;
