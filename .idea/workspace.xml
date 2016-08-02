@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d252bfe-e53a-4c3a-b86c-67509c5b3041" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Timetabling/Grasp.class" afterPath="$PROJECT_DIR$/out/production/Timetabling/Grasp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Timetabling/Main.class" afterPath="$PROJECT_DIR$/out/production/Timetabling/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Timetabling/Table.class" afterPath="$PROJECT_DIR$/out/production/Timetabling/Table.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Grasp.java" afterPath="$PROJECT_DIR$/src/Grasp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table.java" afterPath="$PROJECT_DIR$/src/Table.java" />
     </list>
     <ignored path="Timetabling.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="225">
+              <caret line="15" column="58" selection-start-line="10" selection-start-column="14" selection-end-line="15" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grasp.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Grasp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Grasp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="356">
@@ -132,8 +127,8 @@
         <option value="$PROJECT_DIR$/instancias/toy.ctt" />
         <option value="$PROJECT_DIR$/src/Problem.java" />
         <option value="$PROJECT_DIR$/src/Table.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Grasp.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -755,7 +750,8 @@
     <MESSAGE value="beautify toString initialTable" />
     <MESSAGE value="Begin of grasp" />
     <MESSAGE value="Testing grasp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing grasp" />
+    <MESSAGE value="Last before presentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last before presentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1094,16 +1090,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Grasp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
@@ -1113,6 +1099,16 @@
             <element signature="e#6269#6270#0" expanded="true" />
             <element signature="e#6310#6311#0" expanded="true" />
             <element signature="e#6344#6345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="58" selection-start-line="10" selection-start-column="14" selection-end-line="15" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
