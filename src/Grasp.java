@@ -31,7 +31,7 @@ public class Grasp {
         Table bestTable = this.table;
         for (int i = 0; i < iter; i++) {
             tableAux = this.generateNeighbor();
-            deltaF = bestTable.getObjectiveFunction() - tableAux.getObjectiveFunction();
+            deltaF = tableAux.getObjectiveFunction() - bestTable.getObjectiveFunction();
 
             if (deltaF < 0) {
                 bestTable = tableAux;
@@ -71,6 +71,18 @@ public class Grasp {
                 && (table.getCurrentProblem().getClassSchedules()[c2.getIdxClass()][c1.getViableSchedules().get(0)[1]] == 0)) {
             table.getTable()[c1.getViableSchedules().get(0)[0]][c1.getViableSchedules().get(0)[1]] = c2.getIdxClass();
             table.getTable()[c2.getViableSchedules().get(0)[0]][c2.getViableSchedules().get(0)[1]] = c1.getIdxClass();
+
+            int day = Math.floorDiv(c1.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
+            table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][day] -= 1;
+            day = Math.floorDiv(c2.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
+            table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][day] += 1;
+
+            table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][day] -= 1;
+            day = Math.floorDiv(c1.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
+            table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][day] += 1;
+
+
+
         } else {
             this.swap(table);
         }

@@ -29,6 +29,30 @@ public class Table {
         this.generateInicialTable();
     }
 
+    public int[][][] getCurriculaDaysPeriods() {
+        return curriculaDaysPeriods;
+    }
+
+    public void setCurriculaDaysPeriods(int[][][] curriculaDaysPeriods) {
+        this.curriculaDaysPeriods = curriculaDaysPeriods;
+    }
+
+    public int[][] getUsedRooms() {
+        return usedRooms;
+    }
+
+    public void setUsedRooms(int[][] usedRooms) {
+        this.usedRooms = usedRooms;
+    }
+
+    public int[][] getBusyDays() {
+        return busyDays;
+    }
+
+    public void setBusyDays(int[][] busyDays) {
+        this.busyDays = busyDays;
+    }
+
     public int[][] getTable() {
         return table;
     }
@@ -110,9 +134,9 @@ public class Table {
     public void refreshDynamicMatrix(Class c, Boolean type) {
         int course = this.currentProblem.getCourseFromInt(c.getIdxClass()).getIdx();
         int curricula = this.currentProblem.getCurriculaFromCourse(this.currentProblem.getCourseFromInt(c.getIdxClass())).getIdx();
-        int day = Math.abs(c.getViableSchedules().get(0)[1] / currentProblem.getnPeriodsPerDay());
+        int day = Math.floorDiv(c.getViableSchedules().get(0)[1], this.currentProblem.getnPeriodsPerDay());
         int room = c.getViableSchedules().get(0)[0];
-        int period = c.getViableSchedules().get(0)[1] - (currentProblem.getnPeriodsPerDay() * day);
+        int period = c.getViableSchedules().get(0)[1] % this.currentProblem.getnPeriodsPerDay();
 
         if (type) {
             this.busyDays[course][day] += 1;
