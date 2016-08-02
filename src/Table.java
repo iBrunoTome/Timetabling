@@ -252,7 +252,7 @@ public class Table {
      */
     public Class generateNewSchedules(Class c) {
         Random random = new Random();
-        int choosen = random.nextInt(this.listClassAllocated.size() - 1);
+        int choosen = random.nextInt(this.listClassAllocated.size());
         Class classChoosen = this.listClassAllocated.get(choosen);
         this.listClassAllocated.remove(choosen);
         this.refreshDynamicMatrix(classChoosen, false);
