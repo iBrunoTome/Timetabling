@@ -8,7 +8,7 @@ import java.util.Random;
 public class Grasp {
 
     private Table table;
-    private final int MaxIter = 100;
+    private final int MaxIter = 200;
 
     public Grasp(Table table) {
         this.table = table;
@@ -25,7 +25,7 @@ public class Grasp {
     }
 
     private Table localSearch() {
-        int iter = 10;
+        int iter = 100;
         int deltaF;
         Table tableAux;
         Table bestTable = this.table;
@@ -72,17 +72,38 @@ public class Grasp {
             table.getTable()[c1.getViableSchedules().get(0)[0]][c1.getViableSchedules().get(0)[1]] = c2.getIdxClass();
             table.getTable()[c2.getViableSchedules().get(0)[0]][c2.getViableSchedules().get(0)[1]] = c1.getIdxClass();
 
+            /*
+                Update the dynamic matrix busyDays
+             */
             int day = Math.floorDiv(c1.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
             table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][day] -= 1;
             day = Math.floorDiv(c2.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
             table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][day] += 1;
-
             table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][day] -= 1;
             day = Math.floorDiv(c1.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
             table.getBusyDays()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][day] += 1;
 
+            /*
+                Update the dynamic matrix usedRooms
+             */
+            table.getUsedRooms()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][c1.getViableSchedules().get(0)[0]] -= 1;
+            table.getUsedRooms()[table.getCurrentProblem().getCourseFromInt(c1.getIdxClass()).getIdx()][c2.getViableSchedules().get(0)[0]] += 1;
+            table.getUsedRooms()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][c2.getViableSchedules().get(0)[0]] -= 1;
+            table.getUsedRooms()[table.getCurrentProblem().getCourseFromInt(c2.getIdxClass()).getIdx()][c1.getViableSchedules().get(0)[0]] += 1;
 
-
+            /*
+                Update the dynamic matrix currDaysPeriods
+             */
+            int period1 = c1.getViableSchedules().get(0)[1] % table.getCurrentProblem().getnPeriodsPerDay();
+            int period2 = c2.getViableSchedules().get(0)[1] % table.getCurrentProblem().getnPeriodsPerDay();
+            int day1 = Math.floorDiv(c1.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
+            int day2 = Math.floorDiv(c2.getViableSchedules().get(0)[1], table.getCurrentProblem().getnPeriodsPerDay());
+            int curricula1 = table.getCurrentProblem().getCurriculaFromCourse(table.getCurrentProblem().getCourseFromInt(c1.getIdxClass())).getIdx();
+            int curricula2 = table.getCurrentProblem().getCurriculaFromCourse(table.getCurrentProblem().getCourseFromInt(c2.getIdxClass())).getIdx();
+            table.getCurriculaDaysPeriods()[curricula1][day1][period1] -= 1;
+            table.getCurriculaDaysPeriods()[curricula1][day2][period2] += 1;
+            table.getCurriculaDaysPeriods()[curricula2][day2][period2] -= 1;
+            table.getCurriculaDaysPeriods()[curricula2][day1][period1] += 1;
         } else {
             this.swap(table);
         }

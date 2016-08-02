@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
 
-        String nameFileIn = "toy.ctt";
+        String nameFileIn = "comp01.ctt";
         try {
             Problem currentProblem = new Problem("instancias/" + nameFileIn);
             Table currentTable = new Table(currentProblem);
