@@ -14,9 +14,13 @@ public class Grasp {
         this.table = table;
     }
 
-    public void grasp() {
+    public void run() {
+        Table tableNeighbor;
         for (int i = 0; i < this.MaxIter; i++) {
-
+            tableNeighbor = this.localSearch();
+            if (tableNeighbor.getObjectiveFunction() < this.table.getObjectiveFunction()) {
+                this.table = tableNeighbor;
+            }
         }
     }
 
@@ -74,6 +78,14 @@ public class Grasp {
         table.calculateObjetiveFunction();
         return table;
 
+    }
+
+    public Table getTable() {
+        return this.table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
     }
 
 }
