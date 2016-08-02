@@ -43,7 +43,7 @@ public class Grasp {
     }
 
     private Table generateNeighbor() {
-        Table[] tables = new Table[]{this.swap(this.table), this.move(this.table), this.swap(this.table), this.move(this.table)};
+        Table[] tables = new Table[]{this.swap(this.table), this.swap(this.table), this.swap(this.table), this.swap(this.table)};
 
         Table bestTable = tables[0];
         for (int i = 1; i < 4; i++) {
@@ -83,20 +83,23 @@ public class Grasp {
     }
 
     private Table swap(Table table) {
+        boolean done = false;
         Random rand = new Random();
-        int choose1 = rand.nextInt(table.getListClassAllocated().size());
-        int choose2 = rand.nextInt(table.getListClassAllocated().size());
+        while (!done) {
+            int choose1 = rand.nextInt(table.getListClassAllocated().size());
+            int choose2 = rand.nextInt(table.getListClassAllocated().size());
 
-        Class c1 = table.getListClassAllocated().get(choose1);
-        Class c2 = table.getListClassAllocated().get(choose2);
+            Class c1 = table.getListClassAllocated().get(choose1);
+            Class c2 = table.getListClassAllocated().get(choose2);
 
-        if ((table.getCurrentProblem().getClassSchedules()[c1.getIdxClass()][c2.getViableSchedules().get(0)[1]] == 0)
-                && (table.getCurrentProblem().getClassSchedules()[c2.getIdxClass()][c1.getViableSchedules().get(0)[1]] == 0)) {
-            table.getTable()[c1.getViableSchedules().get(0)[0]][c1.getViableSchedules().get(0)[1]] = c2.getIdxClass();
-            table.getTable()[c2.getViableSchedules().get(0)[0]][c2.getViableSchedules().get(0)[1]] = c1.getIdxClass();
-            table = this.updateNeightborMatrix(table, c1, c2);
-        } else {
-            this.swap(table);
+            if ((table.getCurrentProblem().getClassSchedules()[c1.getIdxClass()][c2.getViableSchedules().get(0)[1]] == 0)
+                    && (table.getCurrentProblem().getClassSchedules()[c2.getIdxClass()][c1.getViableSchedules().get(0)[1]] == 0)) {
+                table.getTable()[c1.getViableSchedules().get(0)[0]][c1.getViableSchedules().get(0)[1]] = c2.getIdxClass();
+                table.getTable()[c2.getViableSchedules().get(0)[0]][c2.getViableSchedules().get(0)[1]] = c1.getIdxClass();
+                table = this.updateNeightborMatrix(table, c1, c2);
+                System.out.println("Troucou " + c1.getIdxClass() + " com " + c2.getIdxClass());
+                done = true;
+            }
         }
 
         table.calculateObjetiveFunction();
